@@ -14,7 +14,7 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/dashboard', function () {
-    return view('dashboard.index');
+    return view('dashboard.adduser');
 });
 
 Route::get('login', [LoginController::class,'index'])->name('login');
