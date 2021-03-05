@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 /*
@@ -14,13 +15,16 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/dashboard', function () {
-    return view('dashboard.adduser');
+    return view('dashboard.index');
 });
 
 Route::get('login', [LoginController::class,'index'])->name('login');
 
 Route::post("login",[LoginController::class,'verify']);
 
-Route::get("", function () {
-    
-});
+
+Route::get("dashboard/create",[CustomerController::class,'create']);
+Route::post("dashboard/create",[CustomerController::class,'store']);
+Route::get("dashboard/view",[CustomerController::class,'show']);
+Route::get("dashboard/profile",[EmployeeController::class,'index']);
+Route::get("test",[EmployeeController::class,'index']);

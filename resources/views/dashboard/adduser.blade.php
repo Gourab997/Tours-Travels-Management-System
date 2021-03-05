@@ -4,29 +4,23 @@
 @section('adduser')
     
 
-<form class="needs-validation" novalidate>
+<form action="create" method="POST" class="needs-validation" novalidate>
   <div class="form-row">
+   @csrf
     <div class="col-md-4 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
-      <div class="valid-feedback">
-        
-      </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom02">Last name</label>
-      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="" required>
+      <label for="validationCustom02">Full name</label>
+      <input type="text" class="form-control" id="validationCustom02" name="fullname" placeholder="Full name" value="" required>
       <div class="valid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
-      <label for="validationCustomUsername">Username</label>
+      <label for="username">Username</label>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroupPrepend">@</span>
         </div>
-        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-describedby="inputGroupPrepend" required>
         <div class="invalid-feedback">
           Please choose a username.
         </div>
@@ -36,21 +30,21 @@
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationCustom03">Email</label>
-      <input type="text" class="form-control" id="validationCustom03" placeholder="Email" required>
+      <input type="text" class="form-control" id="validationCustom03" name="email" placeholder="Email" required>
       <div class="invalid-feedback">
         Please provide a valid city.
       </div>
     </div>
     <div class="col-md-3 mb-3">
       <label for="validationCustom04">Address</label>
-      <input type="text" class="form-control" id="validationCustom04" placeholder="Address" required>
+      <input type="text" class="form-control" id="validationCustom04" name="address" placeholder="Address" required>
       <div class="invalid-feedback">
         Please provide a valid state.
       </div>
     </div>
     <div class="col-md-3 mb-3">
       <label for="validationCustom05">Phone</label>
-      <input type="text" class="form-control" id="validationCustom05" placeholder="Phone" required>
+      <input type="text" class="form-control" id="validationCustom05" name="phone" placeholder="Phone" required>
       <div class="invalid-feedback">
         Please provide a valid zip.
       </div>
@@ -58,25 +52,25 @@
   </div>
   <div class="col-md-3 mb-3">
     <label for="validationCustom05"> Password</label>
-    <input type="text" class="form-control" id="validationCustom05" placeholder=" Password" required>
+    <input type="text" class="form-control" id="validationCustom05" name="password" placeholder=" Password" required>
     <div class="invalid-feedback">
       Please provide a valid zip.
     </div>
   </div>
   <div class="col-md-3 mb-3">
     <label for="validationCustom05">Confirm Password</label>
-    <input type="text" class="form-control" id="validationCustom05" placeholder="Confirm Password" required>
+    <input type="text" class="form-control" id="validationCustom05" name="cpassword" placeholder="Confirm Password" required>
     <div class="invalid-feedback">
       Please provide a valid zip.
     </div>
   </div>
 
   <div class="col-md-3 mb-3">
-    <select class="custom-select" required>
+    <select class="custom-select"  name="gender" required>
       <option value="">Gender</option>
-      <option value="1">Male</option>
-      <option value="2">Female</option>
-      <option value="3">Other</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
     </select>
     <div class="invalid-feedback">Example invalid custom select feedback</div>
   </div>
@@ -84,16 +78,16 @@
 
   <div class="col-md-3 mb-3">
     
-  <div class="custom-file">
+  {{-- <div class="custom-file">
 
-    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+    <input type="file" name="profile_pic" class="custom-file-input" id="validatedCustomFile" >
     <label class="custom-file-label" for="validatedCustomFile">Profile Pic</label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
   </div>
-</div>
+</div> --}}
 
 <div class="col-md-3 mb-3">
-  <button class="btn btn-primary" type="submit">Submit form</button>
+  <button class="btn btn-primary" name="submit" type="submit">Submit form</button>
 </div>
 </form>
 

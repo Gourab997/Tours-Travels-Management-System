@@ -10,6 +10,8 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+
  
   </head>
   <body>
@@ -22,11 +24,12 @@
          @include('include.footer')
         </div>
     	</nav>
-
+    
+  
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
+          
       {{--   <x-navbar/> --}}
           
           @include('include.navbar')
@@ -34,8 +37,9 @@
 
     @yield('dashboardhome')
     @yield('adduser')
+    @yield('viewuser')
 
-
+@yield('profile')
       
 
       

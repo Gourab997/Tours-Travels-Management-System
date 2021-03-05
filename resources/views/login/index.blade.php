@@ -1,40 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.ico') }}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset ('vendor/animate/animate.css') }}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset ('vendor/animsition/css/animsition.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/daterangepicker/daterangepicker.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset( 'css/main.css') }}">
+<!--===============================================================================================-->
+</head>
 <body>
   <form action="login" method="POST">
     @csrf
-      <div class="login-box">
-        <h1>Login</h1>
-        <div class="textbox">
-          <i class="fas fa-user"></i>
-          <input type="text" name="username" placeholder="Username">
-        </div>
-      
-        <div class="textbox">
-          <i class="fas fa-lock"></i>
-          <input type="password" name="username" placeholder="Password">
-        </div>
-      <div class="col-12" >
-        <input type="submit" class="btn btn-primary"  name="submit" value="Submit">
-      </div>
-      </div>
-        
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- 
-  </form>
-  </body>
-</html>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-50 p-b-90">
+				<form class="login100-form validate-form flex-sb flex-w">
+					<span class="login100-form-title p-b-51">
+						Login
+					</span>
 
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+						<input class="input100" type="text" name="username" placeholder="Username">
+						<span class="focus-input100"></span>
+					</div>
+					
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="flex-sb-m w-full p-t-3 p-b-24">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt1">
+								Forgot?
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn m-t-17">
+						<button >
+              <input class="login100-form-btn" type="submit" name="submit" value="Submit">
+						
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('vendor/animsition/js/animsition.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('vendor/bootstrap/js/popper.js') }}"></script>
+	<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{asset( 'vendor/daterangepicker/daterangepicker.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('vendor/countdowntime/countdowntime.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('js/loginmain.js') }}"></script>
+  </form>
+</body>
+</html>

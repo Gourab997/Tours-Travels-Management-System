@@ -12,7 +12,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         //
     }
@@ -22,9 +22,9 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $req)
     {
-        //
+        return view('dashboard.adduser');
     }
 
     /**
@@ -33,9 +33,23 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $customer = new Customer();
+        $customer->fullname = $req->fullname;
+        $customer->username = $req->username;
+        $customer->email = $req->email;
+        $customer->address = $req->address;
+        $customer->phone = $req->phone;
+        $customer->password = $req->password;
+        $customer->gender = $req->gender;
+        $customer->save();
+
+        return redirect('/dashboard');
+
+    }
+    public function profile(Request $req){
+        return view('dashboard.profile');
     }
 
     /**
@@ -44,9 +58,10 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show()
     {
-        //
+        $customerlist = Customer::all();
+        return view('dashboard.viewuser')->with('customerlist',$customerlist);
     }
 
     /**
