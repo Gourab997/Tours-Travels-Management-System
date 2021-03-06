@@ -15,8 +15,8 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
-        $employee=Employee::where('id', $request->session()->get('id'))->get();
-        return $employee;
+     
+     
         //return view('dashboard.profile',compact('employee'))
     }
 
@@ -51,18 +51,23 @@ class EmployeeController extends Controller
     {
         //
     }
-
+    public function dashboard(Request $req)
+    {
+        $employee = Employee::where('username',$req->session()->get('username'))->first();
+        return view('dashboard.index')->with('employee',$employee);
+    }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit( $id ,Request $req)
     {
-        //
+       $employee = Employee::find($id);
+       return view('dashboard.editprofile')->with('employee', $employee);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -70,10 +75,36 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update($id, Request $req)
     {
-        //
-    }
+
+        $employee = Employee::find($id);
+        
+            
+    
+            $employee->fullname     = $req->fullname;
+            $employee->email        = $req->email;
+            $employee->phone        = $req->phone;
+            $employee->address      = $req->address;
+            $employee->facebook     = $req->facebook;
+           if ($req->hasFile('myfile')) {
+                $file = $req->file('myfile');
+                $fileName =  $req->session()->get('username') . '.' .  $file->getClientOriginalExtension();
+                if ($file->move('uploads', $fileName)) {
+                    $employee->profile_img  = $fileName;
+                    $employee->save();
+                } else {
+                    return redirect('/dashboard/profile');
+                }
+            }
+ 
+    return redirect('/dashboard/profile');
+    
+   
+      
+            
+
+}
 
     /**
      * Remove the specified resource from storage.
@@ -84,5 +115,9 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
+    }
+    public function profile(Request $req){
+        $employee = Employee::where('username',$req->session()->get('username'))->first();
+        return view('dashboard.profile')->with('employee',$employee);
     }
 }

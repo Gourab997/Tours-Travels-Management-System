@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Employee;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -24,7 +24,8 @@ class CustomerController extends Controller
      */
     public function create(Request $req)
     {
-        return view('dashboard.adduser');
+        $employee = Employee::where('username',$req->session()->get('username'))->first();
+        return view('dashboard.adduser')->with('employee', $employee);
     }
 
     /**
@@ -48,9 +49,7 @@ class CustomerController extends Controller
         return redirect('/dashboard');
 
     }
-    public function profile(Request $req){
-        return view('dashboard.profile');
-    }
+ 
 
     /**
      * Display the specified resource.
@@ -58,10 +57,10 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
+    public function show(Request $req)
+    {$employee = Employee::where('username',$req->session()->get('username'))->first();
         $customerlist = Customer::all();
-        return view('dashboard.viewuser')->with('customerlist',$customerlist);
+        return view('dashboard.viewuser')->with('customerlist',$customerlist)->with('employee',$employee);
     }
 
     /**

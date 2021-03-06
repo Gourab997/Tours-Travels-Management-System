@@ -14,17 +14,19 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-});
+Route::get('/', [LoginController::class,'index'])->name('login');
 
 Route::get('login', [LoginController::class,'index'])->name('login');
 
 Route::post("login",[LoginController::class,'verify']);
 
 
+Route::group(['middleware'=>'sess'],function ( ){
+Route::get('/dashboard', [EmployeeController::class,'dashboard']);
 Route::get("dashboard/create",[CustomerController::class,'create']);
 Route::post("dashboard/create",[CustomerController::class,'store']);
 Route::get("dashboard/view",[CustomerController::class,'show']);
-Route::get("dashboard/profile",[EmployeeController::class,'index']);
-Route::get("test",[EmployeeController::class,'index']);
+Route::get("dashboard/profile",[EmployeeController::class,'profile']);
+Route::get("dashboard/editprofile/{id}",[EmployeeController::class,'edit']);
+Route::post("dashboard/editprofile/{id}",[EmployeeController::class,'update']);
+});
