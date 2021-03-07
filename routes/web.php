@@ -3,6 +3,8 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PackageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +31,13 @@ Route::get("dashboard/view",[CustomerController::class,'show']);
 Route::get("dashboard/profile",[EmployeeController::class,'profile']);
 Route::get("dashboard/editprofile/{id}",[EmployeeController::class,'edit']);
 Route::post("dashboard/editprofile/{id}",[EmployeeController::class,'update']);
+
+
+//package
+Route::get("dashboard/createpackage",[PackageController::class,'create']);
+Route::post("dashboard/createpackage",[PackageController::class,'store']);
+Route::get("dashboard/viewpackage",[PackageController::class,'show']);
+Route::get("dashboard/viewpackage/details/{p_id}",[PackageController::class,'packageshow']);
+
+Route::get("logout",[LogoutController::class,'index']);
 });

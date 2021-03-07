@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
-use session;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -53,8 +53,10 @@ class EmployeeController extends Controller
     }
     public function dashboard(Request $req)
     {
+
+        $count  =DB::table('customers')->count();
         $employee = Employee::where('username',$req->session()->get('username'))->first();
-        return view('dashboard.index')->with('employee',$employee);
+        return view('dashboard.index',compact('count'))->with('employee',$employee);
     }
     /**
      * Show the form for editing the specified resource.

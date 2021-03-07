@@ -24,8 +24,8 @@ class CustomerController extends Controller
      */
     public function create(Request $req)
     {
-        $employee = Employee::where('username',$req->session()->get('username'))->first();
-        return view('dashboard.adduser')->with('employee', $employee);
+        
+        return view('dashboard.adduser');
     }
 
     /**
@@ -58,9 +58,9 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $req)
-    {$employee = Employee::where('username',$req->session()->get('username'))->first();
+    {
         $customerlist = Customer::all();
-        return view('dashboard.viewuser')->with('customerlist',$customerlist)->with('employee',$employee);
+        return view('dashboard.viewuser')->with('customerlist',$customerlist);
     }
 
     /**

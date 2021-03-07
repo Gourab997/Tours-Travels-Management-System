@@ -1,7 +1,7 @@
 
     
 <div class="p-4 pt-5">
-    <a  href="#" class="img logo rounded-circle mb-5" style="{{ asset('/uploads')}}/{{ $employee->profile_img}}"></a>
+   {{-- // <a  href="#" class="img logo rounded-circle mb-5" style="{{ asset('/uploads')}}/{{ $employee->profile_img}}"></a> --}}
    
 <ul class="list-unstyled components mb-5">
 <li class="active">
