@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Package;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PackageController extends Controller
 {
@@ -107,4 +107,13 @@ class PackageController extends Controller
         $package = Package::find($p_id);
         return view('dashboard.package.details')->with('package',$package);
     }
+    public function downloadPDF()
+    {
+        $packagelist = Package::all();
+        $pdf = PDF::loadView('dashboard.package.viewpackage',compact('packagelist'))->setOptions(['defaultFont' => 'sans-serif']);
+       
+       
+      return $pdf->download('package.pdf');
+    }
+
 }

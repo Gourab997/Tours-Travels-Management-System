@@ -17,6 +17,7 @@
         <img class="img-fluid" src="{{ asset('/upload')}}/{{ $package->package_image}}"alt="" width="600" height="300">
       </div>
   
+      
       <div class="col-md-4">
         <h3 class="my-3" style="color: coral"> Package Description</h3>
         <p>{{ $package->package_details }}</p>

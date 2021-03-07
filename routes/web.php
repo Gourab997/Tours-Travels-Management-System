@@ -38,6 +38,6 @@ Route::get("dashboard/createpackage",[PackageController::class,'create']);
 Route::post("dashboard/createpackage",[PackageController::class,'store']);
 Route::get("dashboard/viewpackage",[PackageController::class,'show']);
 Route::get("dashboard/viewpackage/details/{p_id}",[PackageController::class,'packageshow']);
-
+Route::get("dashboard/viewpackage/download-pdf",[PackageController::class,'downloadPDF']);
 Route::get("logout",[LogoutController::class,'index']);
 });

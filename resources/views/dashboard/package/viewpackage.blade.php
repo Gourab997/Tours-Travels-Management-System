@@ -2,7 +2,7 @@
 
 
 @section('createpackage')
-
+<a href="/dashboard/viewpackage/download-pdf">Download PDF</a>
 <table class="table">
     <thead class="thead-dark">
       <tr>
