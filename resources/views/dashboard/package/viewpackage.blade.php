@@ -11,7 +11,7 @@
         <th scope="col">Package Type</th>
         <th scope="col">Package Location</th>
         <th scope="col">Package Price</th>
-        <th scope="col">Details</th
+        <th scope="col">Details</th>
       </tr>
     </thead>
     <tbody>

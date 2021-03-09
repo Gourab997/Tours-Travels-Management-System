@@ -67,7 +67,7 @@ class EmployeeController extends Controller
     public function edit( $id ,Request $req)
     {
        $employee = Employee::find($id);
-       return view('dashboard.editprofile')->with('employee', $employee);
+       return view('dashboard.profile.editprofile')->with('employee', $employee);
     }
     
     /**
@@ -120,6 +120,6 @@ class EmployeeController extends Controller
     }
     public function profile(Request $req){
         $employee = Employee::where('username',$req->session()->get('username'))->first();
-        return view('dashboard.profile')->with('employee',$employee);
+        return view('dashboard.profile.profile')->with('employee',$employee);
     }
 }

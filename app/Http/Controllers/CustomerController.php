@@ -25,7 +25,7 @@ class CustomerController extends Controller
     public function create(Request $req)
     {
         
-        return view('dashboard.adduser');
+        return view('dashboard.customer.adduser');
     }
 
     /**
@@ -60,7 +60,7 @@ class CustomerController extends Controller
     public function show(Request $req)
     {
         $customerlist = Customer::all();
-        return view('dashboard.viewuser')->with('customerlist',$customerlist);
+        return view('dashboard.customer.viewuser')->with('customerlist',$customerlist);
     }
 
     /**

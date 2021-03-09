@@ -1,20 +1,20 @@
 
     
 <div class="p-4 pt-5">
-   {{-- // <a  href="#" class="img logo rounded-circle mb-5" style="{{ asset('/uploads')}}/{{ $employee->profile_img}}"></a> --}}
+    <a  href="#" class="img logo rounded-circle mb-5" style=""></a>
    
 <ul class="list-unstyled components mb-5">
 <li class="active">
   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Package</a>
   <ul class="collapse list-unstyled" id="homeSubmenu">
   <li>
-      <a href="#">Create Package</a>
+      <a href="/dashboard/createpackage">Create Package</a>
   </li>
   <li>
-      <a href="#">Update Package</a>
+      <a href="dashboard/viewpackage">View Package</a>
   </li>
   <li>
-      <a href="#">Package Delete</a>
+      <a href="#">Modification Package </a>
   </li>
   </ul>
 </li>
@@ -28,7 +28,7 @@
       <a href="dashboard/create">Create Customer</a>
   </li>
   <li>
-      <a href="#">Customer Update</a>
+      <a href="/dashboard/view">Customer List</a>
   </li>
   <li>
       <a href="#">Customer delete</a>

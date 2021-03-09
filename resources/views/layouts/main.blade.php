@@ -63,6 +63,9 @@
                @yield('viewpackage')
 
                   @yield('profile')
+                  @yield('booking')
+                  @yield('createbooking')
+                  @yield('viewbooking')
       
 
       
@@ -71,10 +74,10 @@
 
     <!-- Warning Section Ends -->
 <!-- Required Jquery -->
-<script type="text/javascript" src="{{URL::to('assets/js/jquery/jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{URL::to('assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
-<script type="text/javascript" src="{{URL::to('assets/js/popper.js/popper.min.js')}}"></script>
-<script type="text/javascript" src="{{URL::to('assets/js/bootstrap/js/bootstrap.min.js')}}"></script>
+<scrip type="text/javascript" src="{{URL::to('assets/js/jquery/jquery.min.js')}}"></scrip>
+<scrip type="text/javascript" src="{{URL::to('assets/js/jquery-ui/jquery-ui.min.js')}}"></scrip>
+<scrip type="text/javascript" src="{{URL::to('assets/js/popper.js/popper.min.js')}}"></scrip>
+<script type="text/javascript" src="{{URL::to('assets/js/bootstrap/js/bootstrap.min.js')}}"></scrip>
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="{{URL::to('assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 <!-- modernizr js -->
