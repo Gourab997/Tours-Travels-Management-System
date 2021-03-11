@@ -16,7 +16,7 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $packagelist = Package::all();
+    {   $packagelist = Package::paginate(5);
         return view('dashboard.booking.indexbooking')->with('packagelist',$packagelist);
     }
 
@@ -64,7 +64,7 @@ class BookingController extends Controller
        $booking->status = $req->status;
        $booking->save();
      
-       return redirect('/dashboard/viewbooking');
+       return redirect('/dashboard/viewbooking')->with("Confirm_Booking",'Confirm Booking succeessfully');
   
    }
    
@@ -102,6 +102,21 @@ class BookingController extends Controller
     ];
         return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguides',$tourguides);
     }
+
+public function search(Request $req)
+{
+    $search = $req->get('search');
+    $tourguides = Tourguide::all();
+    $bookinglist =  DB::table('bookings')->where('username' , 'like' , '%'.$search.'%')
+    ->join('packages','packages.p_id','=','bookings.pro_id')
+    ->get();
+    $packages= Package::get();
+
+   $data =['packages' => $packages,
+'bookinglist' =>  $bookinglist,
+];
+return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguides',$tourguides);
+}
 
     /**
      * Show the form for editing the specified resource.

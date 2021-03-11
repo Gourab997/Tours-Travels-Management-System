@@ -24,7 +24,16 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
+
 			@endfor
+			<span style="padding: 30px; "> {{ $packagelist->links() }}</span>
+			<style>
+			  .w-5{
+				display:none ;
+				
+			  }
+			</style>
+
 @endsection
 <link href="{{ asset('css/bbootstrap.css') }}" rel='stylesheet' type='text/css' />
 <link href="{{ asset('css/bstyle.css') }}" rel='stylesheet' type='text/css' />

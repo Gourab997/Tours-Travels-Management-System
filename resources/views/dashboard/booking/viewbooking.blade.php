@@ -2,6 +2,17 @@
 
 
 @section('viewbooking')
+<div class="col-md-4">
+  <form action="/searchbooking" method="GET">
+  <div class="input-group">
+    <input type="search" name="search" class="form-control" placeholder="Type Customer Username">
+    <span class="input-group-prepend">
+      <button type="submit" class="btn btn-primary"> Search</button>
+    </span>
+  </div>
+  </form>
+</div>
+
 <a href="/dashboard/viewpackage/download-pdf">Download PDF</a>
 <table class="table">
     <thead class="thead-dark">
@@ -109,4 +120,15 @@
       @endforeach
     </tbody>
   </table>
+
 @endsection
+
+ @if(Session::has('Confirm_Booking'))
+<script>
+toastr.success("{!! Session::get('Confirm_Booking') !!}");
+
+</script>
+
+
+ @endif
+     

@@ -1,6 +1,16 @@
 @extends('layouts.main')
 
 @section('viewuser')
+<div class="col-md-4">
+  <form action="/searchcustomer" method="GET">
+  <div class="input-group">
+    <input type="search" name="search" class="form-control" placeholder="Type Customer Username">
+    <span class="input-group-prepend">
+      <button type="submit" class="btn btn-primary"> Search</button>
+    </span>
+  </div>
+  </form>
+</div>
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -13,28 +23,37 @@
         <th scope="col">Password</th>
         <th scope="col">Gender</th>
         <th scope="col">Action</th
-      </tr>
+     </tr>
     </thead>
     <tbody>
-       @for($i=0; $i< count($customerlist); $i++) 
+        @foreach($customerlist as $customerlists)
       <tr scope="row">
-        <td>{{ $customerlist[$i]['id'] }}</td>
-        <td>{{ $customerlist[$i]['fullname'] }}</td>
-        <td>{{ $customerlist[$i]['username'] }}</td>
-        <td>{{ $customerlist[$i]['email'] }}</td>
-        <td>{{ $customerlist[$i]['address'] }}</td>
-        <td>{{ $customerlist[$i]['phone'] }}</td>
-        <td>{{ $customerlist[$i]['password'] }}</td>
-        <td>{{ $customerlist[$i]['gender'] }}</td>
+        <td scope="col">{{ $customerlists->id }}</td>
+        <td scope="col">{{ $customerlists->fullname }}</td>
+        <td scope="col">{{ $customerlists->username }}</td>
+        <td scope="col">{{ $customerlists->email }}</td>
+        <td scope="col">{{ $customerlists->address }}</td>
+        <td scope="col">{{ $customerlists->phone }}</td>
+        <td scope="col">{{ $customerlists->password }}</td>
+        <td scope="col">{{ $customerlists->gender }}</td>
         <td>
             <a href=""name="btn btn-success"> Edit</a>
-            <a href="/home/delete/{{ $customerlist[$i]['id'] }}"name="btn btn-danger"> Delete</a>
-            <a href="/home/details/{{ $customerlist[$i]['id'] }}" name="btn btn-info"> Details</a>
+            <a href="/home/delete/{{ $customerlists->id }}"name="btn btn-danger"> Delete</a>
+            <a href="/home/details/{{ $customerlists->id }}" name="btn btn-info"> Details</a>
         </td>
       </tr>
-      @endfor
-    </tbody>
-  </table>
-  
-  
+      @endforeach
+     </tbody>
+ </table>
+ 
+
+
+  <span style="padding: 30px; "> {{ $customerlist->links() }}</span>
+  <style>
+    .w-5{
+      display:none ;
+      
+    }
+  </style>
+
 @endsection

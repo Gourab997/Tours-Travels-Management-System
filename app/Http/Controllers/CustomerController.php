@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Customer;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class CustomerController extends Controller
 {
     /**
@@ -59,10 +59,17 @@ class CustomerController extends Controller
      */
     public function show(Request $req)
     {
-        $customerlist = Customer::all();
+        $customerlist = Customer::paginate(5);
         return view('dashboard.customer.viewuser')->with('customerlist',$customerlist);
     }
 
+
+    public function search(Request $req)
+    {
+        $search = $req->get('search');
+        $customerlist = DB::table('customers')->where('username' , 'like' , '%'.$search.'%')->paginate(5);
+        return view('dashboard.customer.viewuser')->with('customerlist',$customerlist);
+    }
     /**
      * Show the form for editing the specified resource.
      *
