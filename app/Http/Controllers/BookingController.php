@@ -26,8 +26,11 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($p_id)
-    {    $package = Package::find($p_id);
-        return view('dashboard.booking.createbooking')->with('package',$package);
+    {   $customers =  DB::table('customers')->get(); 
+        $package = Package::find($p_id);
+        
+        
+        return view('dashboard.booking.createbooking')->with('package',$package)->with('customers',$customers);
     }
 
     /**

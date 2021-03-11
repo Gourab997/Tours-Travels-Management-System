@@ -70,10 +70,17 @@
 								</div>
 							
 							</div>
-                            <div class="form-group">
-								<span class="form-label">Username</span>
-								<input class="form-control" type="text" name="username" placeholder="Enter your Username">
+							<div class="row">
+								<div class="col-md-6">
+									<span class="form-label">Customer Username</span>
+								<select class="form-control" name="username">
+								@foreach($customers as $customer)
+								<option class="form-control" value="{{ $customer->username }}"> {{ $customer->username }} </option>
+								@endforeach
+							</select>
+								</div>
 							</div>
+						
 							<div class="form-group">
 								<span class="form-label">Email</span>
 								<input class="form-control" type="email"  name="email" placeholder="Enter your email">
