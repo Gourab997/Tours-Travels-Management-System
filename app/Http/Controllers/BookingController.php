@@ -62,7 +62,20 @@ class BookingController extends Controller
        $booking->save();
      
        return redirect('/dashboard/viewbooking');
-  ;
+  
+   }
+   
+   public function tourguide($b_id, Request $req)
+   {
+    $booking = booking::find($b_id);
+     
+      
+       $booking->tour_username= $req->tour_username;
+      
+       $booking->save();
+     
+       return redirect('/dashboard/viewbooking');
+  
    }
 
     /**
@@ -72,7 +85,9 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Booking $booking)
-    {
+    {  
+
+        $tourguides = Tourguide::all();
         $bookinglist =  DB::table('bookings')
         ->join('packages','packages.p_id','=','bookings.pro_id')
         ->get();
@@ -82,7 +97,7 @@ class BookingController extends Controller
     'bookinglist' =>  $bookinglist,
 
     ];
-        return view('dashboard.booking.viewbooking')->with('data',$data);
+        return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguides',$tourguides);
     }
 
     /**
@@ -114,8 +129,9 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Booking $booking)
+    public function destroy($b_id)
     {
-        //
+        Booking::destroy($b_id);
+        return redirect('dashboard/viewbooking');
     }
 }

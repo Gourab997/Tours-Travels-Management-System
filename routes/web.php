@@ -53,6 +53,10 @@ Route::get("dashboard/createbooking/{p_id}",[BookingController::class,'create'])
 Route::post("dashboard/createbooking/{p_id}",[BookingController::class,'store']);
 Route::get("dashboard/viewbooking",[BookingController::class,'show']);
 Route::post("dashboard/viewbooking/{b_id}",[BookingController::class,'storebooking']);
+Route::post("dashboard/addtourguide/{b_id}",[BookingController::class,'tourguide']);
+Route::post("dashboard/delete/{b_id}",[BookingController::class,'destroy']);
+
+
 
 
 Route::get("logout",[LogoutController::class,'index']);

@@ -16,8 +16,10 @@
         <th scope="col">Travel End</th>
         <th scope="col">Total Person</th>
         <th scope="col">Booking Status</th>
-      
+        <th scope="col">Assign Tour Guide </th>
         <th scope="col">Add Tour Guide</th>
+        <th scope="col">Action</th>
+
         
       </tr>
     </thead>
@@ -59,7 +61,7 @@
                           <form action="/dashboard/viewbooking/{{ $Bookinglist->b_id }}" method="post">
                               @csrf
                               <input type="text" class="d-none" name="status" value="{{$Bookinglist->b_id }}" >
-                              <button type="submit" name="submit" class="btn btn-success">
+                              <button style="padding: 16px;" type="submit" name="submit" class="btn btn-success">
                                   Confirm
                               </button>
                             
@@ -73,9 +75,37 @@
           <div class="badge bg-success" >Confirm</div>
           @endif
 </td>
-        {{-- <td>{{ $Bookinglist->status }}</td> --}}
-        {{-- <td>{{ $Bookinglist->t_id }}</td> --}}
-      </tr>
+      
+        <td>{{ $Bookinglist->tour_username }}</td>
+
+
+      
+        <form action="/dashboard/addtourguide/{{ $Bookinglist->b_id }}" method="post">
+          @csrf
+
+        <td>  <select name="tour_username">
+          @foreach($tourguides as $tourguide)
+          <option value="{{ $tourguide->username }}"> {{ $tourguide->username }} </option>
+          @endforeach
+      </select>
+      <button type="submit" name="submit" class="btn btn-success"> Add </button> </td>
+
+      
+
+     
+    </form>
+     
+    
+    <td>  
+      <form action="/dashboard/delete/{{ $Bookinglist->b_id }}" method="post">
+          @csrf
+          <button type="submit" name="submit" class="btn btn-danger"> Delete </button> 
+      </form>
+
+  </td></td>
+    
+    </tr>
+    
       @endforeach
     </tbody>
   </table>
