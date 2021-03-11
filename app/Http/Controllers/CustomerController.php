@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Imports\CustomersExport;
 use App\Models\Employee;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+
 class CustomerController extends Controller
 {
     /**
@@ -80,7 +84,12 @@ class CustomerController extends Controller
     {
         //
     }
-
+    public function import(Request $req)
+    {
+        $file = $req->file('file');
+        Excel::import(new CustomersExport, $file);
+        return back()->withStatus('Excel File import successfully');
+    }
     /**
      * Update the specified resource in storage.
      *

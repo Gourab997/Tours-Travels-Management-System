@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Package;
 use App\Models\Booking;
-use App\Models\Tourguide;
+use App\Models\Package;
 use App\Models\Customer;
+use App\Models\Tourguide;
 use Illuminate\Http\Request;
+use App\Exports\BookingsExport;
 
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Excel;
+
 class BookingController extends Controller
 {
     /**
@@ -127,6 +130,10 @@ return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguid
     public function edit(Booking $booking)
     {
         //
+    }
+    public function export(Excel $execl)
+    {
+        return $execl->download(new BookingsExport,'bookings.xlsx');
     }
 
     /**

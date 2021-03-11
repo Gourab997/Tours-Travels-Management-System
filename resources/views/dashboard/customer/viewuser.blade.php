@@ -1,6 +1,20 @@
 @extends('layouts.main')
 
 @section('viewuser')
+
+<form action="/dashboard/import" method="POST" enctype="multipart/form-data">
+@csrf
+<div class="form-group">
+
+<input type="file" name="file"/>
+
+<button type="submit" class="btn btn-primary">Import</button>
+</div>
+
+</form>
+
+
+
 <div class="col-md-4">
   <form action="/searchcustomer" method="GET">
   <div class="input-group">

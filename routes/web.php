@@ -34,6 +34,10 @@ Route::post("dashboard/create",[CustomerController::class,'store']);
 Route::get("dashboard/view",[CustomerController::class,'show']);
 Route::get('/searchcustomer',[CustomerController::class,'search']);
 
+
+Route::post('dashboard/import',[CustomerController::class,'import']);
+
+
 //profile
 Route::get("dashboard/profile",[EmployeeController::class,'profile']);
 Route::get("dashboard/editprofile/{id}",[EmployeeController::class,'edit']);
@@ -57,7 +61,7 @@ Route::post("dashboard/viewbooking/{b_id}",[BookingController::class,'storebooki
 Route::post("dashboard/addtourguide/{b_id}",[BookingController::class,'tourguide']);
 Route::post("dashboard/delete/{b_id}",[BookingController::class,'destroy']);
 Route::get('/searchbooking',[BookingController::class,'search']);
-
+Route::get("dashboard/viewbooking/export",[BookingController::class,'export']);
 
 
 Route::get("logout",[LogoutController::class,'index']);

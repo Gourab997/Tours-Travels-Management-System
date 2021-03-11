@@ -13,7 +13,8 @@
   </form>
 </div>
 
-<a href="/dashboard/viewpackage/download-pdf">Download PDF</a>
+
+<a href="/dashboard/viewbooking/export">Download Excel</a>
 <table class="table">
     <thead class="thead-dark">
       <tr>

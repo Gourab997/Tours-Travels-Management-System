@@ -13,7 +13,7 @@ class Customer extends Model
     protected $primaryKey = "id";
     public $timestamps=false;
     const UPDATED_AT =null;
-   /*  protected $fillable = [
+    protected $fillable = [
         'username', 'fullname', 'email','address','phone','password','gender',
-    ]; */
+    ]; 
 }
