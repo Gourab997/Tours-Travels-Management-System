@@ -2,6 +2,15 @@
 
 @section('viewuser')
 
+@if (@isset($errors) && $errors->any())
+    <div class="alert alert-danger">
+      @foreach ($errors->all() as $error)
+          {{ $error }}
+      @endforeach
+
+    </div>
+@endif
+
 <form action="/dashboard/import" method="POST" enctype="multipart/form-data">
 @csrf
 <div class="form-group">
@@ -36,7 +45,8 @@
         <th scope="col">Phone</th>
         <th scope="col">Password</th>
         <th scope="col">Gender</th>
-        <th scope="col">Action</th
+        <th scope="col">Customer Status</th>
+        <th scope="col">Action</th>
      </tr>
     </thead>
     <tbody>
@@ -50,10 +60,51 @@
         <td scope="col">{{ $customerlists->phone }}</td>
         <td scope="col">{{ $customerlists->password }}</td>
         <td scope="col">{{ $customerlists->gender }}</td>
+        <td>     @if ( $customerlists->status == 0)
+          <div class="badge bg-danger">Not confirm</div>
+          <button data-toggle="modal" data-target="#resolveComplain{{$customerlists->id }}"
+              class="btn btn-warning btn-sm">
+             Confirm
+          </button>
+
+          <div class="modal fade" id="resolveComplain{{$customerlists->id }}"
+              aria-labelledby="ActiveComplain" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header bg-success">
+                          <h5 class="modal-title">
+                              Are you sure confirm booking?
+                          </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      
+                      <div class="modal-footer">
+                          <form action="/dashboard/view/{{ $customerlists->id }}" method="post">
+                              @csrf
+                              <input type="text" class="d-none" name="status" value="{{$customerlists->id }}" >
+                              <button style="padding: 16px;" type="submit" name="submit" class="btn btn-success">
+                                  Confirm
+                              </button>
+                            
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          @else
+
+          <div class="badge bg-success" >Confirm</div>
+          @endif
+</td>
         <td>
-            <a href=""name="btn btn-success"> Edit</a>
-            <a href="/home/delete/{{ $customerlists->id }}"name="btn btn-danger"> Delete</a>
-            <a href="/home/details/{{ $customerlists->id }}" name="btn btn-info"> Details</a>
+            <a href="/dashboard/edituser/{{ $customerlists->id }}"name="btn btn-success"> Edit</a>
+            <form action="/dashboard/deleteuser/{{ $customerlists->id }}" method="post">
+              @csrf
+              <button type="submit" name="submit" class="btn btn-danger"> Delete </button> 
+          </form>
+            
         </td>
       </tr>
       @endforeach

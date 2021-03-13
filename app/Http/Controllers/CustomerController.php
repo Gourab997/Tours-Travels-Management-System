@@ -20,7 +20,18 @@ class CustomerController extends Controller
     {
         //
     }
-
+    public function confirmstatus($id, Request $req)
+    {
+     $customer = Customer::find($id);
+      
+       
+        $customer->status= 1;
+        $customer->status = $req->status;
+        $customer->save();
+     
+        return redirect('/dashboard/view')->with("Confirm_status",'Confirm status succeessfully');
+   
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -80,13 +91,14 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('dashboard.customer.edituser')->with('customer',$customer);
     }
     public function import(Request $req)
     {
-        $file = $req->file('file');
+        $file = $req->file('file')->store('import');
         Excel::import(new CustomersExport, $file);
         return back()->withStatus('Excel File import successfully');
     }
@@ -97,9 +109,18 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $req, $id)
     {
-        //
+        $customer = Customer::find($id);
+        $customer->fullname = $req->fullname;
+        $customer->email = $req->email;
+        $customer->address = $req->address;
+        $customer->phone = $req->phone;
+        $customer->password = $req->password;
+        $customer->gender = $req->gender;
+        $customer->save();
+
+        return redirect('/dashboard/view');
     }
 
     /**
@@ -108,8 +129,10 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy($id)
     {
-        //
+        if(Customer::destroy($id)){
+            return redirect('/dashboard/view');
+        } 
     }
 }

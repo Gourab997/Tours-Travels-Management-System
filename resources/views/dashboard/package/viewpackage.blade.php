@@ -18,15 +18,20 @@
        @for($i=0; $i< count($packagelist); $i++) 
       <tr scope="row">
         <td style="color: blue">{{ $packagelist[$i]['p_id'] }}</td>
-        <td  class="label label-success">{{ $packagelist[$i]['package_name'] }}</td>
+        <td  >{{ $packagelist[$i]['package_name'] }}</td>
         <td>{{ $packagelist[$i]['package_type'] }}</td>
         <td>{{ $packagelist[$i]['package_location'] }}</td>
         <td>{{ $packagelist[$i]['package_price'] }}</td>
  
         <td>
-            <a href=""name="btn btn-success"> Edit</a>
+            <a href="/dashboard/editpackage/{{ $packagelist[$i]['p_id'] }}"name="btn btn-success"> Edit</a>
             
             <a href="/dashboard/viewpackage/details/{{ $packagelist[$i]['p_id'] }}" name="btn btn-info"> Details</a>
+            <form action="/dashboard/deletepackage/{{ $packagelist[$i]['p_id']}}" method="post">
+              @csrf
+              <button type="submit" name="submit" class="btn btn-danger"> Delete </button> 
+          </form>
+            
         </td>
       </tr>
       @endfor

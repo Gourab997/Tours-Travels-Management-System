@@ -55,7 +55,7 @@ class PackageController extends Controller
                 return redirect('/dashboard');
             }
         }
-      
+        $package->save();
 
         return redirect('/dashboard');
     }
@@ -78,9 +78,10 @@ class PackageController extends Controller
      * @param  \App\Models\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function edit(Package $package)
+    public function edit($p_id)
     {
-        //
+        $package = Package::find($p_id);
+        return view('dashboard.package.editpackage')->with('package',$package);
     }
 
     /**
@@ -90,9 +91,30 @@ class PackageController extends Controller
      * @param  \App\Models\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $req, $p_id)
     {
-        //
+        $package = Package::find($p_id);
+        $package->package_name = $req->package_name;
+        $package->package_type = $req->package_type;
+        $package->package_location = $req->package_location;
+        $package->package_price = $req->package_price;
+        $package->package_feature = $req->package_feature;
+        $package->package_details = $req->package_details;
+        $package->package_time_duration = $req->package_time_duration;
+        $package->package_image = $req->package_image;
+        if ($req->hasFile('package_image')) {
+            $file = $req->file('package_image');
+            $fileName =  $req->session()->get('username') . '.' .  $file->getClientOriginalExtension();
+            if ($file->move('upload', $fileName)) {
+                $package->package_image  = $fileName;
+                $package->save();
+            } else {
+                return redirect('/dashboard/viewpackage');
+            }
+        }
+        $package->save();
+
+        return redirect('/dashboard/viewpackage');
     }
 
     /**
@@ -114,6 +136,12 @@ class PackageController extends Controller
        
        
       return $pdf->download('package.pdf');
+    }
+    public function destroy($p_id)
+    {
+        if(Package::destroy($p_id)){
+            return redirect('/dashboard/viewpackage');
+        } 
     }
 
 }

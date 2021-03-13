@@ -124,11 +124,7 @@
 
 @endsection
 
- @if(Session::has('Confirm_Booking'))
-<script>
-toastr.success("{!! Session::get('Confirm_Booking') !!}");
 
-</script>
 
 
  @endif

@@ -26,6 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{asset( 'css/main.css') }}">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 </head>
 <body>
   <form action="login" method="POST">
@@ -79,7 +80,7 @@
 	
 
 	<div id="dropDownSelect1"></div>
-	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!--===============================================================================================-->
 	<script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js') }}"></script>
 <!--===============================================================================================-->
@@ -96,6 +97,10 @@
 	<script src="{{ asset('vendor/countdowntime/countdowntime.js') }}"></script>
 <!--===============================================================================================-->
 	<script src="{{ asset('js/loginmain.js') }}"></script>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    {!! Toastr::message() !!}    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        
   </form>
+
 </body>
 </html>

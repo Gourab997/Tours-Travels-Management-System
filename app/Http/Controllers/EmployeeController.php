@@ -80,10 +80,7 @@ class EmployeeController extends Controller
     public function update($id, Request $req)
     {
 
-        $employee = Employee::find($id);
-        
-            
-    
+        $employee = Employee::find($id);   
             $employee->fullname     = $req->fullname;
             $employee->email        = $req->email;
             $employee->phone        = $req->phone;
@@ -95,11 +92,15 @@ class EmployeeController extends Controller
                 if ($file->move('uploads', $fileName)) {
                     $employee->profile_img  = $fileName;
                     $employee->save();
+                   
                 } else {
+                 
                     return redirect('/dashboard/profile');
                 }
-            }
- 
+
+               
+            }    
+            $employee->save();
     return redirect('/dashboard/profile');
     
    

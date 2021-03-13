@@ -46,7 +46,7 @@
             
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
-                    <input type="text" class="text-secondary" id="facebook" name="facebook" placeholder="facebook" value="" aria-describedby="inputGroupPrepend" required>
+                    <input type="text" class="text-secondary" id="facebook" name="facebook" placeholder="facebook" value="{{ $employee->facebook}}" aria-describedby="inputGroupPrepend" required>
                     
                   </li>
                 </ul>
@@ -59,11 +59,11 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                      <h6 class="mb-0"> Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                     
-                      <input type="text" class="text-secondary" id="fullname" name="fullname" placeholder="fullname" value="" aria-describedby="inputGroupPrepend" >
+                      <input type="text" class="text-secondary" id="fullname" name="fullname" placeholder="fullname" value="{{ $employee->fullname}}" aria-describedby="inputGroupPrepend" >
                     </div>
                   </div>
                   <hr>
@@ -72,9 +72,9 @@
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      
-                      <input type="text" class="text-secondary" id="email" name="email" placeholder="email" value="" aria-describedby="inputGroupPrepend" >
-                    </div>
+                     
+                   <input type="email" class="text-secondary" id="email" name="email" placeholder="email" value="{{ $employee->email}}" aria-describedby="inputGroupPrepend" > 
+                    </div> 
                   </div>
                   <hr>
                   <div class="row">
@@ -83,7 +83,7 @@
                     </div>
                     <div class="col-sm-9 text-secondary">
                    
-                      <input type="text" class="text-secondary" id="phone" name="phone" placeholder="phone"  value="" aria-describedby="inputGroupPrepend" required>
+                      <input type="text" class="text-secondary" id="phone" name="phone" placeholder="phone"  value="{{ $employee->phone  }}" aria-describedby="inputGroupPrepend" required>
                     </div>
                   </div>
                   <hr>
@@ -94,7 +94,7 @@
                     </div>
                     
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" class="text-secondary" id="address" name="address" placeholder="address" value=""  aria-describedby="inputGroupPrepend" required>
+                      <input type="text" class="text-secondary" id="address" name="address" placeholder="address" value="{{ $employee->address}}"  aria-describedby="inputGroupPrepend" required>
                     </div>
                   </div>
                   <hr>

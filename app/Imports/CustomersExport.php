@@ -3,10 +3,20 @@
 namespace App\Imports;
 
 use App\Models\Customer;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Throwable;
 
-class CustomersExport implements ToModel
-{
+class CustomersExport implements 
+    ToModel,
+    WithHeadingRow,
+    SkipsOnError,
+    WithValidation
+    
+    {
     /**
     * @param array $row
     *
@@ -16,14 +26,26 @@ class CustomersExport implements ToModel
     {
         return new Customer([
            
-            'fullname' => $row[1],
-            'username' => $row[2],
-            'email'    => $row[3],
-            'password' => $row[4],
-            'phone'    => $row[5],
-            'address'   => $row[6],
-            'gender'    => $row[7]
+            'fullname' => $row['fullname'],
+            'username' => $row['username'],
+            'email'    => $row['email'],
+            'password' => $row['password'],
+            'phone'    => $row['phone'],
+            'address'   => $row['address' ],
+            'gender'    => $row['gender' ]
 
         ]);
     }
+    public function onError(Throwable $e)
+    {
+        
+    }
+    public function rules():array{
+
+        return[
+            '*.email' =>['email','unique:customers,email']
+        ];
+    }
+ 
+
 }

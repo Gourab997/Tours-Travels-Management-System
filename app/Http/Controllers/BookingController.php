@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Tourguide;
 use Illuminate\Http\Request;
 use App\Exports\BookingsExport;
+use Brian2694\Toastr\Facades\Toastr;
 
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel;
@@ -55,6 +56,7 @@ class BookingController extends Controller
         $booking->tour_username = null;
         $booking->save();
         return redirect('/dashboard');
+        Toastr::success('New Booking create','Success');
    ;
     }
  
@@ -66,7 +68,7 @@ class BookingController extends Controller
        $booking->status= 1;
        $booking->status = $req->status;
        $booking->save();
-     
+       Toastr::success('Confirm Booking succeessfully','Success');
        return redirect('/dashboard/viewbooking')->with("Confirm_Booking",'Confirm Booking succeessfully');
   
    }
@@ -79,7 +81,7 @@ class BookingController extends Controller
        $booking->tour_username= $req->tour_username;
       
        $booking->save();
-     
+       Toastr::success('Tour Guide add succeessfully','Success');
        return redirect('/dashboard/viewbooking');
   
    }
@@ -132,7 +134,7 @@ return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguid
         //
     }
     public function export(Excel $execl)
-    {
+    {   Toastr::success('Excel Downloading','Success');
         return $execl->download(new BookingsExport,'bookings.xlsx');
     }
 
@@ -157,6 +159,7 @@ return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguid
     public function destroy($b_id)
     {
         Booking::destroy($b_id);
+        Toastr::error('Booking Deleted','Deleted');
         return redirect('dashboard/viewbooking');
     }
 }

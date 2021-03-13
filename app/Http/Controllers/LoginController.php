@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Employee;
+use Brian2694\Toastr\Facades\Toastr;
+
 
 class LoginController extends Controller
 {
@@ -25,13 +27,14 @@ class LoginController extends Controller
              return redirect('/login');
           }elseif(count($employee) > 0 ){
          
-    
+            
        $req->session()->put('username',$req->username);
+      
         return redirect('/dashboard');
-   
+        Toastr::success('Login Success','Success');
                } else{
-   
-                 // $req->session()->flash('msg','Invalid');
+                  Toastr::error('Login Faild','Failed');
+               
                     return redirect('/login');
    
                }

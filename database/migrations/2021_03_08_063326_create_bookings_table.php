@@ -21,8 +21,8 @@ class CreateBookingsTable extends Migration
             $table->string('person');
             $table->string('username');
             $table->string('email');
-            $table->string('status');
-            $table->string('tour_username');
+            $table->string('status')->nullable();
+            $table->string('tour_username')->nullable();
             $table->timestamps();
         });
     }

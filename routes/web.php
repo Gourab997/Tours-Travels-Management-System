@@ -33,9 +33,11 @@ Route::get("dashboard/create",[CustomerController::class,'create']);
 Route::post("dashboard/create",[CustomerController::class,'store']);
 Route::get("dashboard/view",[CustomerController::class,'show']);
 Route::get('/searchcustomer',[CustomerController::class,'search']);
-
-
+Route::post("dashboard/view/{id}",[CustomerController::class,'confirmstatus']);
 Route::post('dashboard/import',[CustomerController::class,'import']);
+Route::get("dashboard/edituser/{id}",[CustomerController::class,'edit']);
+Route::post("dashboard/edituser/{id}",[CustomerController::class,'update']);
+Route::post("dashboard/deleteuser/{id}",[CustomerController::class,'destroy']);
 
 
 //profile
@@ -50,6 +52,9 @@ Route::post("dashboard/createpackage",[PackageController::class,'store']);
 Route::get("dashboard/viewpackage",[PackageController::class,'show']);
 Route::get("dashboard/viewpackage/details/{p_id}",[PackageController::class,'packageshow']);
 Route::get("dashboard/viewpackage/download-pdf",[PackageController::class,'downloadPDF']);
+Route::get("dashboard/editpackage/{p_id}",[PackageController::class,'edit']);
+Route::post("dashboard/editpackage/{p_id}",[PackageController::class,'update']);
+Route::post("dashboard/deletepackage/{p_id}",[PackageController::class,'destroy']);
 
 
 //booking
@@ -63,6 +68,13 @@ Route::post("dashboard/delete/{b_id}",[BookingController::class,'destroy']);
 Route::get('/searchbooking',[BookingController::class,'search']);
 Route::get("dashboard/viewbooking/export",[BookingController::class,'export']);
 
+//tourguide
+Route::get("dashboard/createtourguide",[TourguideController::class,'create']);
+Route::post("dashboard/createtourguide",[TourguideController::class,'store']);
+
+//feedback
+Route::get("dashboard/createtourguide",[TourguideController::class,'create']);
+Route::post("dashboard/createtourguide",[TourguideController::class,'store']);
 
 Route::get("logout",[LogoutController::class,'index']);
 });

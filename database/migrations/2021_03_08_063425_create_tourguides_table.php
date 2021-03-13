@@ -15,11 +15,13 @@ class CreateTourguidesTable extends Migration
     {
         Schema::create('tourguides', function (Blueprint $table) {
             $table->id('t_id');
-            $table->string('booking_id');
+            $table->string('booking_id')->nullable();
             $table->string('fullname');
             $table->string('username')->unique();
             $table->string('password');
             $table->string('phone');
+            $table->string('email')->unique();
+
             $table->timestamps();
         });
     }
