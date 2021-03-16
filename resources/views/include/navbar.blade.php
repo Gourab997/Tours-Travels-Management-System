@@ -14,16 +14,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="/dashboard"><span style="color:rgb(65, 65, 143)">Welocme , {{ session('username') }}</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="/dashboard/profile">Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Portfolio</a>
+            <a class="nav-link" href="/logout"><span style="color: Red" > Logout</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+    
+        <li>
+        
         </li>
       </ul>
     </div>
