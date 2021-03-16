@@ -24,7 +24,7 @@ class TourguideController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.tourguide.addtourguide');
     }
 
     /**
@@ -33,9 +33,17 @@ class TourguideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $tourguide = new Tourguide();
+        $tourguide->fullname = $req->fullname;
+        $tourguide->username = $req->username;
+        $tourguide->email = $req->email;
+        $tourguide->phone = $req->phone;
+        $tourguide->password = $req->password;
+        $tourguide->save();
+
+        return redirect('/dashboard');
     }
 
     /**
@@ -46,7 +54,8 @@ class TourguideController extends Controller
      */
     public function show(Tourguide $tourguide)
     {
-        //
+        $tourguidelist = Tourguide::paginate(5);
+        return view('dashboard.tourguide.viewtourguide')->with('tourguidelist',$tourguidelist)
     }
 
     /**

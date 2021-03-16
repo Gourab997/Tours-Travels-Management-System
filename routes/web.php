@@ -7,6 +7,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\TourguideController;
+use App\Http\Controllers\FeedbackController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,9 +73,17 @@ Route::get("dashboard/viewbooking/export",[BookingController::class,'export']);
 Route::get("dashboard/createtourguide",[TourguideController::class,'create']);
 Route::post("dashboard/createtourguide",[TourguideController::class,'store']);
 
+Route::get("dashboard/viewtourguide",[TourguideController::class,'show']);
+Route::get('/searchtourguide',[TourguideController::class,'search']);
+Route::get("dashboard/edittourguide/{id}",[TourguideController::class,'edit']);
+Route::post("dashboard/edittourguide/{id}",[TourguideController::class,'update']);
+Route::post("dashboard/deletetourguide/{id}",[TourguideController::class,'destroy']);
+
+
+
 //feedback
-Route::get("dashboard/createtourguide",[TourguideController::class,'create']);
-Route::post("dashboard/createtourguide",[TourguideController::class,'store']);
+Route::get("dashboard/viewfeedback",[FeedbackController::class,'index']);
+Route::post("dashboard/viewfeedback",[FeedbackController::class,'store']);
 
 Route::get("logout",[LogoutController::class,'index']);
 });

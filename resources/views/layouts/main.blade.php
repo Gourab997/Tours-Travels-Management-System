@@ -61,12 +61,12 @@
                @yield('viewuser')
                @yield('createpackage')
                @yield('viewpackage')
-
+               @yield('addtourguide')
                   @yield('profile')
                   @yield('booking')
                   @yield('createbooking')
                   @yield('viewbooking')
-      
+                  @yield('feedback')
 
       
       </div>
