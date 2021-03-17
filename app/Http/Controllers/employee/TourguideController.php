@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\employee;
 
 use App\Models\Tourguide;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TourguideController extends Controller
 {
@@ -55,7 +56,7 @@ class TourguideController extends Controller
     public function show(Tourguide $tourguide)
     {
         $tourguidelist = Tourguide::paginate(5);
-        return view('dashboard.tourguide.viewtourguide')->with('tourguidelist',$tourguidelist)
+        return view('dashboard.tourguide.viewtourguide')->with('tourguidelist',$tourguidelist);
     }
 
     /**

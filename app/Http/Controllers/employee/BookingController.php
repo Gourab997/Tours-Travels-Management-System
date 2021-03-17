@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\employee;
 use App\Models\Booking;
 use App\Models\Package;
 use App\Models\Customer;
@@ -8,6 +8,7 @@ use App\Models\Tourguide;
 use Illuminate\Http\Request;
 use App\Exports\BookingsExport;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel;

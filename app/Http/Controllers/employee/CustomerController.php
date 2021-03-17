@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\employee;
 
 use App\Imports\CustomersExport;
 use App\Models\Employee;
@@ -8,6 +8,7 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
 {

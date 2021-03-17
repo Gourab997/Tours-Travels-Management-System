@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
-    public function index(Request $req)
+    public function logout()
     {
-        $req->session()->flush('msg','Are you sure.?');
-        return redirect('/login');
+        if(session()->has('LoggedUser')){
+            session()->pull('LoggedUser');
+            return redirect('/login');
+        }
     }
 }

@@ -1,16 +1,17 @@
 <?php
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\employee\EmployeeController;
+use App\Http\Controllers\employee\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\PackageController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\TourguideController;
-use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\AccountController;
+use App\Http\Controllers\employee\PackageController;
+use App\Http\Controllers\employee\BookingController;
+use App\Http\Controllers\employee\TourguideController;
+use App\Http\Controllers\employee\FeedbackController;
+use App\Http\Controllers\account\AccountController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\customer\UCustomerController;
+use App\Http\Controllers\admin\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +33,7 @@ Route::post("login",[LoginController::class,'verify']); */
 
 Route::post('/auth/save',[UserController::class, 'save'])->name('auth.save');
 Route::post('/auth/check',[LoginController::class, 'verify'])->name('auth.check');
-Route::get('/auth/logout',[LogoutController::class, 'logout'])->name('auth.logout');
+Route::get('/logout',[LogoutController::class, 'logout'])->name('auth.logout');
 
 Route::get('/login',[LoginController::class, 'index'])->name('login.index');
 
@@ -109,7 +110,7 @@ Route::post("dashboard/deletetourguide/{id}",[TourguideController::class,'destro
 Route::get("dashboard/viewfeedback",[FeedbackController::class,'index']);
 Route::post("dashboard/viewfeedback",[FeedbackController::class,'store']);
 
-Route::get("logout",[LogoutController::class,'index']);
+//Route::get("logout",[LogoutController::class,'index']);
 
 
 
@@ -119,7 +120,7 @@ Route::get('/user/settings',[UCustomerController::class,'usersettings']);
 Route::get('/user/profile',[UCustomerController::class,'userprofile']);
 
 //Admin Routing
-Route::get('/admin/dashboard',[AdminController::class, 'admindashboard']);
+Route::get('/dashboard',[AdminController::class, 'admindashboard'])->name('admin.dashboard');
 Route::get('/admin/settings',[AdminController::class,'adminsettings']);
 Route::get('/admin/profile',[AdminController::class,'adminprofile']);
 

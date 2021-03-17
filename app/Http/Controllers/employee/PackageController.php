@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\employee;
 
 use App\Models\Package;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Http\Controllers\Controller;
 
 class PackageController extends Controller
 {

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\employee;
 
 use App\Models\feedback;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FeedbackController extends Controller
 {
