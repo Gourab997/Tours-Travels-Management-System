@@ -57,7 +57,7 @@ class EmployeeController extends Controller
 
       /*   $count  =DB::table('customers')->count(); */
        /*  $employee = User::where('username',$req->session()->get('username'))->first(); */
-        return view('dashboard.index');/* ->with('employee',$employee); */
+        return view('employee.dashboard.index');/* ->with('employee',$employee); */
     }
     /**
      * Show the form for editing the specified resource.
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
     public function edit( $id ,Request $req)
     {
        $employee = User::find($id);
-       return view('dashboard.profile.editprofile')->with('employee', $employee);
+       return view('employee.dashboard.profile.editprofile')->with('employee', $employee);
     }
     
     /**
@@ -122,6 +122,6 @@ class EmployeeController extends Controller
     }
     public function profile(Request $req){
         $employee = User::where('username',$req->session()->get('username'))->first();
-        return view('dashboard.profile.profile')->with('employee',$employee);
+        return view('employee.dashboard.profile.profile')->with('employee',$employee);
     }
 }

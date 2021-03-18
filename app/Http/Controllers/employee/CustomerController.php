@@ -41,7 +41,7 @@ class CustomerController extends Controller
     public function create(Request $req)
     {
         
-        return view('dashboard.customer.adduser');
+        return view('employee.dashboard.customer.adduser');
     }
 
     /**
@@ -76,7 +76,7 @@ class CustomerController extends Controller
     public function show(Request $req)
     {
         $customerlist = Customer::paginate(5);
-        return view('dashboard.customer.viewuser')->with('customerlist',$customerlist);
+        return view('employee.dashboard.customer.viewuser')->with('customerlist',$customerlist);
     }
 
 
@@ -84,7 +84,7 @@ class CustomerController extends Controller
     {
         $search = $req->get('search');
         $customerlist = DB::table('customers')->where('username' , 'like' , '%'.$search.'%')->paginate(5);
-        return view('dashboard.customer.viewuser')->with('customerlist',$customerlist);
+        return view('employee.dashboard.customer.viewuser')->with('customerlist',$customerlist);
     }
     /**
      * Show the form for editing the specified resource.
@@ -95,7 +95,7 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $customer = Customer::find($id);
-        return view('dashboard.customer.edituser')->with('customer',$customer);
+        return view('employee.dashboard.customer.edituser')->with('customer',$customer);
     }
     public function import(Request $req)
     {

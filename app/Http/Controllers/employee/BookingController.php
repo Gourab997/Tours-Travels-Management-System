@@ -22,7 +22,7 @@ class BookingController extends Controller
      */
     public function index()
     {   $packagelist = Package::paginate(5);
-        return view('dashboard.booking.indexbooking')->with('packagelist',$packagelist);
+        return view('employee.dashboard.booking.indexbooking')->with('packagelist',$packagelist);
     }
 
     /**
@@ -35,7 +35,7 @@ class BookingController extends Controller
         $package = Package::find($p_id);
         
         
-        return view('dashboard.booking.createbooking')->with('package',$package)->with('customers',$customers);
+        return view('employee.dashboard.booking.createbooking')->with('package',$package)->with('customers',$customers);
     }
 
     /**
@@ -106,7 +106,7 @@ class BookingController extends Controller
     'bookinglist' =>  $bookinglist,
 
     ];
-        return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguides',$tourguides);
+        return view('employee.dashboard.booking.viewbooking')->with('data',$data)->with('tourguides',$tourguides);
     }
 
 public function search(Request $req)
@@ -121,7 +121,7 @@ public function search(Request $req)
    $data =['packages' => $packages,
 'bookinglist' =>  $bookinglist,
 ];
-return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguides',$tourguides);
+return view('employee.dashboard.booking.viewbooking')->with('data',$data)->with('tourguides',$tourguides);
 }
 
     /**
@@ -161,6 +161,6 @@ return view('dashboard.booking.viewbooking')->with('data',$data)->with('tourguid
     {
         Booking::destroy($b_id);
         Toastr::error('Booking Deleted','Deleted');
-        return redirect('dashboard/viewbooking');
+        return redirect('/dashboard/viewbooking');
     }
 }

@@ -26,7 +26,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        return view('dashboard.package.createpackage');
+        return view('employee.dashboard.package.createpackage');
     }
 
     /**
@@ -70,7 +70,7 @@ class PackageController extends Controller
     public function show(Package $package)
     {
         $packagelist = Package::all();
-        return view('dashboard.package.viewpackage')->with('packagelist',$packagelist);
+        return view('employee.dashboard.package.viewpackage')->with('packagelist',$packagelist);
     }
 
     /**
@@ -82,7 +82,7 @@ class PackageController extends Controller
     public function edit($p_id)
     {
         $package = Package::find($p_id);
-        return view('dashboard.package.editpackage')->with('package',$package);
+        return view('employee.dashboard.package.editpackage')->with('package',$package);
     }
 
     /**
@@ -128,12 +128,12 @@ class PackageController extends Controller
     public function packageshow($p_id)
     {
         $package = Package::find($p_id);
-        return view('dashboard.package.details')->with('package',$package);
+        return view('employee.dashboard.package.details')->with('package',$package);
     }
     public function downloadPDF()
     {
         $packagelist = Package::all();
-        $pdf = PDF::loadView('dashboard.package.viewpackage',compact('packagelist'))->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView('employee.dashboard.package.viewpackage',compact('packagelist'))->setOptions(['defaultFont' => 'sans-serif']);
        
        
       return $pdf->download('package.pdf');
