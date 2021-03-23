@@ -15,6 +15,11 @@ class LoginController extends Controller
 
         return view('login.index');
     }
+
+    public function first(){
+
+        return redirect('/login');
+    }
  
     public function verify(Request $request){
 
@@ -35,20 +40,24 @@ class LoginController extends Controller
          {
             if($userInfo->type == 'user'){
                  $request->session()->put('LoggedUser', $userInfo->id);
-                 return redirect('user/dashboard');
+                 return redirect('/customer/dashboard');
              }
              elseif($userInfo->type == 'admin'){
                  $request->session()->put('LoggedUser', $userInfo->id);
-                 return redirect('admin/dashboard');
+                 return redirect('/admin/dashboard');
              }
              elseif($userInfo->type == 'account'){
                  $request->session()->put('LoggedUser', $userInfo->id);
-                 return redirect('account/dashboard');
+                 return redirect('/account/dashboard');
              }
              elseif($userInfo->type == 'employee'){
                  $request->session()->put('LoggedUser', $userInfo->id);
                  return redirect('/dashboard');
              }
+             elseif($userInfo->type == 'guide'){
+                $request->session()->put('LoggedUser', $userInfo->id);
+                return redirect('/guide/dashboard');
+            }
 
          }
          else{

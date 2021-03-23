@@ -25,7 +25,7 @@ class TourguideController extends Controller
      */
     public function create()
     {
-        return view('dashboard.tourguide.addtourguide');
+        return view('employee.dashboard.tourguide.addtourguide');
     }
 
     /**
@@ -56,7 +56,7 @@ class TourguideController extends Controller
     public function show(Tourguide $tourguide)
     {
         $tourguidelist = Tourguide::paginate(5);
-        return view('dashboard.tourguide.viewtourguide')->with('tourguidelist',$tourguidelist);
+        return view('employee.dashboard.tourguide.viewtourguide')->with('tourguidelist',$tourguidelist);
     }
 
     /**
