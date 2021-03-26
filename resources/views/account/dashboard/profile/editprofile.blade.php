@@ -11,6 +11,7 @@
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item"><a href="/account/dashboard">Dashboard</a></li>
+                  <li class="breadcrumb-item"><a href="/account/dashboard/profile">Profile</a></li>
                   <li class="breadcrumb-item active">Profile Edit</li>
                 </ol>
               </div><!-- /.col -->
@@ -37,7 +38,7 @@
                     <div class="card-body">
                       <div class="d-flex flex-column align-items-center text-center">
                         <div class="image">
-                          <img src="{{ asset('/uploads')}}/{{ $LoggedUserInfo->profile_img}}" class="img-circle elevation-2" alt="{{ $LoggedUserInfo['type'] }}" width="150">
+                          <img src="{{ asset('/upload')}}/{{ $LoggedUserInfo->profile_img}}" class="img-circle elevation-2" alt="{{ $LoggedUserInfo['type'] }}" width="150">
                         </div>
                         <div class="mt-3"> 
                           <h4> {{ $LoggedUserInfo['username'] }}</h4>                      
@@ -45,11 +46,11 @@
 
                           <div class="form-group">
                           <div class="input-group">
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile">
-                              <label class="custom-file-label" for="exampleInputFile">Choose Profile Picture...</label>
-                              <input name="myfile" type="file" class="form-file-input" id="customFile">
-                            </div>
+                          <label class="form-file-label" for="customFile">
+                              <span class="form-file-text">Choose Profile Picture...</span>
+                              <span class="form-file-button"></span>
+                          </label>
+                          <input name="myfile" type="file" class="form-file-input" id="customFile">
                           </div>
                         </div>
                       </div>
@@ -87,21 +88,6 @@
                 </div>            
           </div>
           </div> 
-          <div class="col-md-5">
-            <div class="card mb-3">
-                  <ul class="list-group list-group-flush">
-                  
-                
-                  
-              
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <label for="exampleInputEmail1">Facebook</label>
-                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="facebook" value="{{ $LoggedUserInfo['facebook']}}"  required>
-                      
-                    </li>
-                  </ul>
-                </div>
-          </div>
            
 
           <div class="card-footer">

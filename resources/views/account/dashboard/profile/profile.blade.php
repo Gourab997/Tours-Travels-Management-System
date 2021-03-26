@@ -32,7 +32,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{ asset('/uploads')}}/{{ $LoggedUserInfo->profile_img}}" alt="{{ $LoggedUserInfo['type'] }}" class="rounded-circle" width="150">
+                    <img src="{{ asset('/upload')}}/{{ $LoggedUserInfo->profile_img}}" alt="{{ $LoggedUserInfo['type'] }}" class="img-circle elevation-2" width="150">
                     					    
 					
                     

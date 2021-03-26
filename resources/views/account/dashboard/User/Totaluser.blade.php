@@ -30,6 +30,7 @@
           <thead>
           <tr>
           <th>Full Name</th>
+          <th>User Name</th>
           <th>email</th>
           <th>Phone</th>
           <th>Bloodgroup</th>
@@ -41,6 +42,7 @@
             @foreach($userlist as $userlists)
             <tr>
             <td>{{ $userlists->fullname }}</td>
+            <td>{{ $userlists->username }}</td>
             <td>{{ $userlists->email }}</td>
             <td>{{ $userlists->phone }}</td>
             <td>{{ $userlists->bloodgroup }}</td>

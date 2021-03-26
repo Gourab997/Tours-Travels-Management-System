@@ -39,7 +39,7 @@ class AccountController extends Controller
      */
     public function update($id, Request $req)
     {
-        $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
+        
 
         $user = User::find($id);   
             $user->fullname     = $req->fullname;
@@ -47,17 +47,16 @@ class AccountController extends Controller
             $user->phone        = $req->phone;
             $user->address      = $req->address;
             /**$user->facebook     = $req->facebook;*/
-           if ($req->hasFile('myfile')) {
+            if ($req->hasFile('myfile')) {
                 $file = $req->file('myfile');
-                $Name = $req->session('LoggedUser')->get('id');
-                $fileName =$Name.'.'. $file->getClientOriginalExtension();
-                if ($file->move('uploads', $fileName)) {
+                $fileName =  $req->session()->get('LoggedUser') . '.' .  $file->getClientOriginalExtension();
+                if ($file->move(public_path('upload'), $fileName)) {
                     $user->profile_img  = $fileName;
                     $user->save();
                    
                 } else {
                  
-                    return redirect(route('account.profile'))->with('success','Profile Information Update Succesfull');
+                    return redirect(route('account.profile'))->with('fail','Profile Information Update Succesfull');
                 }
 
                

@@ -130,11 +130,12 @@ Route::group(['middleware'=>'sess'],function ( ){
 
 
     //Accont ->profile
-    Route::get("dashboard/profile",[AccountController::class,'profile'])->name('account.profile');
-    Route::get("dashboard/editprofile/{id}",[AccountController::class,'edit'])->name('account.edit');
-    Route::post("dashboard/editprofile/{id}",[AccountController::class,'update'])->name('account.update');
-    //Account routing END
+    Route::get("/account/dashboard/profile",[AccountController::class,'profile'])->name('account.profile');
+    Route::get("/account/dashboard/editprofile/{id}",[AccountController::class,'edit'])->name('account.edit');
+    Route::post("/account/dashboard/editprofile/{id}",[AccountController::class,'update'])->name('account.update');
 
+    Route::get("/account/dashboard/Userlist",[AccountController::class,'ulist']);
+    //Account routing END
 
     //**************** */
 
