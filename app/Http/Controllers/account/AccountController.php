@@ -5,12 +5,21 @@ namespace App\Http\Controllers\account;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
     function accountdashboard(){
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
-        return view('account.dashboard.index', $data);
+        $count = DB::select('select count(*) as total from users');
+   
+        return view('account.dashboard.index', $data,$count);
+    }
+
+    public function ulist(){
+        $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
+        $userlist = DB::select('select * from users');
+        return view('account.dashboard.user.Totaluser', $data)->with('userlist',$userlist);
     }
 
 
@@ -48,13 +57,13 @@ class AccountController extends Controller
                    
                 } else {
                  
-                    return redirect(route('account.dashboard'));
+                    return redirect(route('account.profile'))->with('success','Profile Information Update Succesfull');
                 }
 
                
             }    
             $user->save();
-    return redirect(route('account.dashboard'));
+    return redirect(route('account.profile'))->with('success','Profile Information Update Succesfull');
     
    
       
@@ -74,7 +83,7 @@ class AccountController extends Controller
     }
     public function profile(Request $req){
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
-        $user = User::where('username',$req->session('LoggedUser')->get('username'))->first();
-        return view('account.dashboard.profile.profile',$data);
+        
+        return view('account.dashboard.profile.profile',$data,);
     }
 }

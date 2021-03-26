@@ -23,7 +23,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-id-badge"></i>
               <p>
@@ -33,7 +33,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/dashboard/editprofile/{{ $LoggedUserInfo['id'] }}" class="nav-link ">
+                <a href="/account/dashboard/editprofile/{{ $LoggedUserInfo['id'] }}" class="nav-link ">
                   <i class="fas fa-user-edit"></i>
                   <p>Edit Profile</p>
                 </a>
@@ -52,7 +52,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-circle"></i>
               <p>

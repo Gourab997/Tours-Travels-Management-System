@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{URL::to('assets/plugins/fontawesome-free/css/all.min.css')}}">
+  
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -46,6 +47,7 @@
     <!-- Main content -->
       @yield('index')
       @yield('profile')
+      @yield('TotalUser')
     <!-- /.content -->
     </div>
   </div>
@@ -73,7 +75,7 @@
 <!-- ChartJS -->
 <script src="{{URL::to('assets/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
+<script src="{{URL::to('assets/plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
 <script src="{{URL::to('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
 <script src="{{URL::to('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
@@ -94,5 +96,29 @@
 <script src="{{URL::to('dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{URL::to('assets/dist/js/demo.js')}}"></script>
+<!-- DataTables -->
+<script src="{{URL::to('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{URL::to('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{URL::to('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{URL::to('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
+
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 </body>
 </html>

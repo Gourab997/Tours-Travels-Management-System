@@ -1,5 +1,11 @@
 @extends('account.layout.main')
 @section('profile')
+
+@if(Session::get('success'))
+			<div class="alert alert-success">
+				{{ Session::get('success') }}
+			</div>
+@endif
     <div class="main-body">
    
           <!-- Breadcrumb -->
@@ -37,7 +43,7 @@
                       <h4> {{ $LoggedUserInfo['username'] }}</h4>
                       
                       <p class="text-muted font-size-sm">{{ $LoggedUserInfo['type'] }}</p>
-                      <a href="/dashboard/editprofile/{{ $LoggedUserInfo['id'] }}" class="btn btn-primary">Edit Profile</a>
+                      <a href="/account/dashboard/editprofile/{{ $LoggedUserInfo['id'] }}" class="btn btn-primary">Edit Profile</a>
                     </div>
                   </div>
                 </div>
