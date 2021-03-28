@@ -23,6 +23,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
+               <!-- Profile Menu -->
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-id-badge"></i>
@@ -52,6 +54,8 @@
               </li>
             </ul>
           </li>
+
+          <!-- Employee Menu -->
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-circle"></i>
@@ -81,6 +85,8 @@
               </li>
             </ul>
           </li>
+
+          <!-- Coupon Menu -->
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-circle"></i>
@@ -91,21 +97,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="{{route('coupon.index')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Coupon</p>
+                  <p> View Coupons </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('coupon.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Update Coupon</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Delete Coupon</p>
+                  <p> Create Coupon</p>
                 </a>
               </li>
             </ul>

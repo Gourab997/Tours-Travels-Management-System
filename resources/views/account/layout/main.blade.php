@@ -48,6 +48,7 @@
       @yield('index')
       @yield('profile')
       @yield('TotalUser')
+      @yield('coupon')
     <!-- /.content -->
     </div>
   </div>

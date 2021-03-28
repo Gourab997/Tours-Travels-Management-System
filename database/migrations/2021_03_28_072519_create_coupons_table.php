@@ -14,11 +14,11 @@ class CreateCouponsTable extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('code')->unique();
-            $table->string('type');
-            $table->integer('value')->nullable();
-            $table->integer('percent_off')->nullable();
+            $table->enum('type',['fixed','percent'])->default('fixed');
+            $table->decimal('value',20,2);
+            $table->enum('status',['active','inactive'])->default('inactive');
             $table->timestamps();
         });
     }

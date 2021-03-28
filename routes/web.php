@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\customer\UCustomerController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\tourguide\guideController;
+use App\Http\Controllers\account\CouponController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,7 +135,19 @@ Route::group(['middleware'=>'sess'],function ( ){
     Route::get("/account/dashboard/editprofile/{id}",[AccountController::class,'edit'])->name('account.edit');
     Route::post("/account/dashboard/editprofile/{id}",[AccountController::class,'update'])->name('account.update');
 
+    //Account ->User List
     Route::get("/account/dashboard/Userlist",[AccountController::class,'ulist']);
+
+    //Account ->Coupon
+    Route::post('/coupon-store',[CouponController::class,'couponStore'])->name('coupon-store');
+
+
+    Route::get('/coupon',[CouponController::class,'index'])->name('coupon.index');
+    Route::get('/coupon/create',[CouponController::class,'create'])->name('coupon.create');
+    Route::post('/coupon/store',[CouponController::class,'store'])->name('coupon.store');
+    Route::get('/coupon/edit/{id}',[CouponController::class,'edit'])->name('coupon.edit');
+    Route::patch('/coupon/update/{id}',[CouponController::class,'update'])->name('coupon.update');
+    Route::delete('/coupon/delete/{id}',[CouponController::class,'destroy'])->name('coupon.destroy');
     //Account routing END
 
     //**************** */
