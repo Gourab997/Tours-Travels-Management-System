@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="{{ asset('bootstrap-3.1.1/css/bootstrap.min.css') }}">
 </head>
 <body>
+@if(Session::get('success'))
+			<div class="alert alert-success">
+				{{ Session::get('success') }}
+			</div>
+         
+		@endif
+		@if(Session::get('fail'))
+		<div class="alert alert-danger">
+			{{ Session::get('fail') }}
+		</div>
+		@endif
+         @csrf
     
     <div class="container">
          <div class="row">

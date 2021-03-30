@@ -43,6 +43,7 @@ class AccountController extends Controller
 
         $user = User::find($id);   
             $user->fullname     = $req->fullname;
+            $user->username     = $req->username;
             $user->email        = $req->email;
             $user->phone        = $req->phone;
             $user->address      = $req->address;

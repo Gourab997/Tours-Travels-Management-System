@@ -39,22 +39,28 @@ class LoginController extends Controller
          if(Hash::check($request->password, $userInfo->password))
          {
             if($userInfo->type == 'user'){
+                $request->session()->put('Loggedtype', $userInfo->type);
                  $request->session()->put('LoggedUser', $userInfo->id);
                  return redirect('/customer/dashboard');
              }
              elseif($userInfo->type == 'admin'){
+                $request->session()->put('Loggedtype', $userInfo->type);
                  $request->session()->put('LoggedUser', $userInfo->id);
+                 
                  return redirect('/admin/dashboard');
              }
              elseif($userInfo->type == 'account'){
+                $request->session()->put('Loggedtype', $userInfo->type);
                  $request->session()->put('LoggedUser', $userInfo->id);
                  return redirect('/account/dashboard');
              }
              elseif($userInfo->type == 'employee'){
+                $request->session()->put('Loggedtype', $userInfo->type);
                  $request->session()->put('LoggedUser', $userInfo->id);
                  return redirect('/dashboard');
              }
              elseif($userInfo->type == 'guide'){
+                $request->session()->put('Loggedtype', $userInfo->type);
                 $request->session()->put('LoggedUser', $userInfo->id);
                 return redirect('/guide/dashboard');
             }

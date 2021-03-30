@@ -68,22 +68,41 @@
                     <!-- form start -->
                     <form role="form">
                       <div class="card-body">
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Full Name</label>
-                          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="fullname" value="{{ $LoggedUserInfo['fullname']}}">
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Fullname</span>
+                          </div>
+                          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Fullname" value="{{ $LoggedUserInfo['fullname']}}">
                         </div>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Email</label>
-                          <input type="email" class="form-control" id="email" name="email" placeholder="email" value="{{ $LoggedUserInfo['email']}}">
+                        
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Username</span>
+                          </div>
+                          <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{ $LoggedUserInfo['username']}}">
                         </div>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Phone</label>
-                          <input type="text" class="form-control" id="phone" name="phone" placeholder="phone"  value="{{ $LoggedUserInfo['phone']}}">
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                          </div>
+                          <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="email" value="{{ $LoggedUserInfo['email']}}">
                         </div>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Address</label>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                          </div>
+                          <input type="phone" class="form-control" id="exampleInputphone" name="phone" placeholder="phone"  value="{{ $LoggedUserInfo['phone']}}">
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                          </div>
                           <input type="text" class="form-control" id="address" name="address" placeholder="address" value="{{ $LoggedUserInfo['address']}}">
                         </div>
+              
                   </div>
                 </div>            
           </div>

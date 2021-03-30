@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
                 'username'=>'Employee',
                 'email'=>'employee@employee.com',
                 'type'=>'employee',
+                'bloodgroup'=>'O+',
+                'gender'=>'female',
             ),
             array(
                 'password'=>Hash::make('12345678'),
@@ -29,13 +31,17 @@ class UserSeeder extends Seeder
                 'username'=>'admin',
                 'email'=>'admin@admin.com',
                 'type'=>'admin',
+                'bloodgroup'=>'A+',
+                'gender'=>'male',
             ),
             array(
                 'password'=>Hash::make('12345678'),
                 'fullname'=>'Account baba',
                 'username'=>'Account',
-                'email'=>'Accounte@Account.com',
+                'email'=>'Account@Account.com',
                 'type'=>'account',
+                'bloodgroup'=>'AB+',
+                'gender'=>'female',
             ),
             array(
                 'password'=>Hash::make('12345678'),
@@ -43,6 +49,8 @@ class UserSeeder extends Seeder
                 'username'=>'Guide',
                 'email'=>'guide@guide.com',
                 'type'=>'guide',
+                'bloodgroup'=>'A-',
+                'gender'=>'male',
             ),
            
         );
