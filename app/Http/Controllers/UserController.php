@@ -19,23 +19,23 @@ class UserController extends Controller
         
         //Validate requests
         $request->validate([
-            /* 'fullname' => 'required | min:3 | max:30 ', */
-            /* 'username' => 'required | min:3 | max:20', */
+            'fullname' => 'required | min:3 | max:30 ',
+            'username' => 'required | min:3 | max:20',
             'email' => 'required | min:10 | max:50 | email | unique:users',
             'password' => 'required | min:8 | max:20 | alpha_num',
             'cpassword' => 'required | same:password',
-           // 'address' => 'required',
-            //'company' => 'required | min:3 | max:20',
-         /*    'number' => 'required|digits:11', */
-            //'city' => 'required | min:3 | max:20',
-           // 'country' => 'required | min:3 | max:20',
+          //  'address' => 'required',
+           // 'company' => 'required | min:3 | max:20',
+           // 'number' => 'required|digits:11',
+           // 'city' => 'required | min:3 | max:20',
+            //'country' => 'required | min:3 | max:20',
 
         ]);
 
                  //Insert data into database
                  $user = new user;
-                 /* $user->fullname = $request->fullname;
-                 $user->username = $request->username; */
+                  $user->fullname = $request->fullname;
+                 $user->username = $request->username;
                  $user->email = $request->email;
                  $user->password = Hash::make($request->password);
               //   $user->address = $request->address;
