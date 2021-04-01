@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Blog;
+use App\Models\BlogCategory;
+use App\Models\BlogTag;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -68,6 +71,102 @@ class UserController extends Controller
             return redirect('/home/delete/'.$id);
         }
 
+    }
+
+    public function blog(){
+        $blog=Blog::query();
+        
+        if(!empty($_GET['category'])){
+            $slug=explode(',',$_GET['category']);
+            // dd($slug);
+            $cat_ids=BlogCategory::select('id')->whereIn('slug',$slug)->pluck('id')->toArray();
+            return $cat_ids;
+            $blog->whereIn('blog_cat_id',$cat_ids);
+            // return $post;
+        }
+        if(!empty($_GET['tag'])){
+            $slug=explode(',',$_GET['tag']);
+            // dd($slug);
+            $tag_ids=BlogTag::select('id')->whereIn('slug',$slug)->pluck('id')->toArray();
+            // return $tag_ids;
+            $blog->where('blog_tag_id',$tag_ids);
+            // return $post;
+        }
+
+        if(!empty($_GET['show'])){
+            $blog=$blog->where('status','active')->orderBy('id','DESC')->paginate($_GET['show']);
+        }
+        else{
+            $blog=$blog->where('status','active')->orderBy('id','DESC')->paginate(9);
+        }
+        // $post=Post::where('status','active')->paginate(8);
+        $rcnt_blog=Blog::where('status','active')->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.pages.blog')->with('blogs',$blog)->with('recent_blogs',$rcnt_blog);
+    }
+
+    public function blogDetail($slug){
+        $blog=BLog::getPostBySlug($slug);
+        $rcnt_blog=Blog::where('status','active')->orderBy('id','DESC')->limit(3)->get();
+        // return $post;
+        return view('frontend.pages.blog-detail')->with('blog',$blog)->with('recent_blogs',$rcnt_blog);
+    }
+
+    public function blogSearch(Request $request){
+        // return $request->all();
+        $rcnt_blog=Blog::where('status','active')->orderBy('id','DESC')->limit(3)->get();
+        $blogs=Blog::orwhere('title','like','%'.$request->search.'%')
+            ->orwhere('quote','like','%'.$request->search.'%')
+            ->orwhere('summary','like','%'.$request->search.'%')
+            ->orwhere('description','like','%'.$request->search.'%')
+            ->orwhere('slug','like','%'.$request->search.'%')
+            ->orderBy('id','DESC')
+            ->paginate(8);
+        return view('frontend.pages.blog')->with('blogs',$blogs)->with('recent_blogs',$rcnt_blog);
+    }
+
+    public function blogFilter(Request $request){
+        $data=$request->all();
+        // return $data;
+        $catURL="";
+        if(!empty($data['category'])){
+            foreach($data['category'] as $category){
+                if(empty($catURL)){
+                    $catURL .='&category='.$category;
+                }
+                else{
+                    $catURL .=','.$category;
+                }
+            }
+        }
+
+        $tagURL="";
+        if(!empty($data['tag'])){
+            foreach($data['tag'] as $tag){
+                if(empty($tagURL)){
+                    $tagURL .='&tag='.$tag;
+                }
+                else{
+                    $tagURL .=','.$tag;
+                }
+            }
+        }
+        // return $tagURL;
+            // return $catURL;
+        return redirect()->route('blog',$catURL.$tagURL);
+    }
+
+    public function blogByCategory(Request $request){
+        $blog=BlogCategory::getBlogByCategory($request->slug);
+        $rcnt_blog=Blog::where('status','active')->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.pages.blog')->with('blogs',$blog->blog)->with('recent_blogs',$rcnt_blog);
+    }
+
+    public function blogByTag(Request $request){
+        // dd($request->slug);
+        $blog=Blog::getBlogByTag($request->slug);
+        // return $post;
+        $rcnt_blog=Blog::where('status','active')->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.pages.blog')->with('blogs',$blog)->with('recent_blogs',$rcnt_blog);
     }
  //end of main   
 }

@@ -82,8 +82,8 @@
         </div>
       </li>
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+      <li class="nav-item dropdown no-arrow mx-1">
+     <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
         </a>
@@ -107,11 +107,32 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
+       
       </li>
       <!--<li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
       </li> -->
+    
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+         
+          <a class="dropdown-item" href="#">
+            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+            Settings
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ route('auth.logout') }}"
+                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
+      </li>
     </ul>
   </nav>

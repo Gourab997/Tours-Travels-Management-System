@@ -9,11 +9,17 @@ use App\Http\Controllers\employee\BookingController;
 use App\Http\Controllers\employee\TourguideController;
 use App\Http\Controllers\employee\FeedbackController;
 use App\Http\Controllers\account\AccountController;
+use App\Http\Controllers\account\Blog\BlogCategoryController;
+use App\Http\Controllers\account\Blog\BlogCommentController;
+use App\Http\Controllers\account\Blog\BlogTagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\customer\UCustomerController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\tourguide\guideController;
 use App\Http\Controllers\account\CouponController;
+use App\Http\Controllers\account\Blog\BlogController;
+use App\Http\Controllers\NotificationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +42,21 @@ Route::get('/logout',[LogoutController::class, 'logout'])->name('auth.logout');/
 
 
 
+// Blog
+Route::get('/blog',[UserController::class,'blog'])->name('blog');
+Route::get('/blog-detail/{slug}',[UserController::class,'blogDetail'])->name('blog.detail');
+Route::get('/blog/search',[UserController::class,'blogSearch'])->name('blog.search');
+Route::post('/blog/filter',[UserController::class,'blogFilter'])->name('blog.filter');
+Route::get('blog-cat/{slug}',[UserController::class,'blogByCategory'])->name('blog.category');
+Route::get('blog-tag/{slug}',[UserController::class,'blogByTag'])->name('blog.tag');
 
+// Post Comment 
+Route::post('post/{slug}/comment',[BlogCommentController::class,'store'])->name('post-comment.store');
+Route::get('/comment',[BlogCommentController::class,'index']);
+Route::post('/comment/store',[BlogCommentController::class,'store']);
+Route::get('/comment/edit',[BlogCommentController::class,'edit']);
+Route::post('/comment/update',[BlogCommentController::class,'update']);
+Route::post('/comment/delete',[BlogCommentController::class,'destroy']);
 
 //Varrification Start
 
@@ -140,9 +160,15 @@ Route::group(['prefix'=>'/guide','middleware'=>['sess','guide']],function(){
 Route::group(['prefix'=>'/customer','middleware'=>['sess','customer']],function(){
 
         
-        Route::get('/customer/dashboard',[UCustomerController::class, 'userdashboard']);
+        Route::get('/customer/dashboard',[UCustomerController::class, 'userdashboard'])->name('user');
         Route::get('/customer/settings',[UCustomerController::class,'usersettings']);
         Route::get('/customer/profile',[UCustomerController::class,'userprofile']);
+
+        //User Blog comment
+        Route::get('user-blog/comment',[UCustomerController::class, 'userComment'])->name('user.blog-comment.index');
+        Route::delete('user-blog/comment/delete/{id}',[UCustomerController::class, 'userCommentDelete'])->name('user.blog-comment.delete');
+        Route::get('user-blog/comment/edit/{id}',[UCustomerController::class, 'userCommentEdit'])->name('user.blog-comment.edit');
+        Route::patch('user-blog/comment/udpate/{id}',[UCustomerController::class, 'userCommentUpdate'])->name('user.blog-comment.update');
         
 });
 //Customer Routing END
@@ -178,6 +204,35 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
     Route::patch('/coupon/update/{id}',[CouponController::class,'update'])->name('coupon.update');
     Route::delete('/coupon/delete/{id}',[CouponController::class,'destroy'])->name('coupon.destroy');
     
+
+     // BLOG category
+     Route::get('/blog-category', [BlogCategoryController::class,'index'])->name('account.blog.cat');
+     Route::get('/blog-category/create', [BlogCategoryController::class,'create'])->name('account.blog.create.cat');
+     Route::post('/blog-category/store',[BlogCategoryController::class,'store'])->name('account.blog.store.cat');
+        Route::get('/blog-category/edit/{id}',[BlogCategoryController::class,'edit'])->name('account.blog.edit.cat');
+        Route::patch('/blog-category/update/{id}',[BlogCategoryController::class,'update'])->name('account.blog.update.cat');
+        Route::delete('/blog-category/delete/{id}',[BlogCategoryController::class,'destroy'])->name('account.blog.delete.cat');
+     
+        // BLOG tag
+     Route::get('/blog-tag', [BlogTagController::class,'index'])->name('account.blog.tag');
+     Route::get('/blog-tag/create', [BlogTagController::class,'create'])->name('account.blog.create.tag');
+     Route::post('/blog-tag/store',[BlogTagController::class,'store'])->name('account.blog.store.tag');
+        Route::get('/blog-tag/edit/{id}',[BlogTagController::class,'edit'])->name('account.blog.edit.tag');
+        Route::patch('/blog-tag/update/{id}',[BlogTagController::class,'update'])->name('account.blog.update.tag');
+        Route::delete('/blog-tag/delete/{id}',[BlogTagController::class,'destroy'])->name('account.blog.delete.tag');
+    
+        // BLOG
+     Route::get('/blog', [BlogController::class,'index'])->name('blog.index');
+     Route::get('/blog/create', [BlogController::class,'create'])->name('account.create.blog');
+     Route::post('/blog/store',[BlogController::class,'store'])->name('account.store.blog');
+        Route::get('/blog/edit/{id}',[BlogController::class,'edit'])->name('account.edit.blog');
+        Route::post('/blog/update/{id}',[BlogController::class,'update'])->name('account.update.blog');
+        Route::delete('/blog/delete/{id}',[BlogController::class,'destroy'])->name('account.delete.blog');
+
+     // Notification
+    Route::get('/notification/{id}',[NotificationController::class,'show'])->name('account.notification');
+    Route::get('/notifications',[NotificationController::class,'index'])->name('all.notification');
+    Route::delete('/notification/{id}',[NotificationController::class,'delete'])->name('notification.delete');
 });
 //Account routing END
 

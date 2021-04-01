@@ -84,6 +84,6 @@ class AccountController extends Controller
     public function profile(Request $req){
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         
-        return view('account.dashboard.profile.profile',$data,);
+        return view('account.dashboard.profile.profile',$data);
     }
 }
