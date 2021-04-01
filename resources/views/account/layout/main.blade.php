@@ -50,6 +50,7 @@
       @yield('TotalUser')
       @yield('coupon')
       @yield('blog')
+      @yield('settings')
     <!-- /.content -->
     </div>
   </div>

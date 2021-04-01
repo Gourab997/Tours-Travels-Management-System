@@ -41,12 +41,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-cog"></i>
-                  <p>Settings</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="{{ route('auth.logout') }}" class="nav-link">
                   <i class="fas fa-sign-out-alt"></i>
                   <p>Logout</p>
@@ -117,16 +111,16 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header">EXAMPLES</li>
+          <li class="nav-header">Website</li>
           <li class="nav-item">
-            
-          <li class="nav-header">MISCELLANEOUS</li>
-          <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Documentation</p>
+            <a href="{{route('settings')}}" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>Settings</p>
             </a>
           </li>
+            
+          <li class="nav-header">MISCELLANEOUS</li>
+          
           
           
         </ul>

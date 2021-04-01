@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Notifications\StatusNotification;
 use Illuminate\Http\Request;
 
+
 class BlogCommentController extends Controller
 {
     public function index()
@@ -38,8 +39,7 @@ class BlogCommentController extends Controller
         $blog_info=Blog::getBlogBySlug($request->slug);
         // return $post_info;
         $data=$request->all();
-        $data['user_id']=$request->user()->id;
-        // $data['post_id']=$post_info->id;
+        $data['user_id']= $request->session()->get('LoggedUser');
         $data['status']='active';
         // return $data;
         $status=BlogComment::create($data);
@@ -49,7 +49,7 @@ class BlogCommentController extends Controller
             'actionURL'=>route('blog.detail',$blog_info->slug),
             'fas'=>'fas fa-comment'
         ];
-        Notification::send($user, new StatusNotification($details));
+        //Notification::send($user, new StatusNotification($details));
         if($status){
             request()->session()->flash('success','Thank you for your comment');
         }

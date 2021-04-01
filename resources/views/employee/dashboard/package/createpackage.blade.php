@@ -4,7 +4,7 @@
 @section('createpackage')
     
 
-<form action="createpackage" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+<form action="{{ route('storepackage') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
   
    @csrf
     <div class="col-md-4 mb-3">

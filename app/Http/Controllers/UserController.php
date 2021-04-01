@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    
+    public function home(){
+       
+        $blogs=Blog::where('status','active')->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.index')
+                ->with('blogs',$blogs);
+    } 
 
     
     function register(){
@@ -105,10 +110,10 @@ class UserController extends Controller
     }
 
     public function blogDetail($slug){
-        $blog=BLog::getPostBySlug($slug);
+        $blog=BLog::getBlogBySlug($slug);
         $rcnt_blog=Blog::where('status','active')->orderBy('id','DESC')->limit(3)->get();
         // return $post;
-        return view('frontend.pages.blog-detail')->with('blog',$blog)->with('recent_blogs',$rcnt_blog);
+        return view('frontend.pages.blog-details')->with('blog',$blog)->with('recent_blogs',$rcnt_blog);
     }
 
     public function blogSearch(Request $request){

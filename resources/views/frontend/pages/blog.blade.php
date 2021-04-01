@@ -19,7 +19,8 @@
     <!-- End Breadcrumbs -->
         
     <!-- Start Blog Single -->
-    <section class="blog-single shop-blog grid section">
+ <!-- Start Blog Single -->
+ <section class="blog-single shop-blog grid section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-12">
@@ -32,14 +33,14 @@
                                 <img src="{{$blog->photo}}" alt="{{$blog->photo}}">
                                     <div class="content">
                                         @php 
-                                            $author_info=DB::table('users')->select('name')->where('id',$blog->added_by)->get();
+                                            $author_info=DB::table('users')->select('username')->where('id',$blog->added_by)->get();
                                         @endphp
                                         <p class="date"><i class="fa fa-calendar" aria-hidden="true"></i> {{$blog->created_at->format('d M, Y. D')}}
                                             <span class="float-right">
                                                 <i class="fa fa-user" aria-hidden="true"></i> 
                                                 @foreach($author_info as $data)
-                                                    @if($data->name)
-                                                        {{$data->name}}
+                                                    @if($data->username)
+                                                        {{$data->username}}
                                                     @else
                                                         Anonymous
                                                     @endif
@@ -82,8 +83,8 @@
                                 @endif
                             <form action="{{route('blog.filter')}}" method="POST">
                                     @csrf
-                                    {{-- {{count(Helper::blogCategoryList())}} --}}
-                                    @foreach(Helper::blogCategoryList('blogs') as $cat)
+                                    {{-- {{count(Helper::postCategoryList())}} --}}
+                                    @foreach(Helper::postCategoryList('posts') as $cat)
                                     <li>
                                         <a href="{{route('blog.category',$cat->slug)}}">{{$cat->title}} </a>
                                     </li>
@@ -95,7 +96,7 @@
                         <!--/ End Single Widget -->
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
-                            <h3 class="title">Recent blog</h3>
+                            <h3 class="title">Recent post</h3>
                             @foreach($recent_blogs as $blog)
                                 <!-- Single Post -->
                                 <div class="single-post">
@@ -106,13 +107,13 @@
                                         <h5><a href="#">{{$blog->title}}</a></h5>
                                         <ul class="comment">
                                         @php 
-                                            $author_info=DB::table('users')->select('name')->where('id',$blog->added_by)->get();
+                                            $author_info=DB::table('users')->select('username')->where('id',$blog->added_by)->get();
                                         @endphp
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>{{$blog->created_at->format('d M, y')}}</li>
                                             <li><i class="fa fa-user" aria-hidden="true"></i> 
                                                 @foreach($author_info as $data)
-                                                    @if($data->name)
-                                                        {{$data->name}}
+                                                    @if($data->username)
+                                                        {{$data->username}}
                                                     @else
                                                         Anonymous
                                                     @endif
@@ -138,7 +139,7 @@
                                 @endif
                                 <form action="{{route('blog.filter')}}" method="POST">
                                     @csrf
-                                    @foreach(Helper::blogTagList('blogs') as $tag)
+                                    @foreach(Helper::postTagList('posts') as $tag)
                                         <li>
                                             <li>
                                                 <a href="{{route('blog.tag',$tag->title)}}">{{$tag->title}} </a>
@@ -149,19 +150,7 @@
                             </ul>
                         </div>
                         <!--/ End Single Widget -->
-                        <!-- Single Widget -->
-                        <div class="single-widget newsletter">
-                            <h3 class="title">Newslatter</h3>
-                            <div class="letter-inner">
-                                <h4>Subscribe & get news <br> latest updates.</h4>
-                                <form method="POST" action="{{route('subscribe')}}" class="form-inner">
-                                    @csrf
-                                    <input type="email" name="email" placeholder="Enter your email">
-                                    <button type="submit" class="btn " style="width: 100%">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                        <!--/ End Single Widget -->
+                        
                     </div>
                 </div>
             </div>

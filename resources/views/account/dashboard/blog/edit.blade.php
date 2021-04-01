@@ -3,7 +3,7 @@
 @section('blog')
 
 <div class="card">
-    <h5 class="card-header">Add Blog</h5>
+    <h5 class="card-header">Edit Blog</h5>
     <div class="card-body">
       <form method="post" action="{{route('account.update.blog',$blog->id)}}">
         {{csrf_field()}}
@@ -68,10 +68,7 @@
         <div class="form-group">
           <label for="added_by">Author</label>
           <select name="added_by" class="form-control">
-              <option value="">--Select any one--</option>
-              @foreach($users as $key=>$data)
-                <option value='{{$data->id}}' {{($key==0) ? 'selected' : ''}}>{{$data->username}}</option>
-            @endforeach
+                <option value="{{ $LoggedUserInfo['id'] }}" >{{ $LoggedUserInfo['username'] }}</option>
           </select>
         </div>
         
@@ -111,12 +108,23 @@
 </div>
 
 @endsection
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
 <!-- jQuery -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 -->
-<script src="/assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -149,11 +157,11 @@
     });
 
     $(document).ready(function() {
-    $('.select2').select2({
-      maximumSelectionLength: 2
-    }
-      
-    );
-});
-    $('#lfm').filemanager('image');
+
+        $('select').selectpicker();
+
+    });
+
+
+    //$('#lfm').filemanager('image');
 </script>

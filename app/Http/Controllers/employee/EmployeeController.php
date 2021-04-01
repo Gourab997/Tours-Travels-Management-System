@@ -102,7 +102,7 @@ class EmployeeController extends Controller
                
             }    
             $employee->save();
-    return redirect('/dashboard/profile');
+    return redirect('/employee/dashboard/profile');
     
    
       

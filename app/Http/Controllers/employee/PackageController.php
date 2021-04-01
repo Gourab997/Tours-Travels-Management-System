@@ -53,12 +53,12 @@ class PackageController extends Controller
                 $package->package_image  = $fileName;
                 $package->save();
             } else {
-                return redirect('/dashboard');
+                return redirect('employee/dashboard');
             }
         }
         $package->save();
 
-        return redirect('/dashboard');
+        return redirect('employee/dashboard');
     }
 
     /**
@@ -110,12 +110,12 @@ class PackageController extends Controller
                 $package->package_image  = $fileName;
                 $package->save();
             } else {
-                return redirect('/dashboard/viewpackage');
+                return redirect('employee/dashboard/viewpackage');
             }
         }
         $package->save();
 
-        return redirect('/dashboard/viewpackage');
+        return redirect('employee/dashboard/viewpackage');
     }
 
     /**
@@ -141,7 +141,7 @@ class PackageController extends Controller
     public function destroy($p_id)
     {
         if(Package::destroy($p_id)){
-            return redirect('/dashboard/viewpackage');
+            return redirect('employee/dashboard/viewpackage');
         } 
     }
 

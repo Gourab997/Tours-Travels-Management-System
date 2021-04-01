@@ -19,8 +19,8 @@
     </div>
     <!-- End Breadcrumbs -->
         
-    <!-- Start Blog Single -->
-    <section class="blog-single section">
+     <!-- Start Blog Single -->
+     <section class="blog-single section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-12">
@@ -33,7 +33,7 @@
                                 <div class="blog-detail">
                                     <h2 class="blog-title">{{$blog->title}}</h2>
                                     <div class="blog-meta">
-                                        <span class="author"><a href="javascript:void(0);"><i class="fa fa-user"></i>By {{$blog->author_info['name']}}</a><a href="javascript:void(0);"><i class="fa fa-calendar"></i>{{$blog->created_at->format('M d, Y')}}</a><a href="javascript:void(0);"><i class="fa fa-comments"></i>Comment ({{$blog->allComments->count()}})</a></span>
+                                        <span class="author"><a href="javascript:void(0);"><i class="fa fa-user"></i>By {{$blog->author_info['username']}}</a><a href="javascript:void(0);"><i class="fa fa-calendar"></i>{{$blog->created_at->format('M d, Y')}}</a><a href="javascript:void(0);"><i class="fa fa-comments"></i>Comment ({{$blog->allComments->count()}})</a></span>
                                     </div>
                                     <div class="sharethis-inline-reaction-buttons"></div>
                                     <div class="content">
@@ -61,13 +61,13 @@
                                     </div>
                                 </div>
                             </div>
-                            @auth
+                            @if(session()->has('LoggedUser'))
                             <div class="col-12 mt-4">			
                                 <div class="reply">
                                     <div class="reply-head comment-form" id="commentFormContainer">
                                         <h2 class="reply-title">Leave a Comment</h2>
                                         <!-- Comment Form -->
-                                        <form class="form comment_form" id="commentForm" action="{{route('blog-comment.store',$blog->slug)}}" method="POST">
+                                        <form class="form comment_form" id="commentForm" action="{{route('post-comment.store',$blog->slug)}}" method="POST">
                                             @csrf
                                             <div class="row">
                                                 {{-- <div class="col-lg-6 col-md-6 col-12">
@@ -86,13 +86,13 @@
                                                     <div class="form-group  comment_form_body">
                                                         <label>Your Message<span>*</span></label>
                                                         <textarea name="comment" id="comment" rows="10" placeholder=""></textarea>
-                                                        <input type="hidden" name="blog_id" value="{{ $blog->id }}" />
+                                                        <input type="hidden" name="post_id" value="{{ $blog->id }}" />
                                                         <input type="hidden" name="parent_id" id="parent_id" value="" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group button">
-                                                        <button type="submit" class="btn"><span class="comment_btn comment">Blog Comment</span><span class="comment_btn reply" style="display: none;">Reply Comment</span></button>
+                                                        <button type="submit" class="btn"><span class="comment_btn comment">Post Comment</span><span class="comment_btn reply" style="display: none;">Reply Comment</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,13 +104,13 @@
                             	
                             @else 
                             <p class="text-center p-5">
-                                You need to <a href="{{route('login.form')}}" style="color:rgb(54, 54, 204)">Login</a> OR <a style="color:blue" href="{{route('register.form')}}">Register</a> for comment.
+                                You need to <a href="{{route('login.index')}}" style="color:rgb(54, 54, 204)">Login</a> OR <a style="color:blue" href="{{route('reg.register')}}">Register</a> for comment.
 
                             </p>
 
                            
                             <!--/ End Form -->
-                            @endauth										
+                            @endif										
                             <div class="col-12">
                                 <div class="comments">
                                     <h3 class="comment-title">Comments ({{$blog->allComments->count()}})</h3>
@@ -136,8 +136,8 @@
                         <div class="single-widget category">
                             <h3 class="title">Blog Categories</h3>
                             <ul class="categor-list">
-                                {{-- {{count(Helper::blogCategoryList())}} --}}
-                                @foreach(Helper::blogCategoryList('blogs') as $cat)
+                                {{-- {{count(Helper::postCategoryList())}} --}}
+                                @foreach(Helper::postCategoryList('posts') as $cat)
                                 <li><a href="#">{{$cat->title}} </a></li>
                                 @endforeach
                             </ul>
@@ -145,7 +145,7 @@
                         <!--/ End Single Widget -->
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
-                            <h3 class="title">Recent blog</h3>
+                            <h3 class="title">Recent post</h3>
                             @foreach($recent_blogs as $blog)
                                 <!-- Single Post -->
                                 <div class="single-post">
@@ -156,13 +156,13 @@
                                         <h5><a href="#">{{$blog->title}}</a></h5>
                                         <ul class="comment">
                                         @php 
-                                            $author_info=DB::table('users')->select('name')->where('id',$blog->added_by)->get();
+                                            $author_info=DB::table('users')->select('username')->where('id',$blog->added_by)->get();
                                         @endphp
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>{{$blog->created_at->format('d M, y')}}</li>
                                             <li><i class="fa fa-user" aria-hidden="true"></i> 
                                                 @foreach($author_info as $data)
-                                                    @if($data->name)
-                                                        {{$data->name}}
+                                                    @if($data->username)
+                                                        {{$data->username}}
                                                     @else
                                                         Anonymous
                                                     @endif
@@ -181,27 +181,13 @@
                         <div class="single-widget side-tags">
                             <h3 class="title">Tags</h3>
                             <ul class="tag">
-                                @foreach(Helper::blogTagList('blogs') as $tag)
+                                @foreach(Helper::postTagList('posts') as $tag)
                                     <li><a href="">{{$tag->title}}</a></li>
                                 @endforeach
                             </ul>
                         </div>
                         <!--/ End Single Widget -->
-                        <!-- Single Widget -->
-                        <div class="single-widget newsletter">
-                            <h3 class="title">Newslatter</h3>
-                            <div class="letter-inner">
-                                <h4>Subscribe & get news <br> latest updates.</h4>
-                                <form action="{{route('subscribe')}}" method="POST">
-                                    @csrf
-                                    <div class="form-inner">
-                                        <input type="email" name="email" placeholder="Enter your email">
-                                        <button type="submit" class="btn mt-2">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!--/ End Single Widget -->
+                        
                     </div>
                 </div>
             </div>

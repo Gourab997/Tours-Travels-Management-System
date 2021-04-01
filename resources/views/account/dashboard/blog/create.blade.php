@@ -49,22 +49,23 @@
           </select>
         </div>
 
-        <div class="col-md-6">
         <div class="form-group">
-                  <label>Multiple</label>
-                  <select class="tags[]" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+          <label for="tags">Tag</label>
+          <select name="tags[]" multiple  data-live-search="true" class="form-control selectpicker">
               <option value="">--Select any tag--</option>
               @foreach($tags as $key=>$data)
                   <option value='{{$data->title}}'>{{$data->title}}</option>
               @endforeach
           </select>
         </div>
-        </div>
+
 
         <div class="form-group">
           <label for="added_by">Author</label>
-          <input type="text" name="added_by"  class="form-control" value="{{ $LoggedUserInfo['username'] }}" disabled>
-         </div>
+          <select name="added_by" class="form-control">
+                <option value="{{ $LoggedUserInfo['id'] }}" >{{ $LoggedUserInfo['username'] }}</option>
+          </select>
+        </div>
         
         <div class="form-group">
           <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
@@ -102,12 +103,27 @@
 </div>
 
 @endsection
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
 <!-- jQuery -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 -->
-<script src="/assets/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="/assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="/assets/plugins/moment/moment.min.js"></script>
+<script src="/assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -140,11 +156,12 @@
     });
 
     $(document).ready(function() {
-    $('.select2').select2({
-      maximumSelectionLength: 2
-    }
-      
-    );
-});
+
+      $('select').selectpicker();
+
+      });
+
     $('#lfm').filemanager('image');
 </script>
+
+

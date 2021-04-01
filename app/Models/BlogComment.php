@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BlogComment extends Model
 {
     use HasFactory;
-    protected $fillable=['user_id','post_id','comment','replied_comment','parent_id','status'];
+    protected $fillable=['user_id','blog_id','comment','replied_comment','parent_id','status'];
 
     public function user_info(){
         return $this->hasOne('App\Models\User','id','user_id');
@@ -18,7 +18,7 @@ class BlogComment extends Model
     }
 
     public static function getAllUserComments(){
-        return BlogComment::where('user_id',auth()->user()->id)->with('user_info')->paginate(10);
+        return BlogComment::where('user_id',session()->get('LoggedUser'))->with('user_info')->paginate(10);
     }
 
     public function blog(){

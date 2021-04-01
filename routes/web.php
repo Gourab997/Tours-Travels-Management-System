@@ -18,6 +18,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\tourguide\guideController;
 use App\Http\Controllers\account\CouponController;
 use App\Http\Controllers\account\Blog\BlogController;
+use App\Http\Controllers\account\SettingsController;
 use App\Http\Controllers\NotificationController;
 
 /*
@@ -32,7 +33,7 @@ use App\Http\Controllers\NotificationController;
 */
 
 
-Route::get('/', [LoginController::class,'first']); //Welcome Blade (redirect to login)
+Route::get('/', [UserController::class,'home'])->name('home'); //Welcome Blade (redirect to login)
 
 Route::get('/register',[UserController::class, 'register'])->name('reg.register');//Registration
 Route::post('/auth/save',[UserController::class, 'save'])->name('auth.save'); //Registration Save
@@ -51,7 +52,7 @@ Route::get('blog-cat/{slug}',[UserController::class,'blogByCategory'])->name('bl
 Route::get('blog-tag/{slug}',[UserController::class,'blogByTag'])->name('blog.tag');
 
 // Post Comment 
-Route::post('post/{slug}/comment',[BlogCommentController::class,'store'])->name('post-comment.store');
+Route::post('Blog/{slug}/comment',[BlogCommentController::class,'store'])->name('post-comment.store');
 Route::get('/comment',[BlogCommentController::class,'index']);
 Route::post('/comment/store',[BlogCommentController::class,'store']);
 Route::get('/comment/edit',[BlogCommentController::class,'edit']);
@@ -72,15 +73,15 @@ Route::group(['prefix'=>'/employee','middleware'=>['sess','employee']],function(
         Route::get('/dashboard', [EmployeeController::class,'dashboard'])->name('dashboard.index');
 
         //Employee ->customer
-        Route::get("dashboard/create",[CustomerController::class,'create']);
-        Route::post("dashboard/create",[CustomerController::class,'store']);
+        Route::get("/dashboard/create",[CustomerController::class,'create']);
+        Route::post("/dashboard/create",[CustomerController::class,'store']);
         Route::get("dashboard/view",[CustomerController::class,'show']);
         Route::get('/searchcustomer',[CustomerController::class,'search']);
-        Route::post("dashboard/view/{id}",[CustomerController::class,'confirmstatus']);
-        Route::post('dashboard/import',[CustomerController::class,'import']);
-        Route::get("dashboard/edituser/{id}",[CustomerController::class,'edit']);
-        Route::post("dashboard/edituser/{id}",[CustomerController::class,'update']);
-        Route::post("dashboard/deleteuser/{id}",[CustomerController::class,'destroy']);
+        Route::post("/dashboard/view/{id}",[CustomerController::class,'confirmstatus']);
+        Route::post("/dashboard/import",[CustomerController::class,'import']);
+        Route::get("/dashboard/edituser/{id}",[CustomerController::class,'edit']);
+        Route::post("/dashboard/edituser/{id}",[CustomerController::class,'update']);
+        Route::post("/dashboard/deleteuser/{id}",[CustomerController::class,'destroy']);
     
     
         //Employee ->profile
@@ -90,14 +91,14 @@ Route::group(['prefix'=>'/employee','middleware'=>['sess','employee']],function(
     
     
         //Employee ->package
-        Route::get("dashboard/createpackage",[PackageController::class,'create']);
-        Route::post("dashboard/createpackage",[PackageController::class,'store']);
-        Route::get("dashboard/viewpackage",[PackageController::class,'show']);
+        Route::get("/dashboard/createpackage",[PackageController::class,'create'])->name('createpackage');
+        Route::post("/dashboard/createpackage",[PackageController::class,'store'])->name('storepackage');
+        Route::get("dashboard/viewpackage",[PackageController::class,'show'])->name('showpackage');
         Route::get("dashboard/viewpackage/details/{p_id}",[PackageController::class,'packageshow']);
         Route::get("dashboard/viewpackage/download-pdf",[PackageController::class,'downloadPDF']);
-        Route::get("dashboard/editpackage/{p_id}",[PackageController::class,'edit']);
-        Route::post("dashboard/editpackage/{p_id}",[PackageController::class,'update']);
-        Route::post("dashboard/deletepackage/{p_id}",[PackageController::class,'destroy']);
+        Route::get("dashboard/editpackage/{p_id}",[PackageController::class,'edit'])->name('editpackage');
+        Route::post("dashboard/editpackage/{p_id}",[PackageController::class,'update'])->name('updatepackage');
+        Route::post("dashboard/deletepackage/{p_id}",[PackageController::class,'destroy'])->name('deletepackage');
     
     
         //Employee ->booking
@@ -144,7 +145,7 @@ Route::group(['prefix'=>'/employee','middleware'=>['sess','employee']],function(
 Route::group(['prefix'=>'/guide','middleware'=>['sess','guide']],function(){
 
         
-        Route::get('/guide/dashboard',[guideController::class, 'guidedashboard']);
+        Route::get('/guide/dashboard',[guideController::class, 'guidedashboard'])->name('guide.dashboard');
         
 
 });
@@ -205,7 +206,7 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
     Route::delete('/coupon/delete/{id}',[CouponController::class,'destroy'])->name('coupon.destroy');
     
 
-     // BLOG category
+     //Account -> BLOG category
      Route::get('/blog-category', [BlogCategoryController::class,'index'])->name('account.blog.cat');
      Route::get('/blog-category/create', [BlogCategoryController::class,'create'])->name('account.blog.create.cat');
      Route::post('/blog-category/store',[BlogCategoryController::class,'store'])->name('account.blog.store.cat');
@@ -213,7 +214,7 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
         Route::patch('/blog-category/update/{id}',[BlogCategoryController::class,'update'])->name('account.blog.update.cat');
         Route::delete('/blog-category/delete/{id}',[BlogCategoryController::class,'destroy'])->name('account.blog.delete.cat');
      
-        // BLOG tag
+        //Account -> BLOG tag
      Route::get('/blog-tag', [BlogTagController::class,'index'])->name('account.blog.tag');
      Route::get('/blog-tag/create', [BlogTagController::class,'create'])->name('account.blog.create.tag');
      Route::post('/blog-tag/store',[BlogTagController::class,'store'])->name('account.blog.store.tag');
@@ -221,7 +222,7 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
         Route::patch('/blog-tag/update/{id}',[BlogTagController::class,'update'])->name('account.blog.update.tag');
         Route::delete('/blog-tag/delete/{id}',[BlogTagController::class,'destroy'])->name('account.blog.delete.tag');
     
-        // BLOG
+        //Account -> BLOG
      Route::get('/blog', [BlogController::class,'index'])->name('blog.index');
      Route::get('/blog/create', [BlogController::class,'create'])->name('account.create.blog');
      Route::post('/blog/store',[BlogController::class,'store'])->name('account.store.blog');
@@ -229,10 +230,10 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
         Route::post('/blog/update/{id}',[BlogController::class,'update'])->name('account.update.blog');
         Route::delete('/blog/delete/{id}',[BlogController::class,'destroy'])->name('account.delete.blog');
 
-     // Notification
-    Route::get('/notification/{id}',[NotificationController::class,'show'])->name('account.notification');
-    Route::get('/notifications',[NotificationController::class,'index'])->name('all.notification');
-    Route::delete('/notification/{id}',[NotificationController::class,'delete'])->name('notification.delete');
+        //Account -> Settings
+    Route::get('settings',[SettingsController::class,'settings'])->name('settings');
+    Route::post('setting/update',[SettingsController::class,'settingsUpdate'])->name('settings.update');
+
 });
 //Account routing END
 
