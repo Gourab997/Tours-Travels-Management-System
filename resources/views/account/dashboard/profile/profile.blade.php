@@ -40,16 +40,9 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{ asset('/upload')}}/{{ $LoggedUserInfo->profile_img}}" alt="{{ $LoggedUserInfo['type'] }}" class="img-circle elevation-2" width="150">
-                    					    
-					
-                    
+                    <img src="{{ asset('/upload/user_image')}}/{{ $LoggedUserInfo->profile_img}}" alt="{{ $LoggedUserInfo['type'] }}" class="img-circle elevation-2" width="150">
                     <div class="mt-3">
-
-
-                      
                       <h4> {{ $LoggedUserInfo['username'] }}</h4>
-                      
                       <p class="text-muted font-size-sm">{{ $LoggedUserInfo['type'] }}</p>
                       <a href="/account/dashboard/editprofile/{{ $LoggedUserInfo['id'] }}" class="btn btn-primary">Edit Profile</a>
                     </div>

@@ -19,6 +19,8 @@ use App\Http\Controllers\tourguide\guideController;
 use App\Http\Controllers\account\CouponController;
 use App\Http\Controllers\account\Blog\BlogController;
 use App\Http\Controllers\account\SettingsController;
+use App\Http\Controllers\EmpController;
+use App\Http\Controllers\EmpSalaryController;
 use App\Http\Controllers\NotificationController;
 
 /*
@@ -51,13 +53,10 @@ Route::post('/blog/filter',[UserController::class,'blogFilter'])->name('blog.fil
 Route::get('blog-cat/{slug}',[UserController::class,'blogByCategory'])->name('blog.category');
 Route::get('blog-tag/{slug}',[UserController::class,'blogByTag'])->name('blog.tag');
 
+
 // Post Comment 
-Route::post('Blog/{slug}/comment',[BlogCommentController::class,'store'])->name('post-comment.store');
-Route::get('/comment',[BlogCommentController::class,'index']);
-Route::post('/comment/store',[BlogCommentController::class,'store']);
-Route::get('/comment/edit',[BlogCommentController::class,'edit']);
-Route::post('/comment/update',[BlogCommentController::class,'update']);
-Route::post('/comment/delete',[BlogCommentController::class,'destroy']);
+Route::post('Blog/{slug}/comment',[BlogCommentController::class,'store'])->name('post-comment.store')->middleware('sess');
+
 
 //Varrification Start
 
@@ -230,9 +229,31 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
         Route::post('/blog/update/{id}',[BlogController::class,'update'])->name('account.update.blog');
         Route::delete('/blog/delete/{id}',[BlogController::class,'destroy'])->name('account.delete.blog');
 
-        //Account -> Settings
+        //Account ->Website details Settings
     Route::get('settings',[SettingsController::class,'settings'])->name('settings');
     Route::post('setting/update',[SettingsController::class,'settingsUpdate'])->name('settings.update');
+
+    //Account ->Blog Comment crud
+    Route::get('/comment',[BlogCommentController::class,'index'])->name('account.comment');
+Route::post('/comment/store',[BlogCommentController::class,'store'])->name('account.comment.store');
+Route::get('/comment/edit/{id}',[BlogCommentController::class,'edit'])->name('account.comment.edit');
+Route::post('/comment/update/{id}',[BlogCommentController::class,'update'])->name('account.comment.update');
+Route::delete('/comment/delete/{id}',[BlogCommentController::class,'destroy'])->name('account.comment.delete');
+
+
+    //Account -> Employee CRUD.
+    Route::get('/Employee/view', [EmpController::class,'index'])->name('account.employee');
+    Route::get('/Employee/create', [EmpController::class,'create'])->name('account.employee.create');
+    Route::post('/Employee/store',[EmpController::class,'store'])->name('account.employee.store');
+       Route::get('/Employee/edit/{id}',[EmpController::class,'edit'])->name('account.employee.edit');
+       Route::patch('/Employee/update/{id}',[EmpController::class,'update'])->name('account.employee.update');
+       Route::delete('/Employee/delete/{id}',[EmpController::class,'destroy'])->name('account.employee.delete');
+       
+       //Account -> Employee Salary CRUD.
+    Route::get('/Employee/salary/view', [EmpSalaryController::class,'index'])->name('account.employee.salary');
+       Route::get('/Employee/salary/edit/{id}',[EmpSalaryController::class,'edit'])->name('account.employee.salary.edit');
+       Route::patch('/Employee/salary/update/{id}',[EmpSalaryController::class,'update'])->name('account.employee.salary.update');
+       Route::get('/Employee/salary/delete/{id}',[EmpSalaryController::class,'show'])->name('account.employee.salary.show');
 
 });
 //Account routing END

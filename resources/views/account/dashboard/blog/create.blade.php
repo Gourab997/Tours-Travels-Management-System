@@ -50,9 +50,8 @@
         </div>
 
         <div class="form-group">
-          <label for="tags">Tag</label>
+          <label for="tags">Tag (Select any 2 tags) </label>
           <select name="tags[]" multiple  data-live-search="true" class="form-control selectpicker">
-              <option value="">--Select any tag--</option>
               @foreach($tags as $key=>$data)
                   <option value='{{$data->title}}'>{{$data->title}}</option>
               @endforeach
@@ -70,12 +69,7 @@
         <div class="form-group">
           <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
           <div class="input-group">
-              <span class="input-group-btn">
-                  <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                  <i class="fa fa-picture-o"></i> Choose
-                  </a>
-              </span>
-          <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
+          <input name="myfile" type="file" class="form-file-input" id="customFile">
         </div>
         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
           @error('photo')
@@ -119,11 +113,6 @@
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Bootstrap4 Duallistbox -->
-<script src="/assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-<!-- InputMask -->
-<script src="/assets/plugins/moment/moment.min.js"></script>
-<script src="/assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -158,7 +147,7 @@
     $(document).ready(function() {
 
       $('select').selectpicker();
-
+       size: '2'
       });
 
     $('#lfm').filemanager('image');

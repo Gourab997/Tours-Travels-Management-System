@@ -24,6 +24,8 @@ class UserSeeder extends Seeder
                 'type'=>'employee',
                 'bloodgroup'=>'O+',
                 'gender'=>'female',
+                'salary'=>'30000',
+                'join_date'=>'2021-04-03 00:00:00'
             ),
             array(
                 'password'=>Hash::make('12345678'),
@@ -33,6 +35,8 @@ class UserSeeder extends Seeder
                 'type'=>'admin',
                 'bloodgroup'=>'A+',
                 'gender'=>'male',
+                'salary'=>'90000',
+                'join_date'=>'2021-04-03 00:00:00'
             ),
             array(
                 'password'=>Hash::make('12345678'),
@@ -42,6 +46,8 @@ class UserSeeder extends Seeder
                 'type'=>'account',
                 'bloodgroup'=>'AB+',
                 'gender'=>'female',
+                'salary'=>'80000',
+                'join_date'=>'2021-04-03 00:00:00'
             ),
             array(
                 'password'=>Hash::make('12345678'),
@@ -51,6 +57,8 @@ class UserSeeder extends Seeder
                 'type'=>'guide',
                 'bloodgroup'=>'A-',
                 'gender'=>'male',
+                'salary'=>'15000',
+                'join_date'=>'2021-04-03 00:00:00'
             ),
            
         );

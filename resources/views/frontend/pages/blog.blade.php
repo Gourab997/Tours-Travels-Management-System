@@ -67,7 +67,7 @@
                         <!-- Single Widget -->
                         <div class="single-widget search">
                             <form class="form" method="GET" action="{{route('blog.search')}}">
-                                <input type="text" placeholder="Search Here..." name="search">
+                                <input type="text" placeholder="Search By Blog Name..." name="search">
                                 <button class="button" type="sumbit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -139,7 +139,7 @@
                                 @endif
                                 <form action="{{route('blog.filter')}}" method="POST">
                                     @csrf
-                                    @foreach(Helper::postTagList('posts') as $tag)
+                                    @foreach(Helper::postTagList('blogs') as $tag)
                                         <li>
                                             <li>
                                                 <a href="{{route('blog.tag',$tag->title)}}">{{$tag->title}} </a>

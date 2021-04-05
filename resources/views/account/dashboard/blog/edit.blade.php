@@ -55,11 +55,9 @@
                 // dd($tags);
               @endphp
         <div class="form-group">
-          <label for="tags">Tag</label>
+          <label for="tags">Tag (Select any 2 tags) </label>
           <select name="tags[]" multiple  data-live-search="true" class="form-control selectpicker">
-              <option value="">--Select any tag--</option>
               @foreach($tags as $key=>$data)
-              
               <option value="{{$data->title}}"  {{(( in_array( "$data->title",$blog_tags ) ) ? 'selected' : '')}}>{{$data->title}}</option>
               @endforeach
           </select>
@@ -75,19 +73,13 @@
         <div class="form-group">
           <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
           <div class="input-group">
-              <span class="input-group-btn">
-                  <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                  <i class="fa fa-picture-o"></i> Choose
-                  </a>
-              </span>
-          <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
+          <input name="myfile" type="file" class="form-file-input" id="customFile">
         </div>
         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
           @error('photo')
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-        
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">

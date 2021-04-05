@@ -50,11 +50,12 @@ class BlogController extends Controller
             'description'=>'string|nullable',
             'photo'=>'string|nullable',
             'tags'=>'nullable',
-            'added_by'=>'nullable',
+            'added_by'=>'required',
             'blog_cat_id'=>'required',
             'status'=>'required|in:active,inactive'
         ]);
 
+        $blog=new Blog;
         $data=$request->all();
 
         $slug=Str::slug($request->title);
@@ -73,7 +74,18 @@ class BlogController extends Controller
         }
         // return $data;
 
-        $status=Blog::create($data);
+        if ($request->hasFile('myfile')) {
+            $file = $request->file('myfile');
+            $name = $request->added_by;
+            $fileName =  $name . '.' .  $file->getClientOriginalExtension();
+            $request->photo->move(public_path('/upload/blog_image'), $fileName);
+            if ($file->move(public_path('/upload/blog_image'), $fileName)) {
+                $data['photo']=$fileName;
+            } 
+           
+        }
+
+        $status=$blog->fill($data)->save();
         if($status){
             request()->session()->flash('success','Blog Successfully added');
         }
@@ -143,6 +155,19 @@ class BlogController extends Controller
             $data['tags']='';
         }
         // return $data;
+
+        if ($request->hasFile('myfile')) {
+            $file = $request->file('myfile');
+            $name = $request->input('added_by');
+            $fileName =  $name . '.' .  $file->getClientOriginalExtension();
+            //$request->$file->move(public_path('/upload/blog_image'), $fileName);
+            if ($file->move(public_path('/upload/blog_image'), $fileName)) {
+                $data['photo']= $fileName;
+                $status=$blog->fill($data)->save();
+               
+            } 
+           
+        }
 
         $status=$blog->fill($data)->save();
         if($status){

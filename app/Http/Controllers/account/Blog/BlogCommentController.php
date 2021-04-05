@@ -17,7 +17,7 @@ class BlogCommentController extends Controller
     {
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         $comments=BlogComment::getAllComments();
-        return view('account.comment.index',$data)->with('comments',$comments);
+        return view('account.dashboard.comment.index',$data)->with('comments',$comments);
     }
 
     /**
@@ -41,6 +41,7 @@ class BlogCommentController extends Controller
         $data=$request->all();
         $data['user_id']= $request->session()->get('LoggedUser');
         $data['status']='active';
+        $data['blog_id']= $blog_info -> id;
         // return $data;
         $status=BlogComment::create($data);
         $user=User::where('type','account')->get();
@@ -104,7 +105,7 @@ class BlogCommentController extends Controller
             else{
                 request()->session()->flash('error','Something went wrong! Please try again!!');
             }
-            return redirect()->route('comment.index');
+            return redirect()->route('account.comment');
         }
         else{
             request()->session()->flash('error','Comment not found');

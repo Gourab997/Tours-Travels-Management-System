@@ -5,7 +5,7 @@
     <div class="comment-list">
         <div class="single-comment">
             @if($comment->user_info['photo'])
-                <img src="{{$comment->user_info['photo']}}" alt="#">
+                <img src="{{$comment->user_info['profile_image']}}" alt="#">
             @else 
                 <img src="{{asset('backend/img/avatar.png')}}" alt="">
             @endif

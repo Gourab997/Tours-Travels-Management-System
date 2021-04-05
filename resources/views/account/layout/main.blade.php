@@ -51,6 +51,7 @@
       @yield('coupon')
       @yield('blog')
       @yield('settings')
+      @yield('employee')
     <!-- /.content -->
     </div>
   </div>
