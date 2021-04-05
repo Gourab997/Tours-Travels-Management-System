@@ -8,10 +8,10 @@
   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Package</a>
   <ul class="collapse list-unstyled" id="homeSubmenu">
   <li>
-      <a href="/dashboard/createpackage">Create Package</a>
+      <a href="{{ route('createpackage')}}">Create Package</a>
   </li>
   <li>
-      <a href="dashboard/viewpackage">View Package</a>
+      <a href="{{ route('showpackage')}}">View Package</a>
   </li>
   <li>
       <a href="#">Modification Package </a>
@@ -19,16 +19,16 @@
   </ul>
 </li>
 <li>
-    <a href="/dashboard/profile">My Profile</a>
+    <a href="/employee/dashboard/profile">My Profile</a>
 </li>
 <li>
 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Customer</a>
 <ul class="collapse list-unstyled" id="pageSubmenu">
   <li>
-      <a href="/dashboard/create">Create Customer</a>
+      <a href="employee/dashboard/create">Create Customer</a>
   </li>
   <li>
-      <a href="/dashboard/view">Customer List</a>
+      <a href="employee/dashboard/view">Customer List</a>
   </li>
   <li>
       <a href="#">Customer delete</a>

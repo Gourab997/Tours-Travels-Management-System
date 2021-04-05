@@ -23,10 +23,10 @@ class AccountController extends Controller
     }
 
 
-     public function edit( $id ,Request $req)
+    public function edit( $id ,Request $req)
     {
-        $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
-       $user = User::find($id);
+        $data = ['LoggedUserInfo'=>user::where('id','=', $id)->first()];
+
        return view('account.dashboard.profile.editprofile',$data);
     }
     
@@ -51,7 +51,7 @@ class AccountController extends Controller
             if ($req->hasFile('myfile')) {
                 $file = $req->file('myfile');
                 $fileName =  $req->session()->get('LoggedUser') . '.' .  $file->getClientOriginalExtension();
-                if ($file->move(public_path('upload'), $fileName)) {
+                if ($file->move(public_path('/upload/user_image'), $fileName)) {
                     $user->profile_img  = $fileName;
                     $user->save();
                    
@@ -84,6 +84,6 @@ class AccountController extends Controller
     public function profile(Request $req){
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         
-        return view('account.dashboard.profile.profile',$data,);
+        return view('account.dashboard.profile.profile',$data);
     }
 }

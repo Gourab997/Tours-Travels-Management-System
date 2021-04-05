@@ -4,15 +4,13 @@
 @if(Session::get('success'))
 <div class="alert alert-success alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5><i class="icon fas fa-check"></i> Alert!</h5>
-                  {{ Session::get('success') }}
+                  <h5><i class="icon fas fa-check"></i>{{ Session::get('success') }}</h5>
                 </div>
 		@endif
 		@if(Session::get('fail'))
     <div class="alert alert-danger alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                  {{ Session::get('fail') }}
+                  <h5><i class="icon fas fa-ban"></i>{{ Session::get('fail') }}</h5>
                 </div>
 		@endif
     @csrf
@@ -42,16 +40,9 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{ asset('/upload')}}/{{ $LoggedUserInfo->profile_img}}" alt="{{ $LoggedUserInfo['type'] }}" class="img-circle elevation-2" width="150">
-                    					    
-					
-                    
+                    <img src="{{ asset('/upload/user_image')}}/{{ $LoggedUserInfo->profile_img}}" alt="{{ $LoggedUserInfo['type'] }}" class="img-circle elevation-2" width="150">
                     <div class="mt-3">
-
-
-                      
                       <h4> {{ $LoggedUserInfo['username'] }}</h4>
-                      
                       <p class="text-muted font-size-sm">{{ $LoggedUserInfo['type'] }}</p>
                       <a href="/account/dashboard/editprofile/{{ $LoggedUserInfo['id'] }}" class="btn btn-primary">Edit Profile</a>
                     </div>

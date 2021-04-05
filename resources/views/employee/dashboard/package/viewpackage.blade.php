@@ -24,10 +24,10 @@
         <td>{{ $packagelist[$i]['package_price'] }}</td>
  
         <td>
-            <a href="/dashboard/editpackage/{{ $packagelist[$i]['p_id'] }}"name="btn btn-success"> Edit</a>
+            <a href="/employee/dashboard/editpackage/{{ $packagelist[$i]['p_id'] }}"name="btn btn-success"> Edit</a>
             
-            <a href="/dashboard/viewpackage/details/{{ $packagelist[$i]['p_id'] }}" name="btn btn-info"> Details</a>
-            <form action="/dashboard/deletepackage/{{ $packagelist[$i]['p_id']}}" method="post">
+            <a href="/employee/dashboard/viewpackage/details/{{ $packagelist[$i]['p_id'] }}" name="btn btn-info"> Details</a>
+            <form action="/employee/dashboard/deletepackage/{{ $packagelist[$i]['p_id']}}" method="post">
               @csrf
               <button type="submit" name="submit" class="btn btn-danger"> Delete </button> 
           </form>

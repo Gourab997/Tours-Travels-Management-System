@@ -74,7 +74,7 @@
   <div class="custom-file">
     <input name="package_image" type="file" class="form-file-input" id="validatedCustomFile">
     
-    <label class="custom-file-label" name="package_image" for="validatedCustomFile">Package Image</label>
+    <label class="custom-file-label" name="package_image" for="validatedCustomFile" value="{{ $package->package_image }}">Package Image</label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
   </div>
 </div>

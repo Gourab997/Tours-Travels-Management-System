@@ -49,6 +49,9 @@
       @yield('profile')
       @yield('TotalUser')
       @yield('coupon')
+      @yield('blog')
+      @yield('settings')
+      @yield('employee')
     <!-- /.content -->
     </div>
   </div>
