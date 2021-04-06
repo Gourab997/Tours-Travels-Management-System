@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     function admindashboard(){
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
-        return view('admin.dashboard', $data);
+        return view('admin.dashboard.index', $data);
     }
     function adminsettings(){
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];

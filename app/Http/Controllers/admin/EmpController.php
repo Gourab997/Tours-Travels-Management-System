@@ -7,7 +7,7 @@ use App\Models\EmployeeSalaryLog;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controller;
+use App\Http\Controllers\Controller;
 
 class EmpController extends Controller
 {
@@ -20,7 +20,7 @@ class EmpController extends Controller
     {
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         $data['alldata'] = User::where('type','=' ,'employee')->orwhere('type','=' ,'guide')->get();
-        return view('account.dashboard.employee.index',$data);
+        return view('admin.dashboard.employee.index',$data);
     }
 
     /**
@@ -32,7 +32,7 @@ class EmpController extends Controller
     {
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         
-        return view('account.dashboard.employee.create',$data);
+        return view('admin.dashboard.employee.create',$data);
     }
 
     /**
@@ -73,7 +73,7 @@ class EmpController extends Controller
                 $employee_salary->increment_salary = '0';
                 $employee_salary->save();
 
-            return redirect()->route('account.employee')->with('success','Employee regestered Succesfully');
+            return redirect()->route('admin.employee')->with('success','Employee regestered Succesfully');
 
     }
 
@@ -98,7 +98,7 @@ class EmpController extends Controller
     {
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
        $data['user'] = User::find($id);
-       return view('account.dashboard.employee.edit',$data);
+       return view('admin.dashboard.employee.edit',$data);
     }
 
     /**
@@ -130,7 +130,7 @@ class EmpController extends Controller
         $user->save();
 
 
-        return redirect()->route('account.employee')->with('success','Employee Information Updated Succesfully');
+        return redirect()->route('admin.employee')->with('success','Employee Information Updated Succesfully');
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('account.layout.main')
+@extends('admin.layout.main')
 
 @section('blog')
  <!-- DataTales Example -->
@@ -31,7 +31,7 @@
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="/account/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
             <li class="breadcrumb-item"><a href="">Employee</a></li>
             <li class="breadcrumb-item active">Employee List</li>
         </ol>
@@ -46,7 +46,7 @@
     <div class="col-12">
       <div class="card">
       <div class="card-header py-3">
-      <a href="{{route('account.employee.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Employee</a>
+      <a href="{{route('admin.employee.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Employee</a>
     </div>
     <div class="card-body">
         <table id="example2" class="table table-bordered table-hover table-striped">
@@ -85,8 +85,8 @@
                     <td>{{$value -> salary}}</td>                   
                     <td>{{$value -> type}}</td>
                     <td>
-                        <a href="{{ route('account.employee.edit',[$value -> id])}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                    <form method="POST" action="{{ route('account.employee.delete',[$value -> id])}}">
+                        <a href="{{ route('admin.employee.edit',[$value -> id])}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                    <form method="POST" action="{{ route('admin.employee.delete',[$value -> id])}}">
                       @csrf 
                       @method('delete')
                           <button class="btn btn-danger btn-sm dltBtn" data-id="{{$value->id}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>

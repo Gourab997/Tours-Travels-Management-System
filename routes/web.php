@@ -4,6 +4,7 @@ use App\Http\Controllers\employee\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\admin\AdPackageController;
 use App\Http\Controllers\employee\PackageController;
 use App\Http\Controllers\employee\BookingController;
 use App\Http\Controllers\employee\TourguideController;
@@ -19,7 +20,7 @@ use App\Http\Controllers\tourguide\guideController;
 use App\Http\Controllers\account\CouponController;
 use App\Http\Controllers\account\Blog\BlogController;
 use App\Http\Controllers\account\SettingsController;
-use App\Http\Controllers\EmpController;
+use App\Http\Controllers\admin\EmpController;
 use App\Http\Controllers\EmpSalaryController;
 use App\Http\Controllers\NotificationController;
 
@@ -267,10 +268,29 @@ Route::delete('/comment/delete/{id}',[BlogCommentController::class,'destroy'])->
 //Admin Routing Start
 Route::group(['prefix'=>'/admin','middleware'=>['sess','admin']],function(){
     
+
     Route::get('/dashboard',[AdminController::class, 'admindashboard'])->name('admin.dashboard');
     Route::get('/settings',[AdminController::class,'adminsettings']);
     Route::get('/profile',[AdminController::class,'adminprofile']);
+
+    //Admin -> Employee CRUD.
+    Route::get('/Employee/view', [EmpController::class,'index'])->name('admin.employee');
+    Route::get('/Employee/create', [EmpController::class,'create'])->name('admin.employee.create');
+    Route::post('/Employee/store',[EmpController::class,'store'])->name('admin.employee.store');
+       Route::get('/Employee/edit/{id}',[EmpController::class,'edit'])->name('admin.employee.edit');
+       Route::post('/Employee/update/{id}',[EmpController::class,'update'])->name('admin.employee.update');
+       Route::delete('/Employee/delete/{id}',[EmpController::class,'destroy'])->name('admin.employee.delete');
     
+
+        //Employee ->package
+        Route::get("/dashboard/createpackage",[AdPackageController::class,'create'])->name('createpackage');
+        Route::post("/dashboard/createpackage",[AdPackageController::class,'store'])->name('storepackage');
+        Route::get("dashboard/viewpackage",[AdPackageController::class,'show'])->name('showpackage');
+        Route::get("dashboard/viewpackage/details/{p_id}",[AdPackageController::class,'packageshow']);
+        Route::get("dashboard/viewpackage/download-pdf",[AdPackageController::class,'downloadPDF']);
+        Route::get("dashboard/editpackage/{p_id}",[AdPackageController::class,'edit'])->name('editpackage');
+        Route::post("dashboard/editpackage/{p_id}",[AdPackageController::class,'update'])->name('updatepackage');
+        Route::post("dashboard/deletepackage/{p_id}",[AdPackageController::class,'destroy'])->name('deletepackage');
 });
 
 //Admin Routing END
