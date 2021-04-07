@@ -16,13 +16,25 @@ class sessionCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->session()->has('username')){
+       /*  if($request->session()->has('username')){
 
           $request->session()->flash('msg','Invalid request');
           return $next($request);
         }
     else{
         return redirect('/login');
+    } */
+
+    
+    if($request->session()->has('username') && !session()->has('LoggedUser') && ($request->path() !='/login' && $request->path() !='/register' )){
+        return redirect('/login')->with('fail','You must be logged in');
     }
+
+    if( $request->session()->has('username') && session()->has('LoggedUser') && ($request->path() == '/login' || $request->path() == '/register' ) ){
+       
+        return back();
+    }
+    return $next($request);
+
     }
 }
