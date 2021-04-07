@@ -34,7 +34,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-               
+              
                   <i class="fas fa-user-edit"></i>
                   <p>Edit Profile</p>
                 </a>

@@ -23,6 +23,7 @@ use App\Http\Controllers\account\SettingsController;
 use App\Http\Controllers\admin\EmpController;
 use App\Http\Controllers\EmpSalaryController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\admin\AdCustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -282,7 +283,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['sess','admin']],function(){
        Route::delete('/Employee/delete/{id}',[EmpController::class,'destroy'])->name('admin.employee.delete');
     
 
-        //Employee ->package
+        //Admin ->package
         Route::get("/dashboard/createpackage",[AdPackageController::class,'create'])->name('createpackage');
         Route::post("/dashboard/createpackage",[AdPackageController::class,'store'])->name('storepackage');
         Route::get("dashboard/viewpackage",[AdPackageController::class,'show'])->name('showpackage');
@@ -291,6 +292,25 @@ Route::group(['prefix'=>'/admin','middleware'=>['sess','admin']],function(){
         Route::get("dashboard/editpackage/{p_id}",[AdPackageController::class,'edit'])->name('editpackage');
         Route::post("dashboard/editpackage/{p_id}",[AdPackageController::class,'update'])->name('updatepackage');
         Route::post("dashboard/deletepackage/{p_id}",[AdPackageController::class,'destroy'])->name('deletepackage');
+
+        //Admin ->profile
+    Route::get("/dashboard/profile",[AdminController::class,'profile'])->name('admin.profile');
+    Route::get("/dashboard/editprofile/{id}",[AdminController::class,'edit'])->name('admin.edit');
+    Route::post("/dashboard/editprofile/{id}",[AdminController::class,'update'])->name('admin.update');
+
+    //Admin ->User List
+    Route::get("/dashboard/Userlist",[AdminController::class,'ulist']);
+
+    //Employee ->customer
+    Route::get("/dashboard/createcustomer",[AdCustomerController::class,'create']);
+    Route::post("/dashboard/createcustomer",[AdCustomerController::class,'store']);
+    Route::get("dashboard/viewcustomer",[AdCustomerController::class,'show']);
+    Route::get('/searchcustomer',[AdCustomerController::class,'search']);
+    Route::post("/dashboard/view/{id}",[AdCustomerController::class,'confirmstatus']);
+    Route::post("/dashboard/import",[AdCustomerController::class,'import']);
+    Route::get("/dashboard/edituser/{id}",[AdCustomerController::class,'edit']);
+    Route::post("/dashboard/edituser/{id}",[AdCustomerController::class,'update']);
+    Route::post("/dashboard/deleteuser/{id}",[AdCustomerController::class,'destroy']);
 });
 
 //Admin Routing END

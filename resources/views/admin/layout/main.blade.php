@@ -53,6 +53,8 @@
       @yield('settings')
       @yield('employee')
       @yield('createpackage')
+      @yield('adduser')
+      @yield('viewuser')
     <!-- /.content -->
     </div>
   </div>
