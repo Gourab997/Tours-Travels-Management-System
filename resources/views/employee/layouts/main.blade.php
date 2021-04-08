@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/password.css') }}">
 
      <!-- Meta -->
      <meta charset="utf-8">
@@ -34,6 +35,7 @@
      <link rel="stylesheet" type="text/css" href="{{URL::to('assets/icon/icofont/css/icofont.css')}}">
      <!-- Style.css -->
      <link rel="stylesheet" type="text/css" href="{{URL::to('assets/css/style.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{URL::to('assets/css/password.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::to('assets/css/jquery.mCustomScrollbar.css')}}">
      <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
   </head>

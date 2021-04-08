@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Imports\CustomersExport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -51,7 +53,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(CustomerRequest $req)
     {
         $customer = new Customer();
         $customer->fullname = $req->fullname;
@@ -59,7 +61,7 @@ class CustomerController extends Controller
         $customer->email = $req->email;
         $customer->address = $req->address;
         $customer->phone = $req->phone;
-        $customer->password = $req->password;
+        $customer->password = Hash::make($req->password);
         $customer->gender = $req->gender;
         $customer->save();
 

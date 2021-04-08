@@ -46,14 +46,14 @@
   </div>
   <div class="col-md-3 mb-3">
     <label for="validationCustom05"> Password</label>
-    <input type="text" class="form-control" id="validationCustom05" name="password" placeholder=" Password" required>
+    <input type="password" class="form-control" id="validationCustom05" name="password" placeholder=" Password" required>
     <div class="invalid-feedback">
       Please provide a valid zip.
     </div>
   </div>
   <div class="col-md-3 mb-3">
     <label for="validationCustom05">Confirm Password</label>
-    <input type="text" class="form-control" id="validationCustom05" name="cpassword" placeholder="Confirm Password" required>
+    <input type="password" class="form-control" id="validationCustom05" name="cpassword" placeholder="Confirm Password" required>
     <div class="invalid-feedback">
       Please provide a valid zip.
     </div>

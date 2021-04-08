@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="col-md-4 mb-3">
-      <label for="validationCustom02">Full name</label>
+      <label for="validationCustom02">Username</label>
       <input type="text" class="form-control" id="validationCustom02" name="username" placeholder="username" value="{{ $tourguide->username }}" required>
       <div class="valid-feedback">
         Looks good!

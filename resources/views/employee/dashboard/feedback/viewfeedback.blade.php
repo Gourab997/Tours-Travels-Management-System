@@ -1,92 +1,47 @@
 @extends('employee.layouts.main')
 @section('feedback')
-<link href="{{ asset('css/feedback.css') }}" rel="stylesheet">
-<div class="container">
-<div class="be-comment-block">
-	<h1 class="comments-title">Comments (3)</h1>
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			
-				<span class="be-comment-name">
-					<a href="blog-detail-2.html">Ravi Sah</a>
-					</span>
-				<span class="be-comment-time">
-					<i class="fa fa-clock-o"></i>
-					May 27, 2015 at 3:14am
-				</span>
+@extends('employee.layouts.main')
 
-			<p class="be-comment-text">
-				Pellentesque gravida tristique ultrices. 
-				Sed blandit varius mauris, vel volutpat urna hendrerit id. 
-				Curabitur rutrum dolor gravida turpis tristique efficitur.
-			</p>
-		</div>
-	</div>
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			<span class="be-comment-name">
-				<a href="blog-detail-2.html">Phoenix, the Creative Studio</a>
-			</span>
-			<span class="be-comment-time">
-				<i class="fa fa-clock-o"></i>
-				May 27, 2015 at 3:14am
-			</span>
-			<p class="be-comment-text">
-				Nunc ornare sed dolor sed mattis. In scelerisque dui a arcu mattis, at maximus eros commodo. Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant. Proin ut ornare lectus, vel eleifend est. Fusce hendrerit dui in turpis tristique blandit.
-			</p>
-		</div>
-	</div>
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			<span class="be-comment-name">
-				<a href="blog-detail-2.html">Cüneyt ŞEN</a>
-			</span>
-			<span class="be-comment-time">
-				<i class="fa fa-clock-o"></i>
-				May 27, 2015 at 3:14am
-			</span>
-			<p class="be-comment-text">
-				Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant
-			</p>
-		</div>
-	</div>
-	<form class="form-block">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group fl_icon">
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<input class="form-input" type="text" placeholder="Your name">
+@section('booking')
+<div class="rooms">
+	<div class="container">
+		
+		<div class="room-bottom">
+			<h3>Package List</h3>
+			@for($i=0; $i< count($packagelist); $i++) 
+			<div class="rom-btm">
+				<div class="col-md-3 room-left wow fadeInLeft animated" data-wow-delay=".5s">
+					<img src="{{ asset('/upload')}}/{{$packagelist[$i]['package_image'] }}" class="img-responsive" alt="">
 				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 fl_icon">
-				<div class="form-group fl_icon">
-					<div class="icon"><i class="fa fa-envelope-o"></i></div>
-					<input class="form-input" type="text" placeholder="Your email">
+				<div class="col-md-6 room-midle wow fadeInUp animated" data-wow-delay=".5s">
+					<h4>Package ID:{{ $packagelist[$i]['p_id'] }} </h4>
+					<h4>Package Name: {{ $packagelist[$i]['package_name'] }}</h4>
+					<h6>Package Type : {{ $packagelist[$i]['package_type'] }}</h6>
+					<p><b>Package Location :{{ $packagelist[$i]['package_location'] }}</b> </p>
+					<p><b>Features : {{ $packagelist[$i]['package_feature'] }}</b></p>
 				</div>
-			</div>
-			<div class="col-xs-12">									
-				<div class="form-group">
-					<textarea class="form-input" required="" placeholder="Your text"></textarea>
+				<div class="col-md-3 room-right wow fadeInRight animated" data-wow-delay=".5s">
+					<h5>Taka {{ $packagelist[$i]['package_price'] }}  </h5>
+					<a href="/employee/dashboard/createbooking/{{ $packagelist[$i]['p_id'] }}" class="view">Feedback</a>
 				</div>
+				<div class="clearfix"></div>
 			</div>
-			<a class="btn btn-primary pull-right">submit</a>
-		</div>
-	</form>
-</div>
-</div>
+
+			@endfor
+			<span style="padding: 30px; "> {{ $packagelist->links() }}</span>
+			<style>
+			  .w-5{
+				display:none ;
+				
+			  }
+			</style>
+
 @endsection
+<link href="{{ asset('css/bbootstrap.css') }}" rel='stylesheet' type='text/css' />
+<link href="{{ asset('css/bstyle.css') }}" rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+
+

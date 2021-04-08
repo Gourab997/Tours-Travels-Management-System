@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\employee;
 use App\Models\User;
+use App\Models\Customer;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,10 +55,34 @@ class EmployeeController extends Controller
     }
     public function dashboard(Request $req)
     {
+        $users = Customer::select(DB::raw("COUNT(*) as count"))
+                ->whereYear('created_at',date('Y'))
+                ->groupBy(DB::raw("Month(created_at)"))
+                ->pluck('count');
 
-      /*   $count  =DB::table('customers')->count(); */
+
+        $months = Customer::select(DB::raw("Month(created_at) as month"))
+                ->whereYear('created_at',date('Y'))
+                ->groupBy(DB::raw("Month(created_at)"))
+                ->pluck('month');
+
+        $datas = array(0,0,0,0,0,0,0,0,0,0,0,);
+
+        foreach($months as $index => $month)
+        {
+            $datas[$month] = $users[$index];
+
+        }
+
+
+      
+       
       $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
-        return view('employee.dashboard.index',$data);/* ->with('employee',$employee); */
+      $count = DB::select('select count(*) as total from users');
+      $package = DB::table('packages')->count();
+      $booking = DB::table('bookings')->count();
+      $tourguide = DB::table('tourguides')->count();
+        return view('employee.dashboard.index',$data,compact('datas','package','booking','tourguide'),$count);
     }
     /**
      * Show the form for editing the specified resource.
