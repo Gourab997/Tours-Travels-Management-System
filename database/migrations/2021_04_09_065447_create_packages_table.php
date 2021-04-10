@@ -16,14 +16,15 @@ class CreatePackagesTable extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id('p_id');
             $table->string('package_name');
-            $table->string('package_type');
+            $table->unsignedBigInteger('package_type')->nullable();
+            $table->foreign('package_type')->references('pc_id')->on('packagecategories')->onDelete('SET NULL');
             $table->string('package_location');
             $table->string('package_price');
             $table->string('package_feature');
             $table->string('package_details');
             $table->string('package_time_duration');
             $table->string('package_image');
-
+            $table->enum('status',['active','inactive'])->default('active');
 
             $table->timestamps();
         });

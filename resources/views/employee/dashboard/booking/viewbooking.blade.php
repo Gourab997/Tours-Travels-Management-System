@@ -22,7 +22,7 @@
         <th scope="col">Customer Name</th>
         <th scope="col">Package Id</th>
         <th scope="col">Package Name</th>
-        <th scope="col">Package Type</th>
+      
         <th scope="col">Package Location</th>
         <th scope="col">Travel Start</th>
         <th scope="col">Travel End</th>
@@ -42,7 +42,7 @@
        <td>{{ $Bookinglist->username }}</td>
         <td>{{ $Bookinglist->pro_id }}</td>
         <td  >{{ $Bookinglist->package_name }}</td>
-        <td>{{ $Bookinglist->package_type }}</td>
+       
         <td>{{ $Bookinglist->package_location }}</td>
         <td>{{ $Bookinglist->travel_date_start }}</td>
         <td>{{ $Bookinglist->travel_date_end }}</td>

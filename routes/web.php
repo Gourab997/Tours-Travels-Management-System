@@ -14,6 +14,7 @@ use App\Http\Controllers\account\SettingsController;
 use App\Http\Controllers\employee\BookingController;
 use App\Http\Controllers\employee\EmpBlogController;
 use App\Http\Controllers\employee\PackageController;
+use App\Http\Controllers\employee\PackageCatagoryController;
 use App\Http\Controllers\account\Blog\BlogController;
 use App\Http\Controllers\employee\CustomerController;
 use App\Http\Controllers\employee\EmployeeController;
@@ -110,6 +111,18 @@ Route::group(['prefix'=>'/employee','middleware'=>['sess','employee']],function(
         Route::post("dashboard/editpackage/{p_id}",[PackageController::class,'update'])->name('updatepackage');
         Route::post("dashboard/deletepackage/{p_id}",[PackageController::class,'destroy'])->name('deletepackage');
     
+       //Employee ->packageCatalog
+       Route::get("dashboard/createpackagecatagory",[PackageCatagoryController::class,'index']);
+       Route::post("dashboard/createpackagecatagory",[PackageCatagoryController::class,'store']);
+       Route::get("dashboard/viewpackagecatagory",[PackageCatagoryController::class,'show']); 
+       Route::post("dashboard/deletepackagecatagory/{pc_id}",[PackageCatagoryController::class,'delete']);
+       
+       Route::get("dashboard/editpackagecatagory/{pc_id}",[PackageCatagoryController::class,'edit']);
+       Route::post("dashboard/editpackagecatagory/{pc_id}",[PackageCatagoryController::class,'update']);
+
+
+
+
     
         //Employee ->booking
         Route::get("dashboard/booking",[BookingController::class,'index']);
@@ -117,7 +130,7 @@ Route::group(['prefix'=>'/employee','middleware'=>['sess','employee']],function(
         Route::post("dashboard/createbooking/{p_id}",[BookingController::class,'store']);
         Route::get("dashboard/viewbooking",[BookingController::class,'show']);
         Route::post("dashboard/viewbooking/{b_id}",[BookingController::class,'storebooking']);
-       /*  Route::get("/dashboard/addtourguide/{b_id}",[BookingController::class,'tour']); */
+       
         Route::post("/dashboard/addtourguide/{b_id}",[BookingController::class,'tourguide']);
         Route::post("dashboard/delete/{b_id}",[BookingController::class,'destroy']);
         Route::get('/searchbooking',[BookingController::class,'search']);

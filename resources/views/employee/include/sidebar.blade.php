@@ -11,6 +11,10 @@
       <a href="{{ route('createpackage')}}">Create Package</a>
   </li>
   <li>
+    <a href="/employee/dashboard/viewpackagecatagory">Add Package Category</a>
+</li>
+
+  <li>
       <a href="{{ route('showpackage')}}">View Package</a>
   </li>
   <li>

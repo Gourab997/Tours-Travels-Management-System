@@ -106,7 +106,7 @@ $tour = TourGuide::findOrfail($tour_id);
 
        
 
-       dd('ok');
+     
        Toastr::success('Tour Guide add succeessfully','Success');
     
        return redirect('/employee/dashboard/viewbooking');

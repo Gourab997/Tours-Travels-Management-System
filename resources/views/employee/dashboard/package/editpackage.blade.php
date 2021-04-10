@@ -39,16 +39,7 @@
         Please provide a valid zip.
       </div>
     </div>
-    <div class="col-md-3 mb-3">
-        <select class="custom-select"  name="package_type" required>
-          <option value="">Package Type</option>
-          <option value="Family"@if($package['package_type'] == 'Family') selected @endif>Family</option>
-          <option value="Couple"@if($package['package_type'] == 'Couple') selected @endif>Couple</option>
-          <option value="Corporate"@if($package['package_type'] == 'Corporate') selected @endif>Couple>Corporate</option>
-          <option value="other"@if($package['package_type'] == 'other') selected @endif>other</option>
-        </select>
-        <div class="invalid-feedback">Example invalid custom select feedback</div>
-      </div>
+  
  
   <div class="form-col-md-3 mb-3">
     <label for="validationCustom05">Package Details</label>
@@ -77,6 +68,17 @@
     <label class="custom-file-label" name="package_image" for="validatedCustomFile">Package Image</label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
   </div>
+</div>
+
+<div class="form-group">
+  <label for="status" class="col-form-label">Status</label>
+  <select name="status" class="form-control">
+    <option value="active" {{(($package->status=='active') ? 'selected' : '')}}>Active</option>
+    <option value="inactive" {{(($package->status=='inactive') ? 'selected' : '')}}>Inactive</option>
+  </select>
+  @error('status')
+  <span class="text-danger">{{$message}}</span>
+  @enderror
 </div>
 
 <div class="col-md-3 mb-3">

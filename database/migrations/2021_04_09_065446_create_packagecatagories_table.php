@@ -13,11 +13,11 @@ class  CreatePackagecatagoriesTable extends Migration
      */
     public function up()
     {
-        
+        Schema::enableForeignKeyConstraints();
         Schema::create('packagecategories', function (Blueprint $table) {
             $table->id('pc_id');
             $table->string('packagecatagory');
-            $table->enum('status',['active','inactive'])->default('active');
+           
             $table->timestamps();
         });
     }

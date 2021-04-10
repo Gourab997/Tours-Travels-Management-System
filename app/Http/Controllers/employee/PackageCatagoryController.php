@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\employee;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\packagecatagory;
+use App\Http\Controllers\Controller;
 
 class PackageCatagoryController extends Controller
 {
@@ -14,7 +16,8 @@ class PackageCatagoryController extends Controller
      */
     public function index()
     {
-        //
+        $data = ['LoggedUserInfo'=>User::where('id','=', session('LoggedUser'))->first()];
+        return view('employee.dashboard.package.packagecatagory.createpackagecatagory',$data);
     }
 
     /**
@@ -24,7 +27,7 @@ class PackageCatagoryController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -33,9 +36,15 @@ class PackageCatagoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $packagecatagory =  new packagecatagory();
+       
+        $packagecatagory->packagecatagory = $req->packagecatagory;
+   
+        $packagecatagory->save();
+
+        return redirect('/employee/dashboard/viewpackagecatagory');
     }
 
     /**
@@ -44,9 +53,11 @@ class PackageCatagoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $data = ['LoggedUserInfo'=>User::where('id','=', session('LoggedUser'))->first()];
+        $pclist = packagecatagory::all();
+        return view('employee.dashboard.package.packagecatagory.indexpackagecatagory',$data)->with('pclist',$pclist);
     }
 
     /**
@@ -55,9 +66,12 @@ class PackageCatagoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pc_id)
     {
-        //
+        $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
+        $pscatagory = packagecatagory::findOrFail($pc_id);
+        
+        return view('employee.dashboard.package.packagecatagory.editpackagecatagory',$data,compact('pscatagory'));
     }
 
     /**
@@ -67,9 +81,15 @@ class PackageCatagoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $pc_id)
     {
-        //
+        $packagecata = packagecatagory::find($pc_id);
+
+        $packagecata->packagecatagory = $req->packagecatagory;
+  
+       $packagecata->save();
+
+       return redirect('/employee/dashboard/viewpackagecatagory');
     }
 
     /**
@@ -78,8 +98,11 @@ class PackageCatagoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($pc_id)
     {
-        //
+        if(packagecatagory::destroy($pc_id)){
+            return redirect('/employee/dashboard/viewpackagecatagory');
+        } 
     }
-}
+    }
+

@@ -41,16 +41,38 @@
     </div>
     
     <div class="col-md-3 mb-3">
-        <select class="custom-select"  name="package_type" required>
-          <option value="">Package Type</option>
-          <option value="Family">Family</option>
-          <option value="Couple">Couple</option>
-          <option value="Corporate">Corporate</option>
-          <option value="other">other</option>
+
+
+      <span class="label-input100">Choose Category</span>
+      <div>
+        <select class="custom-select" name="package_type">
+          @foreach($packagecatagorys as $pc)
+              <option class="form-control" value="{{ $pc->pc_id }}"> {{ $pc->packagecatagory }} </option>
+          @endforeach
+        
         </select>
+
+        <div class="float-right">
+
+          <label for="status" class="col-form-label">Status</label>
+          <select name="status" class="form-control">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+          </select>
+          @error('status')
+          <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
+       
         <div class="invalid-feedback">Example invalid custom select feedback</div>
       </div>
- 
+      <div class="float-left">
+        <label for="validationCustom05">Last Booking Date</label>
+        <input type="Date" class="form-control" id="validationCustom05" name="package_time_duration" placeholder="package_Date" required>
+        <div class="invalid-feedback">
+          Please provide a valid zip.
+        </div>
+      </div>
   <div class="form-col-md-3 mb-3">
     <label for="validationCustom05">Package Details</label>
     <textarea class="form-control" id="validationCustom05" name="package_details" rows="5"></textarea>
@@ -59,18 +81,12 @@
       </div>  
 </div>
   
-  <div class="col-md-3 mb-3">
-    <label for="validationCustom05">Last Booking Date</label>
-    <input type="Date" class="form-control" id="validationCustom05" name="package_time_duration" placeholder="package_Date" required>
-    <div class="invalid-feedback">
-      Please provide a valid zip.
-    </div>
-  </div>
+ 
 
 
 
 
-  <div class="col-md-3 mb-3">
+  <div class="float-left">
     
   <div class="custom-file">
     <input name="package_image" type="file" class="form-file-input" id="validatedCustomFile">
@@ -78,6 +94,10 @@
     <label class="custom-file-label" name="package_image" for="validatedCustomFile">Package Image</label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
   </div>
+</div>
+
+<div class="float-right">
+  
 </div>
 
 <div class="col-md-3 mb-3">

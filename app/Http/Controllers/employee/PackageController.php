@@ -7,6 +7,7 @@ use App\Models\Package;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
+use App\Models\packagecatagory;
 
 class PackageController extends Controller
 {
@@ -27,7 +28,8 @@ class PackageController extends Controller
      */
     public function create()
     { $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
-        return view('employee.dashboard.package.createpackage',$data);
+        $packagecatagorys =  packagecatagory::all();
+        return view('employee.dashboard.package.createpackage',$data,compact('packagecatagorys'));
     }
 
     /**
@@ -47,6 +49,7 @@ class PackageController extends Controller
         $package->package_details = $req->package_details;
         $package->package_time_duration = $req->package_time_duration;
         $package->package_image = $req->package_image;
+        $package->status = $req->status;
         if ($req->hasFile('package_image')) {
             $file = $req->file('package_image');
             $fileName =  $req->session()->get('username') . '.' .  $file->getClientOriginalExtension();
@@ -57,6 +60,8 @@ class PackageController extends Controller
                 return redirect('/employee/dashboard');
             }
         }
+
+       
         $package->save();
 
         return redirect('/employee/dashboard');
@@ -71,6 +76,7 @@ class PackageController extends Controller
     public function show(Package $package)
     { $data = ['LoggedUserInfo'=>User::where('id','=', session('LoggedUser'))->first()];
         $packagelist = Package::all();
+       
         return view('employee.dashboard.package.viewpackage',$data)->with('packagelist',$packagelist);
     }
 
@@ -83,7 +89,8 @@ class PackageController extends Controller
     public function edit($p_id)
     { $data = ['LoggedUserInfo'=>User::where('id','=', session('LoggedUser'))->first()];
         $package = Package::find($p_id);
-        return view('employee.dashboard.package.editpackage',$data)->with('package',$package);
+   
+        return view('employee.dashboard.package.editpackage',$data,)->with('package',$package);
     }
 
     /**
@@ -97,13 +104,14 @@ class PackageController extends Controller
     {
         $package = Package::find($p_id);
         $package->package_name = $req->package_name;
-        $package->package_type = $req->package_type;
+      
         $package->package_location = $req->package_location;
         $package->package_price = $req->package_price;
         $package->package_feature = $req->package_feature;
         $package->package_details = $req->package_details;
         $package->package_time_duration = $req->package_time_duration;
         $package->package_image = $req->package_image;
+        $package->status = $req->status;
         if ($req->hasFile('package_image')) {
             $file = $req->file('package_image');
             $fileName =  $req->session()->get('username') . '.' .  $file->getClientOriginalExtension();

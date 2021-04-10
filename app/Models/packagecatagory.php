@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class packagecatagory extends Model
 {
     use HasFactory;
+    protected $primaryKey = "pc_id";
+    protected $table = "packagecategories";
+
+ 
 }

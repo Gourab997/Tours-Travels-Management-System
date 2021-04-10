@@ -6,26 +6,27 @@
 		
 		<div class="room-bottom">
 			<h3>Package List</h3>
-			@for($i=0; $i< count($packagelist); $i++) 
+			@foreach ( $packagelist as $pc )
 			<div class="rom-btm">
 				<div class="col-md-3 room-left wow fadeInLeft animated" data-wow-delay=".5s">
-					<img src="{{ asset('/upload')}}/{{$packagelist[$i]['package_image'] }}" class="img-responsive" alt="">
+					<img src="{{ asset('/upload')}}/{{$pc->package_image}}" class="img-responsive" alt="">
 				</div>
 				<div class="col-md-6 room-midle wow fadeInUp animated" data-wow-delay=".5s">
-					<h4>Package ID:{{ $packagelist[$i]['p_id'] }} </h4>
-					<h4>Package Name: {{ $packagelist[$i]['package_name'] }}</h4>
-					<h6>Package Type : {{ $packagelist[$i]['package_type'] }}</h6>
-					<p><b>Package Location :{{ $packagelist[$i]['package_location'] }}</b> </p>
-					<p><b>Features : {{ $packagelist[$i]['package_feature'] }}</b></p>
+					<h4>Package ID:{{ $pc->p_id }} </h4>
+					<h4>Package Name: {{ $pc->package_name }}</h4>
+					<h6>Package Type : {{ $pc->cat_info->packagecatagory  }}</h6>
+					<p><b>Package Location :{{ $pc->package_location }}</b> </p>
+					<p><b>Features : {{ $pc->package_feature }}</b></p>
+					<p><b>Status : {{ $pc->status }}</b></p>
 				</div>
 				<div class="col-md-3 room-right wow fadeInRight animated" data-wow-delay=".5s">
-					<h5>Taka {{ $packagelist[$i]['package_price'] }}  </h5>
-					<a href="/employee/dashboard/createbooking/{{ $packagelist[$i]['p_id'] }}" class="view">Book</a>
+					<h5>Taka {{  $pc->package_price }}  </h5>
+					<a href="/employee/dashboard/createbooking/{{ $pc->p_id }}" class="view">Book</a>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 
-			@endfor
+			@endforeach
 			<span style="padding: 30px; "> {{ $packagelist->links() }}</span>
 			<style>
 			  .w-5{
