@@ -10,5 +10,7 @@ class Booking extends Model
     use HasFactory;
     protected $primaryKey = "b_id";
 
- 
+ /*    public function user(){
+        return $this->belongsTo(Tourguide::class,'Tour_username','t_id');
+    } */
 }

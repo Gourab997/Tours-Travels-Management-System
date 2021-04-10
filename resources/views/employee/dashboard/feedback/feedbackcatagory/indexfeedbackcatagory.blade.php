@@ -22,47 +22,38 @@
      </div>
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary float-left">Feedback Category Lists</h6>
-      <a href="/employee/dashboard/createfeedback" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Feedback Category</a>
+      <a href="/employee/dashboard/createfeedbackcatagory" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Feedback Category</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        @if(count($feedbacklist)>0)
+        @if(count($fclist)>0)
         <table class="table table-bordered" id="post-category-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>Feedback Id</th>
+              <th>S.N.</th>
               <th>Feedback Categories</th>
-              <th>Sander name</th>
-              <th>Sander Email</th>
-              <th>Massage</th>
-              
               <th>Action</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>Feedback Id</th>
+              <th>S.N.</th>
               <th>Feedback Categories</th>
-              <th>Sander name</th>
-              <th>Sander Email</th>
-              <th>Massage</th>
               
               <th>Action</th>
               </tr>
           </tfoot>
           <tbody>
-            @foreach($feedbacklist as $data)   
+            @foreach($fclist as $data)   
                 <tr>
-                    <td>{{$data->f_id}}</td>
-                    <td>{{$data->cat_info->feedbackcatagory}}</td>
-                    <td>{{$data->name}}</td>
-                    <td>{{$data->email}}</td>
-                    <td>{{$data->message}}</td>
+                    <td>{{$data->fc_id}}</td>
+                    <td>{{$data->feedbackcatagory}}</td>
+                    
                  
                     <td>
-                       
+                        <a href="/employee/dashboard/editfeedbackcatagory/{{ $data->fc_id }}" class="btn btn-primary btn-sm float-left mr-1" style="color:white" data-toggle="tooltip" title="edit" data-placement="bottom">Edit</a>
                   
-                        <form action="/employee/dashboard/deletefeedback/{{ $data->f_id }}" method="post">
+                        <form action="/employee/dashboard/deletefeedbackcatagory/{{ $data->fc_id }}" method="post">
                           @csrf
                           <button class="btn btn-danger btn-sm dltBtn"  style="color:rgb(255, 253, 253)" type="submit" name="submit" class="btn btn-danger"> Delete </button> 
                       </form>
@@ -74,7 +65,7 @@
         </table>
       
         @else
-          <h6 class="text-center">No Feedback Feedback found!!! </h6>
+          <h6 class="text-center">No Feedback Category found!!! </h6>
         @endif
       </div>
     </div>

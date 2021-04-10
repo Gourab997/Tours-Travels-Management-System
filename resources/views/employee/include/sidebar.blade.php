@@ -50,6 +50,21 @@
     </ul>
   </li>
 <li>
+
+    <li>
+        <a href="#feedback" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Feedback</a>
+        <ul class="collapse list-unstyled" id="feedback">
+     
+        <li>
+            <a href="/employee/dashboard/viewfeedback">View Feedback</a>
+        </li>
+        <li>
+            <a href="/employee/dashboard/viewfeedbackcatagory">Add Catagory</a>
+        </li>
+       
+        </ul>
+      </li>
+    <li>
 <a href="/employee/dashboard/viewbooking">Booking </a>
 </li>
 <li>

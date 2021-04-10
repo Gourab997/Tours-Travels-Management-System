@@ -15,9 +15,11 @@ class CreateFeedbacksTable extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id('f_id');
-            $table->string('feedback');
-            $table->string('sender');
-            $table->string('reponse');
+            $table->unsignedBigInteger('feed_cat_id')->nullable();
+            $table->foreign('feed_cat_id')->references('fc_id')->on('feedbackcategories')->onDelete('SET NULL');
+            $table->string('name');
+            $table->string('email');
+            $table->string('message');
             $table->timestamps();
         });
     }

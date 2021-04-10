@@ -87,17 +87,19 @@
           <div class="badge bg-success" >Confirm</div>
           @endif
 </td>
-      
-        <td>{{ $Bookinglist->tour_username }}</td>
+      {{--   @foreach($Bookinglist as $book)
+        <td>{{ $book['user']['username'] }}</td>
+        @endforeach
+ --}} 
 
-
+ <td>{{ $Bookinglist->tour_username }}</td>
       
         <form action="/employee/dashboard/addtourguide/{{ $Bookinglist->b_id }}" method="post">
           @csrf
 
-        <td>  <select name="tour_username">
+        <td>  <select name="t_id">
           @foreach($tourguides as $tourguide)
-          <option value="{{ $tourguide->username }}"> {{ $tourguide->username }} </option>
+          <option value="{{ $tourguide->t_id }}"> {{ $tourguide->username }} </option>
           @endforeach
       </select>
       <button type="submit" name="submit" class="btn btn-success"> Add </button> </td>

@@ -79,15 +79,36 @@ class BookingController extends Controller
   
    }
    
+
+
+
    public function tourguide($b_id, Request $req)
    {
+  
+$bookingid = $b_id;
+
+$tour_id = $req->t_id;
+
+$tour = TourGuide::findOrfail($tour_id);
+
+      $tour->booking_id = $bookingid ;
+      $tour->save();
+      
+
+
+      
+   
     $booking = booking::find($b_id);
      
-      
-       $booking->tour_username= $req->tour_username;
-      
-       $booking->save();
+   
+     $booking->tour_username= $req->t_id;
+     $booking->save();
+
+       
+
+       dd('ok');
        Toastr::success('Tour Guide add succeessfully','Success');
+    
        return redirect('/employee/dashboard/viewbooking');
   
    }
@@ -101,6 +122,10 @@ class BookingController extends Controller
     public function show(Booking $booking)
     {   $udata = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
 
+      /*   $books= booking::orderBy('b_id')->get(); */
+
+
+
         $tourguides = Tourguide::all();
         $bookinglist =  DB::table('bookings')
         ->join('packages','packages.p_id','=','bookings.pro_id')
@@ -111,13 +136,14 @@ class BookingController extends Controller
     'bookinglist' =>  $bookinglist,
 
     ];
-        return view('employee.dashboard.booking.viewbooking',$udata)->with('data',$data)->with('tourguides',$tourguides);
+        return view('employee.dashboard.booking.viewbooking',$udata,/* compact('books') */)->with('data',$data)->with('tourguides',$tourguides);
     }
 
 public function search(Request $req)
 { $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
     $search = $req->get('search');
     $tourguides = Tourguide::all();
+
     $bookinglist =  DB::table('bookings')->where('username' , 'like' , '%'.$search.'%')
     ->join('packages','packages.p_id','=','bookings.pro_id')
     ->get();

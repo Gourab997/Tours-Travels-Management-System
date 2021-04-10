@@ -19,7 +19,7 @@
                             <div class="col-md-6 col-xl-3">
                                 <div class="card bg-c-blue order-card">
                                     <div class="card-block">
-                                        <h6 class="m-b-20"> Booking</h6>
+                                        <h6 class="m-b-20">Total Booking</h6>
                                         <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>{{ $booking }}</span></h2>
                                         <p class="m-b-0"><a href="/employee/dashboard/viewbooking">See more</a></p>
                                         

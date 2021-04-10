@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tourguide extends Model
+class feedbackcatagory extends Model
 {
     use HasFactory;
-    protected $primaryKey = "t_id";
-    
+   
+    protected $primaryKey = "fc_id";
+    protected $table = "feedbackcategories";
+
+   
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\employee\EmployeeController;
 use App\Http\Controllers\employee\FeedbackController;
 use App\Http\Controllers\customer\UCustomerController;
 use App\Http\Controllers\employee\TourguideController;
+use App\Http\Controllers\employee\FeedbackcatagoryController;
 use App\Http\Controllers\account\Blog\BlogTagController;
 use App\Http\Controllers\account\Blog\BlogCommentController;
 use App\Http\Controllers\account\Blog\BlogCategoryController;
@@ -116,7 +117,8 @@ Route::group(['prefix'=>'/employee','middleware'=>['sess','employee']],function(
         Route::post("dashboard/createbooking/{p_id}",[BookingController::class,'store']);
         Route::get("dashboard/viewbooking",[BookingController::class,'show']);
         Route::post("dashboard/viewbooking/{b_id}",[BookingController::class,'storebooking']);
-        Route::post("dashboard/addtourguide/{b_id}",[BookingController::class,'tourguide']);
+       /*  Route::get("/dashboard/addtourguide/{b_id}",[BookingController::class,'tour']); */
+        Route::post("/dashboard/addtourguide/{b_id}",[BookingController::class,'tourguide']);
         Route::post("dashboard/delete/{b_id}",[BookingController::class,'destroy']);
         Route::get('/searchbooking',[BookingController::class,'search']);
         Route::get("dashboard/viewbooking/export",[BookingController::class,'export']);
@@ -124,7 +126,6 @@ Route::group(['prefix'=>'/employee','middleware'=>['sess','employee']],function(
         //Employee -> tourguide
         Route::get("dashboard/createtourguide",[TourguideController::class,'create']);
         Route::post("dashboard/createtourguide",[TourguideController::class,'store']);
-    
         Route::get("dashboard/viewtourguide",[TourguideController::class,'show']);
         Route::get('/searchtourguide',[TourguideController::class,'search']);
         Route::get("dashboard/edittourguide/{id}",[TourguideController::class,'edit']);
@@ -134,11 +135,26 @@ Route::group(['prefix'=>'/employee','middleware'=>['sess','employee']],function(
     
     
         //Employee -> feedback
+        Route::get("dashboard/createfeedback",[FeedbackController::class,'create']);
+        Route::post("dashboard/createfeedback",[FeedbackController::class,'store']);
         Route::get("dashboard/viewfeedback",[FeedbackController::class,'index']);
-        Route::post("dashboard/viewfeedback",[FeedbackController::class,'store']);
+
+        Route::post("dashboard/deletefeedback/{f_id}",[FeedbackController::class,'delete']);
 
 
-         //employee -> BLOG
+        //Employee -> feedbackcatagory
+        Route::get("dashboard/createfeedbackcatagory",[FeedbackcatagoryController::class,'index']);
+        Route::post("dashboard/createfeedbackcatagory",[FeedbackcatagoryController::class,'store']);
+        Route::get("dashboard/viewfeedbackcatagory",[FeedbackcatagoryController::class,'show']); 
+        Route::post("dashboard/deletefeedbackcatagory/{fc_id}",[FeedbackcatagoryController::class,'destroy']);
+        
+        Route::get("dashboard/editfeedbackcatagory/{fc_id}",[FeedbackcatagoryController::class,'edit']);
+        Route::post("dashboard/editfeedbackcatagory/{fc_id}",[FeedbackcatagoryController::class,'update']);
+       
+       
+       
+       
+        //employee -> BLOG
      Route::get('/blog', [EmpBlogController::class,'index'])->name('employee.blog.index');
      Route::get('/blog/create', [EmpBlogController::class,'create'])->name('employee.create.blog');
      Route::post('/blog/store',[EmpBlogController::class,'store'])->name('employee.store.blog');
