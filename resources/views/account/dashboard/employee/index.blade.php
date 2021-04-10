@@ -1,27 +1,8 @@
 @extends('account.layout.main')
 
-@section('blog')
+@section('maincontent')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-         @if(session('success'))
-            <div class="alert alert-success alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('success')}}
-            </div>
-        @endif
-
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('error')}}
-            </div>
-        @endif
-         </div>
-     </div>
-
      <section class="content-header">
         <div class="container-fluid">
         <div class="row mb-2">

@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="image">
-                                    <img src="{{$blog->photo}}" alt="{{$blog->photo}}">
+                                    <img src="{{ asset('/upload/blog_image')}}/{{$blog->photo}}" alt="{{$blog->photo}}">
                                 </div>
                                 <div class="blog-detail">
                                     <h2 class="blog-title">{{$blog->title}}</h2>
@@ -150,7 +150,7 @@
                                 <!-- Single Post -->
                                 <div class="single-post">
                                     <div class="image">
-                                        <img src="{{$blog->photo}}" alt="{{$blog->photo}}">
+                                        <img src="{{ asset('/upload/blog_image')}}/{{$blog->photo}}" alt="{{$blog->photo}}">
                                     </div>
                                     <div class="content">
                                         <h5><a href="#">{{$blog->title}}</a></h5>
@@ -174,14 +174,10 @@
                                 <!-- End Single Post -->
                             @endforeach
                         </div>
-                        <!--/ End Single Widget -->
-                        <!-- Single Widget -->
-                        <!--/ End Single Widget -->
-                        <!-- Single Widget -->
                         <div class="single-widget side-tags">
                             <h3 class="title">Tags</h3>
                             <ul class="tag">
-                                @foreach(Helper::postTagList('posts') as $tag)
+                                @foreach(Helper::postTagList('blogs') as $tag)
                                     <li><a href="">{{$tag->title}}</a></li>
                                 @endforeach
                             </ul>

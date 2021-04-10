@@ -51,6 +51,7 @@ class EmpController extends Controller
              //    $user->company = $request->company;
                 $user->phone = $request->phone;
                 $user->gender = $request->gender;
+                $user->bloodgroup = $request->bloodgroup;
                 // $user->city = $request->city;
                 $user->salary = $request->salary;
                 $user->type = $request->type;
@@ -58,9 +59,9 @@ class EmpController extends Controller
                 if($request -> file('image')){
                     $file = $request -> file('image');
                     $data = $user->username;
-                    $filename = $data.$file->getClientOriginalExtension();
+                    $filename = $data.".".$file->getClientOriginalExtension();
                     $file->move(public_path('upload/user_image'), $filename);
-                    $user['profil_img']= $filename;
+                    $user['profile_img']= $filename;
                 }
                 $user->save();
 
@@ -122,9 +123,9 @@ class EmpController extends Controller
             $file = $request -> file('image');
             @unlink(public_path('upload/user_image'.$user->profile_img));
             $data = $user->username;
-            $filename = $data.$file->getClientOriginalExtension();
+            $filename = $data.".".$file->getClientOriginalExtension();
             $file->move(public_path('upload/user_image'), $filename);
-            $user['profil_img']= $filename;
+            $user['profile_img']= $filename;
         }
         $user->save();
 
@@ -140,6 +141,19 @@ class EmpController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=user::find($id);
+        if($user){
+            $status=$user->delete();
+            if($status){
+                return redirect()->route('account.employee')->with('success','User successfully deleted');
+            }
+            else{
+                return redirect()->route('account.employee')->with('error','Error, Please try again');
+            }
+            
+        }
+        else{
+            return redirect()->back()->with('error','User not found');
+        }
     }
 }

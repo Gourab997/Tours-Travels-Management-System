@@ -18,8 +18,11 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\tourguide\guideController;
 use App\Http\Controllers\account\CouponController;
 use App\Http\Controllers\account\Blog\BlogController;
+use App\Http\Controllers\account\EmpPayslipController;
 use App\Http\Controllers\account\SettingsController;
+use App\Http\Controllers\EmpattendanceController;
 use App\Http\Controllers\EmpController;
+use App\Http\Controllers\EmpleaveController;
 use App\Http\Controllers\EmpSalaryController;
 use App\Http\Controllers\NotificationController;
 
@@ -235,10 +238,10 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
 
     //Account ->Blog Comment crud
     Route::get('/comment',[BlogCommentController::class,'index'])->name('account.comment');
-Route::post('/comment/store',[BlogCommentController::class,'store'])->name('account.comment.store');
-Route::get('/comment/edit/{id}',[BlogCommentController::class,'edit'])->name('account.comment.edit');
-Route::post('/comment/update/{id}',[BlogCommentController::class,'update'])->name('account.comment.update');
-Route::delete('/comment/delete/{id}',[BlogCommentController::class,'destroy'])->name('account.comment.delete');
+      Route::post('/comment/store',[BlogCommentController::class,'store'])->name('account.comment.store');
+      Route::get('/comment/edit/{id}',[BlogCommentController::class,'edit'])->name('account.comment.edit');
+      Route::post('/comment/update/{id}',[BlogCommentController::class,'update'])->name('account.comment.update');
+      Route::delete('/comment/delete/{id}',[BlogCommentController::class,'destroy'])->name('account.comment.delete');
 
 
     //Account -> Employee CRUD.
@@ -251,10 +254,33 @@ Route::delete('/comment/delete/{id}',[BlogCommentController::class,'destroy'])->
        
        //Account -> Employee Salary CRUD.
     Route::get('/Employee/salary/view', [EmpSalaryController::class,'index'])->name('account.employee.salary');
-       Route::get('/Employee/salary/edit/{id}',[EmpSalaryController::class,'edit'])->name('account.employee.salary.edit');
-       Route::patch('/Employee/salary/update/{id}',[EmpSalaryController::class,'update'])->name('account.employee.salary.update');
-       Route::get('/Employee/salary/delete/{id}',[EmpSalaryController::class,'show'])->name('account.employee.salary.show');
+       Route::get('/Employee/salary/increment/{id}',[EmpSalaryController::class,'increment'])->name('account.employee.salary.increment');
+       Route::post('/Employee/salary/increment/update/{id}',[EmpSalaryController::class,'update'])->name('account.employee.salary.increment.update');
+       Route::get('/Employee/salary/show/{id}',[EmpSalaryController::class,'show'])->name('account.employee.salary.show');
+       Route::get('/Employee/salary/showPDF/{id}',[EmpSalaryController::class,'details'])->name('account.employee.salary.showPDF');
 
+
+       //Account -> Employee Leave CRUD.
+    Route::get('/Employee/leave/view', [EmpleaveController::class,'index'])->name('account.employee.leave');
+    Route::get('/Employee/leave/create', [EmpleaveController::class,'create'])->name('account.employee.leave.create');
+    Route::post('/Employee/leave/store',[EmpleaveController::class,'store'])->name('account.employee.leave.store');
+       Route::get('/Employee/leave/edit/{id}',[EmpleaveController::class,'edit'])->name('account.employee.leave.edit');
+       Route::post('/Employee/leave/update/{id}',[EmpleaveController::class,'update'])->name('account.employee.leave.update');
+
+
+       //Account -> Employee Attandance
+       Route::get('/Employee/attendance/view', [EmpattendanceController::class,'index'])->name('account.employee.attendance');
+       Route::get('/Employee/attendance/create', [EmpattendanceController::class,'create'])->name('account.employee.attendance.create');
+       Route::post('/Employee/attendance/store',[EmpattendanceController::class,'store'])->name('account.employee.attendance.store');
+       Route::get('/Employee/attendance/edit/{date}',[EmpattendanceController::class,'edit'])->name('account.employee.attendance.edit');
+       Route::post('/Employee/attendance/update',[EmpattendanceController::class,'update'])->name('account.employee.attendance.update');
+       Route::get('/Employee/attendance/details/{date}',[EmpattendanceController::class,'details'])->name('account.employee.attendance.details');
+       Route::get('/Employee/attendance/get', [EmpattendanceController::class,'get'])->name('account.employee.attendance.get');
+
+       //Account -> Employee Monthly Salary
+       Route::get('/Employee/payroll/view', [EmpPayslipController::class,'index'])->name('account.employee.monthlysalary');
+       Route::get('/Employee/MonthlySalary/get', [EmpPayslipController::class,'getSalary'])->name('account.employee.monthlysalary.get');
+       Route::get('/Employee/salary/payslip/{employee_id}', [EmpPayslipController::class,'payslip'])->name('account.employee.salary.payslip');
 });
 //Account routing END
 

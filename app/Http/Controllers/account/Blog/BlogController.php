@@ -76,11 +76,12 @@ class BlogController extends Controller
 
         if ($request->hasFile('myfile')) {
             $file = $request->file('myfile');
-            $name = $request->added_by;
-            $fileName =  $name . '.' .  $file->getClientOriginalExtension();
-            $request->photo->move(public_path('/upload/blog_image'), $fileName);
-            if ($file->move(public_path('/upload/blog_image'), $fileName)) {
-                $data['photo']=$fileName;
+            $fileName =  $blog->id . '.' .  $file->getClientOriginalExtension();
+            //$request->photo->move(public_path('/upload/blog_image'), $fileName);
+           if ($file->move(public_path('/upload/blog_image'), $fileName)) {
+                $data['photo']= $fileName;
+                $status=$blog->fill($data)->save();
+               
             } 
            
         }
@@ -158,10 +159,9 @@ class BlogController extends Controller
 
         if ($request->hasFile('myfile')) {
             $file = $request->file('myfile');
-            $name = $request->input('added_by');
-            $fileName =  $name . '.' .  $file->getClientOriginalExtension();
-            //$request->$file->move(public_path('/upload/blog_image'), $fileName);
-            if ($file->move(public_path('/upload/blog_image'), $fileName)) {
+            $fileName =  $id . '.' .  $file->getClientOriginalExtension();
+            //$request->photo->move(public_path('/upload/blog_image'), $fileName);
+           if ($file->move(public_path('/upload/blog_image'), $fileName)) {
                 $data['photo']= $fileName;
                 $status=$blog->fill($data)->save();
                

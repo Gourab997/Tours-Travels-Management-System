@@ -1,6 +1,6 @@
 @extends('account.layout.main')
 
-@section('blog')
+@section('maincontent')
 <div class="card shadow mb-4">
      <div class="row">
          <div class="col-md-12">

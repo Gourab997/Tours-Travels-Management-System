@@ -2,24 +2,6 @@
 
 @section('main-content')
 <div class="card">
-    <div class="row">
-        <div class="col-md-12">
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('success')}}
-            </div>
-        @endif
-
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('error')}}
-            </div>
-        @endif
-        </div>
-    </div>
   <h5 class="card-header">Notifications</h5>
   <div class="card-body">
     @if(count(session('Loggeduser')->Notifications)>0)

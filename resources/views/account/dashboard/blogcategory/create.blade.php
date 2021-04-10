@@ -1,6 +1,6 @@
 @extends('account.layout.main')
 
-@section('blog')
+@section('maincontent')
 
 <div class="card">
     <h5 class="card-header">Add Post Category</h5>

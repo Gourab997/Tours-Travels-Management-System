@@ -30,6 +30,28 @@ class SettingsController extends Controller
         // return $data;
         $settings=Settings::first();
         // return $settings;
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $fileName =  $settings->id . '.' .  $file->getClientOriginalExtension();
+            //$request->photo->move(public_path('/upload/blog_image'), $fileName);
+           if ($file->move(public_path('/upload/webphoto'), $fileName)) {
+                $data['photo']= $fileName;
+                $status=$settings->fill($data)->save();
+               
+            } 
+           
+        }
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $fileName =  $settings->id . '.' .  $file->getClientOriginalExtension();
+            //$request->photo->move(public_path('/upload/blog_image'), $fileName);
+           if ($file->move(public_path('/upload/weblogo'), $fileName)) {
+                $data['logo']= $fileName;
+                $status=$settings->fill($data)->save();
+               
+            } 
+           
+        }
         $status=$settings->fill($data)->save();
         if($status){
             request()->session()->flash('success','Setting successfully updated');

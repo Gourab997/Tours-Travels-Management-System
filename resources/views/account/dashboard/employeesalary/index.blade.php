@@ -1,26 +1,8 @@
 @extends('account.layout.main')
 
-@section('blog')
+@section('maincontent')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-         @if(session('success'))
-            <div class="alert alert-success alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('success')}}
-            </div>
-        @endif
-
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('error')}}
-            </div>
-        @endif
-         </div>
-     </div>
 
      <section class="content-header">
         <div class="container-fluid">
@@ -79,8 +61,8 @@
                     <td>{{$value -> salary}}</td>                   
                     <td>{{$value -> type}}</td>
                     <td>
-                        <a href="{{ route('account.employee.salary.edit',[$value -> id])}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fa fa-plus-circle"></i></a>
-                        <a href="{{ route('account.employee.salary.show',[$value -> id])}}" class="btn btn-success btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="details" data-placement="bottom"><i class="fa fa-eye"></i></a>
+                        <a href="{{ route('account.employee.salary.increment',[$value -> id])}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;" data-toggle="tooltip" title="Salary Increment" data-placement="bottom"><i class="fa fa-plus-circle"></i></a>
+                        <a href="{{ route('account.employee.salary.show',[$value -> id])}}" class="btn btn-success btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="Salary details" data-placement="bottom"><i class="fa fa-eye"></i></a>
                     </td>
                 </tr>
                 @endforeach

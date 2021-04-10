@@ -1,5 +1,5 @@
 @extends('account.layout.main')
-@section('coupon')
+@section('maincontent')
 <section class="content">
   <div class="container-fluid">
     <div class="row">

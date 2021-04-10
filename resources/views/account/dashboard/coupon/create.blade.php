@@ -1,5 +1,5 @@
 @extends('account.layout.main')
-@section('coupon')
+@section('maincontent')
 <div class="card">
     <h5 class="card-header">Add Coupon</h5>
     <div class="card-body">

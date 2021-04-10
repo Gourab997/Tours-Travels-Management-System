@@ -4,14 +4,14 @@
 <div class="display-comment"   @if($comment->parent_id != null) style="margin-left:40px;" @endif>
     <div class="comment-list">
         <div class="single-comment">
-            @if($comment->user_info['photo'])
-                <img src="{{$comment->user_info['profile_image']}}" alt="#">
+            @if($comment->user_info['profile_img'])
+                <img src="{{ asset('/upload/user_image')}}/{{$comment->user_info['profile_img']}}" alt="#">
             @else 
                 <img src="{{asset('backend/img/avatar.png')}}" alt="">
             @endif
             <div class="content">
                 {{-- {{$post}} --}}
-            <h4>{{$comment->user_info['name']}} <span>At {{$comment->created_at->format('g: i a')}} On {{$comment->created_at->format('M d Y')}}</span></h4>
+            <h4>{{$comment->user_info['fullname']}} <span>At {{$comment->created_at->format('g: i a')}} On {{$comment->created_at->format('M d Y')}}</span></h4>
                 <p>{{$comment->comment}}</p>
                 @if($dep)
                 <div class="button">

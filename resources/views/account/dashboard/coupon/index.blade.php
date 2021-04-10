@@ -1,5 +1,5 @@
 @extends('account.layout.main')
-@section('coupon')
+@section('maincontent')
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
      

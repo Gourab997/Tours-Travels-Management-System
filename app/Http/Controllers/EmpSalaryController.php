@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EmployeeSalaryLog;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use phpDocumentor\Reflection\Types\Float_;
 
 class EmpSalaryController extends Controller
@@ -17,7 +18,7 @@ class EmpSalaryController extends Controller
     public function index()
     {
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
-        $data['alldata'] = User::where('type','!=' ,'user')->get();
+        $data['alldata'] = User::where('type','=' ,'employee')->orwhere('type','=' ,'guide')->get();
         return view('account.dashboard.employeesalary.index',$data);
     }
 
@@ -32,7 +33,7 @@ class EmpSalaryController extends Controller
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         $data['details'] = User::find($id);
         $data['SalaryLog']=EmployeeSalaryLog::where('employee_id',$data['details']->id)->get();
-        dd($data['SalaryLog']->toArray());
+        //dd($data['SalaryLog']->toArray());
         return view('account.dashboard.employeesalary.details',$data);
     }
 
@@ -42,11 +43,11 @@ class EmpSalaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function increment($id)
     {
         $data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         $data['user'] = User::find($id);
-        return view('account.dashboard.employeesalary.edit',$data);
+        return view('account.dashboard.employeesalary.increment',$data);
     }
 
     /**
@@ -60,17 +61,19 @@ class EmpSalaryController extends Controller
     {
         $user = User::find($id);
         $previous_salary = $user->salary;
-        $present_salary = (float)$previous_salary + (float)$request->incremect_salary;
+        $increment= (float)$request->increment_salary;
+        $present_salary = (float)$previous_salary + $increment;
         $user->salary = $present_salary;
         $user->save();
         $salaryData = new EmployeeSalaryLog();
         $salaryData->employee_id = $id;
         $salaryData->previous_salary = $previous_salary;
         $salaryData->present_salary = $present_salary;
-        $salaryData->effected_date = $request->effected_date;
+        $salaryData->increment_salary = $increment;
+        $salaryData->effected_date =date('Y-m-d',strtotime($request->effected_date)) ;
         $salaryData->save();
 
-        return redirect()->route('account.employee.salary')->with('succes','Salary Incremented Succesfully');
+        return redirect()->route('account.employee.salary')->with('success','Salary Incremented Succesfully');
 
     }
 
@@ -80,4 +83,11 @@ class EmpSalaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function details($id)
+    {
+        $data['details'] = User::find($id);
+        $data['SalaryLog']=EmployeeSalaryLog::where('employee_id',$data['details']->id)->get();
+        $pdf = PDF::loadView('account.dashboard.employeesalary.details-pdf',$data);
+        return $pdf->download('salary.pdf');
+    }
 }

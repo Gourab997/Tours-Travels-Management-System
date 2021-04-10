@@ -52,7 +52,7 @@
           <!-- Blog Menu -->
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
+              <i class="nav-icon fas fa-blog"></i>
               <p>
                 Blog
                 <i class="right fas fa-angle-left"></i>
@@ -73,7 +73,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{ route('account.blog.tag') }}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-tag nav-icon"></i>
                   <p>Blog Tag</p>
                 </a>
               </li>
@@ -90,7 +90,7 @@
           <!-- Coupon Menu -->
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
+              <i class="nav-icon fas fa-percent"></i>
               <p>
                 Coupon
                 <i class="right fas fa-angle-left"></i>
@@ -113,7 +113,7 @@
           </li>
           <li class="nav-item">
             <a href="{{route('account.comment')}}" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
+              <i class="nav-icon fas fa-comments"></i>
               <p>Comments</p>
             </a>
           </li>
@@ -135,7 +135,18 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Employee</p>
                 </a>
-              </li>
+              </li>              
+            </ul>
+          </li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-hand-holding-usd"></i>
+              <p>
+               Salary
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('account.employee.salary') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
@@ -143,6 +154,49 @@
                 </a>
               </li>              
             </ul>
+          </li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-hand-holding-usd"></i>
+              <p>
+               Employee Attendance 
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('account.employee.attendance') }}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Employee Attendance</p>
+                </a>
+              </li>              
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('account.employee.leave') }}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Employee Leave</p>
+                </a>
+              </li>              
+            </ul>
+          </li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-hand-holding-usd"></i>
+              <p>
+               Payroll
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('account.employee.monthlysalary') }}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Salary</p>
+                </a>
+              </li>              
+            </ul>
+            
           </li>
           <li class="nav-header">Website</li>
           <li class="nav-item">

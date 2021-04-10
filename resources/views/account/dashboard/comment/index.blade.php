@@ -1,6 +1,6 @@
 @extends('account.layout.main')
 
-@section('blog')
+@section('maincontent')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
      <div class="row">

@@ -30,7 +30,7 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <!-- Start Single Blog  -->
                                 <div class="shop-single-blog">
-                                <img src="{{$blog->photo}}" alt="{{$blog->photo}}">
+                                <img src="{{ asset('/upload/blog_image')}}/{{$blog->photo}}" alt="{{$blog->photo}}">
                                     <div class="content">
                                         @php 
                                             $author_info=DB::table('users')->select('username')->where('id',$blog->added_by)->get();
@@ -101,7 +101,7 @@
                                 <!-- Single Post -->
                                 <div class="single-post">
                                     <div class="image">
-                                        <img src="{{$blog->photo}}" alt="{{$blog->photo}}">
+                                        <img src="{{ asset('/upload/blog_image')}}/{{$blog->photo}}" alt="{{$blog->photo}}">
                                     </div>
                                     <div class="content">
                                         <h5><a href="#">{{$blog->title}}</a></h5>

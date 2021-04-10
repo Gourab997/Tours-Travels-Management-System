@@ -1,27 +1,8 @@
 @extends('account.layout.main')
 
-@section('blog')
+@section('maincontent')
  <!-- DataTales Example -->
- <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-         @if(session('success'))
-            <div class="alert alert-success alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('success')}}
-            </div>
-        @endif
-
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('error')}}
-            </div>
-        @endif
-         </div>
-     </div>
-
+ <div class="card shadow mb-5">
      <section class="content-header">
         <div class="container-fluid">
         <div class="row mb-2">
@@ -39,12 +20,47 @@
         </div>
         </div><!-- /.container-fluid -->
     </section>
-    
+ </div>
+
+    <div class="card shadow mb-4">  
     <section class="content">
     <div class="container-fluid">
     <div class="row">
     <div class="col-12">
       <div class="card">
+      <div class="card-header">
+
+      <div class="form-group mb-3">
+                          <a class="btn float-right btn-primary" href="/account/Employee/salary/showPDF/{{$details -> id}}" style="color: white;" ><li class="fas fa-file-pdf"></li> </a>
+                        </div>
+
+      </div>
+    <div class="card-body">
+
+    <div class="row">
+                        <div class="col-sm-3">
+                            <label  class="col-form-label">Employee Name :</label>
+                        </div>
+                        <div class="col-sm-3 text-secondary">
+                            <label  class="col-form-label">{{$details->fullname}}</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label  class="col-form-label">Employee Role :</label>
+                        </div>
+                        <div class="col-sm-3 text-secondary">
+                            <label  class="col-form-label">{{$details->type}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label  class="col-form-label">Employee Join Date :</label>
+                        </div>
+                        <div class="col-sm-3 text-secondary">
+                            <label  class="col-form-label">{{$details->join_date}}</label>
+                        </div>
+                        
+                    </div>
+    </div>
     <div class="card-body">
         <table id="example2" class="table table-bordered table-hover table-striped">
         <thead>
@@ -56,22 +72,12 @@
               <th>Effected Date</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Previous Salary</th>
-              <th>Increment</th>
-              <th>Present Salary</th>
-              <th>Effected Date</th>
-              
-            </tr>
-          </tfoot>
           <tbody>
           @foreach($SalaryLog as $key => $value)
                 <tr >
                 @if($key == '0')
                 <td>{{$key+1}}</td>
-                <td class='text-center' colspan='4'><strong>Joining Salary</strong>{{$value -> previous_salary}}</td>
+                <td class='text-center' colspan='4'><strong>Joining Salary : </strong>{{$value -> previous_salary}}</td>
                 @else
                     <td>{{$key+1}}</td>
                     <td>{{$value -> previous_salary}}</td>
@@ -85,6 +91,7 @@
           </tbody>
         </table>
         </div>
+        
 </div>
 <!-- /.card-body -->
 </div>

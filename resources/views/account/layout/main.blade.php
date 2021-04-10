@@ -44,14 +44,10 @@
     
     <!-- /.content-header -->
     <div class="container">
+    @include('account.include.allert')
     <!-- Main content -->
       @yield('index')
-      @yield('profile')
-      @yield('TotalUser')
-      @yield('coupon')
-      @yield('blog')
-      @yield('settings')
-      @yield('employee')
+      @yield('maincontent')
     <!-- /.content -->
     </div>
   </div>
@@ -105,6 +101,8 @@
 <script src="{{URL::to('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{URL::to('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{URL::to('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
+
 
 
 <script>
