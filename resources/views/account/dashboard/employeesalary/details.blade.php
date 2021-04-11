@@ -14,7 +14,7 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item"><a href="/account/dashboard">Dashboard</a></li>
             <li class="breadcrumb-item"><a href="">Employee</a></li>
-            <li class="breadcrumb-item active">Employee Salary increment List</li>
+            <li class="breadcrumb-item active">Employee Salary increment details</li>
         </ol>
         </div>
         </div>

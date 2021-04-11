@@ -45,7 +45,7 @@
                     </div>
                 </div>                
               </div>
-          <table>
+          <table id="example2" class="table table-bordered table-hover table-striped">
             <thead>
                 <tr>
                     <th rowspan="2" class="text-center" style="vertical-align: middle;">SL.</th>
@@ -53,9 +53,9 @@
                     <th colspan="3" class="text-center" style="vertical-align: middle; width: 25%">Attendance Status</th>
                 </tr>
                 <tr>
-                    <th class="text-center btn present_all" style="display: table-cell; background-color: yellow;">Present</th>
+                    <th class="text-center btn present_all" style="display: table-cell; background-color:lightgreen;">Present</th>
                     <th class="text-center btn leave_all" style="display: table-cell; background-color: yellow;">Leave</th>
-                    <th class="text-center btn absent_all" style="display: table-cell; background-color: yellow;">Absent</th>
+                    <th class="text-center btn absent_all" style="display: table-cell; background-color:lightcoral;">Absent</th>
                 </tr>
             </thead>
             <tbody>

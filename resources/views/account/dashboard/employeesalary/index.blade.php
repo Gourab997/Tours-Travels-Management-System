@@ -57,7 +57,7 @@
                     <td>{{$key+1}}</td>
                     <td>{{$value -> fullname}}</td>
                     <td>{{$value -> phone}}</td>
-                    <td>{{date('d-m-Y',strtotime($value -> created_at))}}</td>
+                    <td>{{date('d-m-Y',strtotime($value -> join_date))}}</td>
                     <td>{{$value -> salary}}</td>                   
                     <td>{{$value -> type}}</td>
                     <td>

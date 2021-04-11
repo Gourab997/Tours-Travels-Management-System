@@ -87,15 +87,17 @@
                                                 $totalsalaryminus = (float)$absentcount*(float)$salaryperday;
                                                 $totalsalary = (float)$salary-(float)$totalsalaryminus;
                                                 @endphp
+                                                
                                                     <td>{{($key+1)}}</td>
                                                     <td>{{$attend['user']['fullname']}}</td>
                                                     <td>{{$attend['user']['salary']}}</td>
-                                                        <td>{{$totalsalary}}</td>
+                                                        <td>{{round($totalsalary)}}</td>
                                                     
                                                     
                                                     <td>
                                                         <a class="btn btn-sm btn-success" title="Payslip" target="_blank" href="/account/Employee/salary/payslip/{{$attend->employee_id}}">Pay Slip</a>
                                                     </td>
+                                                
                                                 </tr>
                                             @endforeach
                                         </tbody>

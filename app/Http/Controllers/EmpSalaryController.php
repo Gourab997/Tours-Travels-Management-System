@@ -73,7 +73,7 @@ class EmpSalaryController extends Controller
         $salaryData->effected_date =date('Y-m-d',strtotime($request->effected_date)) ;
         $salaryData->save();
 
-        return redirect()->route('account.employee.salary')->with('success','Salary Incremented Succesfully');
+        return redirect()->route('account.employee.salary.index')->with('success','Salary Incremented Succesfully');
 
     }
 

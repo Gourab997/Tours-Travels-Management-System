@@ -19,12 +19,16 @@ use App\Http\Controllers\tourguide\guideController;
 use App\Http\Controllers\account\CouponController;
 use App\Http\Controllers\account\Blog\BlogController;
 use App\Http\Controllers\account\EmpPayslipController;
+use App\Http\Controllers\account\ProfitController;
 use App\Http\Controllers\account\SettingsController;
 use App\Http\Controllers\EmpattendanceController;
 use App\Http\Controllers\EmpController;
 use App\Http\Controllers\EmpleaveController;
 use App\Http\Controllers\EmpSalaryController;
+use App\Http\Controllers\ExtracostController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -253,7 +257,7 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
        Route::delete('/Employee/delete/{id}',[EmpController::class,'destroy'])->name('account.employee.delete');
        
        //Account -> Employee Salary CRUD.
-    Route::get('/Employee/salary/view', [EmpSalaryController::class,'index'])->name('account.employee.salary');
+    Route::get('/Employee/salary/view', [EmpSalaryController::class,'index'])->name('account.employee.salary.index');
        Route::get('/Employee/salary/increment/{id}',[EmpSalaryController::class,'increment'])->name('account.employee.salary.increment');
        Route::post('/Employee/salary/increment/update/{id}',[EmpSalaryController::class,'update'])->name('account.employee.salary.increment.update');
        Route::get('/Employee/salary/show/{id}',[EmpSalaryController::class,'show'])->name('account.employee.salary.show');
@@ -281,7 +285,36 @@ Route::group(['prefix'=>'/account','middleware'=>['sess','account']],function(){
        Route::get('/Employee/payroll/view', [EmpPayslipController::class,'index'])->name('account.employee.monthlysalary');
        Route::get('/Employee/MonthlySalary/get', [EmpPayslipController::class,'getSalary'])->name('account.employee.monthlysalary.get');
        Route::get('/Employee/salary/payslip/{employee_id}', [EmpPayslipController::class,'payslip'])->name('account.employee.salary.payslip');
-});
+
+        //Account -> Employee Monthly Salary pay
+       Route::get('/Employee/Monthlysalary/view', [SalaryController::class,'index'])->name('account.employee.salary.view');
+       Route::get('/Employee/Monthlysalary/pay', [SalaryController::class,'pay'])->name('account.employee.salary.pay');
+       Route::get('/Employee/Monthlysalary/getsalary',[SalaryController::class,'getsalary'])->name('account.employee.salary.getsalary');
+       Route::post('/Employee/Monthlysalary/update',[SalaryController::class,'update'])->name('account.employee.salary.update');
+
+
+       //Account -> Extra Cost
+       Route::get('/Extracost/view', [ExtracostController::class,'index'])->name('account.extracost');
+       Route::get('/Extracost/create', [ExtracostController::class,'create'])->name('account.extracost.create');
+       Route::post('/Extracost/store',[ExtracostController::class,'store'])->name('account.extracost.store');
+       Route::get('/Extracost/edit/{id}',[ExtracostController::class,'edit'])->name('account.extracost.edit');
+       Route::post('/Extracost/update/{id}',[ExtracostController::class,'update'])->name('account.extracost.update');
+       Route::delete('/Extracost/delete/{id}',[ExtracostController::class,'destroy'])->name('account.extracost.delete');
+
+       //Account -> Monthly Profit
+       Route::get('/MonthlyProfit/show',[ProfitController::class,'show'])->name('account.MonthlyProfit.show');
+       Route::get('/MonthlyProfit/get',[ProfitController::class,'profit'])->name('account.MonthlyProfit.get');
+       Route::get('/MonthlyProfit/showPDF',[ProfitController::class,'details'])->name('account.MonthlyProfit.pdf');
+
+
+       //Account -> Order
+       Route::get('/Order/view', [OrderController::class,'index'])->name('account.order');
+       Route::get('/Order/create', [OrderController::class,'create'])->name('account.order.create');
+       Route::post('/Order/store',[OrderController::class,'store'])->name('account.order.store');
+       Route::get('/Order/edit/{id}',[OrderController::class,'edit'])->name('account.order.edit');
+       Route::post('/Order/update/{id}',[OrderController::class,'update'])->name('account.order.update');
+       Route::delete('/Order/delete/{id}',[OrderController::class,'destroy'])->name('account.order.delete');
+      });
 //Account routing END
 
 

@@ -64,7 +64,7 @@
                     <td>{{(1)}}</td>
                     <td>{{$details->fullname}}</td>
                     <td>{{$details->salary}}</td>
-                    <td>{{$totalsalary}}</td>
+                    <td>{{round($totalsalary)}}</td>
                 </tr>
           </tbody>
         </table>
