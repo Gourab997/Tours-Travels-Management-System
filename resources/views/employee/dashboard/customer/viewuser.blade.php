@@ -43,7 +43,7 @@
         <th scope="col">Email</th>
         <th scope="col">Address</th>
         <th scope="col">Phone</th>
-        <th scope="col">Password</th>
+        
         <th scope="col">Gender</th>
         <th scope="col">Customer Status</th>
         <th scope="col">Action</th>
@@ -58,7 +58,7 @@
         <td scope="col">{{ $customerlists->email }}</td>
         <td scope="col">{{ $customerlists->address }}</td>
         <td scope="col">{{ $customerlists->phone }}</td>
-        <td scope="col">{{ $customerlists->password }}</td>
+     
         <td scope="col">{{ $customerlists->gender }}</td>
         <td>     @if ( $customerlists->status == 0)
           <div class="badge bg-danger">Not confirm</div>

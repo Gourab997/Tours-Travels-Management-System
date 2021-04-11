@@ -14,10 +14,12 @@
                   <div class="d-flex flex-column align-items-center text-center">
                   
                   
-                    <img src="{{ asset('/upload')}}/{{ $LoggedUserInfo->profile_img}}" alt="Admin" class="rounded-circle" width="150">
+                    <img src="{{ asset('/upload')}}/{{ $LoggedUserInfo->profile_img}}" alt="" class="rounded-circle" width="150">
                    
                    
-           		    
+                    <span style="color:rgb(248, 10, 10)"> @error('profile_img')
+                      {{ $message }}
+                    @enderror</span>
 					
                     <li class="list-group-item">
                       <div class="form-file">
@@ -64,6 +66,10 @@
                     <div class="col-sm-9 text-secondary">
                     
                       <input type="text" class="text-secondary" id="fullname" name="fullname" placeholder="fullname" value="{{ $LoggedUserInfo->fullname}}" aria-describedby="inputGroupPrepend" >
+                   
+                      <span style="color:rgb(248, 10, 10)"> @error('fullname')
+                        {{ $message }}
+                      @enderror</span>
                     </div>
                   </div>
                   <hr>
@@ -75,6 +81,9 @@
                      
                    <input type="email" class="text-secondary" id="email" name="email" placeholder="email" value="{{ $LoggedUserInfo->email}}" aria-describedby="inputGroupPrepend" > 
                     </div> 
+                    <span style="color:rgb(248, 10, 10)"> @error('email')
+                      {{ $message }}
+                    @enderror</span>
                   </div>
                   <hr>
                   <div class="row">
@@ -83,8 +92,11 @@
                     </div>
                     <div class="col-sm-9 text-secondary">
                    
-                      <input type="text" class="text-secondary" id="phone" name="phone" placeholder="phone"  value="{{ $LoggedUserInfo->phone  }}" aria-describedby="inputGroupPrepend" required>
+                      <input type="text" class="text-secondary" id="phone" name="phone" placeholder="phone"  value="{{ $LoggedUserInfo->phone}}" aria-describedby="inputGroupPrepend" required>
                     </div>
+                    <span style="color:rgb(248, 10, 10)"> @error('phone')
+                      {{ $message }}
+                    @enderror</span>
                   </div>
                   <hr>
                 
@@ -96,6 +108,9 @@
                     <div class="col-sm-9 text-secondary">
                       <input type="text" class="text-secondary" id="address" name="address" placeholder="address" value="{{ $LoggedUserInfo->address}}"  aria-describedby="inputGroupPrepend" required>
                     </div>
+                    <span style="color:rgb(248, 10, 10)"> @error('address')
+                      {{ $message }}
+                    @enderror</span>
                   </div>
                   <hr>
                  

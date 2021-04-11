@@ -66,18 +66,8 @@
                                         <h5>Customer Feedback</h5>
                                     </div>
                                     <div class="card-block">
-                                        <span class="d-block text-c-blue f-24 f-w-600 text-center">365247</span>
-                                        <canvas id="feedback-chart" height="100"></canvas>
-                                        <div class="row justify-content-center m-t-15">
-                                            <div class="col-auto b-r-default m-t-5 m-b-5">
-                                                <h4>83%</h4>
-                                                <p class="text-success m-b-0"><i class="ti-hand-point-up m-r-5"></i>Positive</p>
-                                            </div>
-                                            <div class="col-auto m-t-5 m-b-5">
-                                                <h4>17%</h4>
-                                                <p class="text-danger m-b-0"><i class="ti-hand-point-down m-r-5"></i>Negative</p>
-                                            </div>
-                                        </div>
+                                        <span class="d-block text-c-blue f-24 f-w-600 text-center">{{ $feedback }}</span>
+                                        <p class="m-b-0"><a href="/employee/dashboard/viewfeedback">See more</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -142,6 +132,9 @@ Highcharts.chart('chart-container',{
 })
 
 </script>
+/* <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!} */
                             </div>
                             <!-- tabs card end -->
 
@@ -161,5 +154,5 @@ Highcharts.chart('chart-container',{
 
 
 @section('title')
-    abc
+  Dashboard
 @endsection

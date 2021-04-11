@@ -4,12 +4,14 @@
 <div class="card">
     <h5 class="card-header">Add Package Category</h5>
     <div class="card-body">
-      <form method="post" action="">
+      <form method="post" action="/employee/dashboard/createpackagecatagory">
         {{csrf_field()}}
         <div class="form-group">
           <label for="packagecatagory" class="col-form-label">Package Category</label>
           <input id="packagecatagory" type="text" name="packagecatagory" placeholder="Enter package catagory"  value="{{old('packagecatagory')}}" class="form-control">
-          @error('title')
+          
+          
+          @error('packagecatagory')
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>

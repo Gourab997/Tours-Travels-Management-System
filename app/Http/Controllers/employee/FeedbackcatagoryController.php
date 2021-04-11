@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Models\feedbackcatagory;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FCatagoryRequest;
 
 class FeedbackcatagoryController extends Controller
 {
@@ -38,14 +39,14 @@ class FeedbackcatagoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(FCatagoryRequest $req)
     { $feedbackcatagory =  new feedbackcatagory();
        
-        $feedbackcatagory->feedbackcatagory = $req->fCatagory;
+        $feedbackcatagory->feedbackcatagory = $req->feedbackcatagory;
    
         $feedbackcatagory->save();
 
-        return redirect('/employee/dashboard/viewfeedbackcatagory');
+        return redirect('/employee/dashboard/viewfeedbackcatagory')->with("success",'Create succeessfully');
     }
 
     /**
@@ -82,15 +83,15 @@ class FeedbackcatagoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $fc_id)
+    public function update(FCatagoryRequest $req, $fc_id)
     {
         $feedbackcatagory = feedbackcatagory::find($fc_id);
 
-         $feedbackcatagory->feedbackcatagory = $req->fCatagory;
+         $feedbackcatagory->feedbackcatagory = $req->feedbackcatagory;
    
         $feedbackcatagory->save();
 
-        return redirect('/employee/dashboard/viewfeedbackcatagory');
+        return redirect('/employee/dashboard/viewfeedbackcatagory')->with("success",'Update succeessfully');
     }
 
     /**
@@ -102,7 +103,7 @@ class FeedbackcatagoryController extends Controller
     public function destroy($fc_id)
     {
         if(feedbackcatagory::destroy($fc_id)){
-            return redirect('/employee/dashboard/viewfeedbackcatagory');
+            return redirect('/employee/dashboard/viewfeedbackcatagory')->with("fail",'Delate succeessfully');
         } 
     }
 }

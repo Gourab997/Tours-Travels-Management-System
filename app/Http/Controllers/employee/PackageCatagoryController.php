@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\packagecatagory;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PCatagoryRequest;
+
 
 class PackageCatagoryController extends Controller
 {
@@ -36,15 +38,15 @@ class PackageCatagoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(PCatagoryRequest $req)
     {
-        $packagecatagory =  new packagecatagory();
+        $packcatagory =  new packagecatagory();
        
-        $packagecatagory->packagecatagory = $req->packagecatagory;
+        $packcatagory->packagecatagory = $req->packagecatagory;
    
-        $packagecatagory->save();
+        $packcatagory->save();
 
-        return redirect('/employee/dashboard/viewpackagecatagory');
+        return redirect('/employee/dashboard/viewpackagecatagory')->with("success",'Create succeessfully');
     }
 
     /**
@@ -81,7 +83,7 @@ class PackageCatagoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $pc_id)
+    public function update(PCatagoryRequest $req, $pc_id)
     {
         $packagecata = packagecatagory::find($pc_id);
 
@@ -89,7 +91,7 @@ class PackageCatagoryController extends Controller
   
        $packagecata->save();
 
-       return redirect('/employee/dashboard/viewpackagecatagory');
+       return redirect('/employee/dashboard/viewpackagecatagory')->with("success",'Update succeessfully');
     }
 
     /**
@@ -101,7 +103,7 @@ class PackageCatagoryController extends Controller
     public function delete($pc_id)
     {
         if(packagecatagory::destroy($pc_id)){
-            return redirect('/employee/dashboard/viewpackagecatagory');
+            return redirect('/employee/dashboard/viewpackagecatagory')->with("success",'Delete succeessfully');
         } 
     }
     }

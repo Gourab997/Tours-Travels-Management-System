@@ -5,9 +5,10 @@ namespace App\Http\Controllers\employee;
 use App\Models\User;
 use App\Models\Package;
 use Illuminate\Http\Request;
+use App\Models\packagecatagory;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
-use App\Models\packagecatagory;
+use App\Http\Requests\PackageRequest;
 
 class PackageController extends Controller
 {
@@ -38,7 +39,7 @@ class PackageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(PackageRequest $req)
     {
         $package = new package();
         $package->package_name = $req->package_name;
@@ -52,7 +53,7 @@ class PackageController extends Controller
         $package->status = $req->status;
         if ($req->hasFile('package_image')) {
             $file = $req->file('package_image');
-            $fileName =  $req->session()->get('username') . '.' .  $file->getClientOriginalExtension();
+            $fileName =  $req->package_name . '.' .  $file->getClientOriginalExtension();
             if ($file->move('upload', $fileName)) {
                 $package->package_image  = $fileName;
                 $package->save();
@@ -64,7 +65,7 @@ class PackageController extends Controller
        
         $package->save();
 
-        return redirect('/employee/dashboard');
+        return redirect('/employee/dashboard')->with("success",'Create succeessfully');
     }
 
     /**
@@ -114,17 +115,15 @@ class PackageController extends Controller
         $package->status = $req->status;
         if ($req->hasFile('package_image')) {
             $file = $req->file('package_image');
-            $fileName =  $req->session()->get('username') . '.' .  $file->getClientOriginalExtension();
+            $fileName =  $req->package_name . '.' .  $file->getClientOriginalExtension();
             if ($file->move('upload', $fileName)) {
                 $package->package_image  = $fileName;
                 $package->save();
-            } else {
-                return redirect('/employee/dashboard/viewpackage');
-            }
+            } 
         }
         $package->save();
 
-        return redirect('/employee/dashboard/viewpackage');
+        return redirect('/employee/dashboard/viewpackage')->with("success",'update succeessfully');
     }
 
     /**
@@ -140,9 +139,9 @@ class PackageController extends Controller
         return view('employee.dashboard.package.details',$data)->with('package',$package);
     }
     public function downloadPDF()
-    {
+    {$data = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         $packagelist = Package::all();
-        $pdf = PDF::loadView('employee.dashboard.package.viewpackage',compact('packagelist'))->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView('employee.dashboard.package.viewpackage',compact('packagelist'),$data)->setOptions(['defaultFont' => 'sans-serif']);
        
        
       return $pdf->download('package.pdf');
@@ -150,7 +149,7 @@ class PackageController extends Controller
     public function destroy($p_id)
     {
         if(Package::destroy($p_id)){
-            return redirect('/employee/dashboard/viewpackage');
+            return redirect('/employee/dashboard/viewpackage')->with("fail",'Delete succeessfully');
         } 
     }
 

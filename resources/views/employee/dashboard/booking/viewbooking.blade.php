@@ -49,14 +49,15 @@
         <td>{{ $Bookinglist->person}}</td>
 
 
-        <td>     @if ( $Bookinglist->status == 0)
+        <td>     @if ( $Bookinglist->bstatus == 0)
+          {{-- {{  dd($Bookinglist->bstatus)}} --}}
           <div class="badge bg-danger">Not confirm</div>
           <button data-toggle="modal" data-target="#resolveComplain{{$Bookinglist->b_id }}"
               class="btn btn-warning btn-sm">
              Confirm
           </button>
 
-          <div class="modal fade" id="resolveComplain{{$Bookinglist->b_id }}"
+          <div class="modal fade" id="resolveComplain{{$Bookinglist->b_id}}"
               aria-labelledby="ActiveComplain" aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">
@@ -65,8 +66,8 @@
                               Are you sure confirm booking?
                           </h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                       </div>
                       
                       <div class="modal-footer">
@@ -87,12 +88,14 @@
           <div class="badge bg-success" >Confirm</div>
           @endif
 </td>
-      {{--   @foreach($Bookinglist as $book)
-        <td>{{ $book['user']['username'] }}</td>
-        @endforeach
- --}} 
 
- <td>{{ $Bookinglist->tour_username }}</td>
+
+
+
+
+
+
+ <td>{{ $Bookinglist->tour_username }}</td> 
       
         <form action="/employee/dashboard/addtourguide/{{ $Bookinglist->b_id }}" method="post">
           @csrf

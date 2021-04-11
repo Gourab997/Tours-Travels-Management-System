@@ -13,7 +13,7 @@ class PackageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class PackageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+           
+
+            'package_name' => 'required | min:5 | max:20| unique:packages|bail',
+            'package_location' => 'required | min:3 | max:30 ',
+            'package_price' => 'required | numeric',
+            'package_feature' => 'required |  min:3 | max:20  ',
+            'package_image' => 'required | image|mimes:jpg,png',
+            'package_time_duration' => 'required',
+        
         ];
     }
 }

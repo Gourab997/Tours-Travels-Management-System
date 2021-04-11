@@ -14,37 +14,39 @@
         Looks good!
       </div>
     </div>
-    
+    <span style="color:rgba(231, 19, 19, 0.904)"> @error('fullname')
+      {{ $message }}
+  @enderror</span>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationCustom03">Email</label>
       <input type="text" class="form-control" id="validationCustom03" name="email" value="{{ $customer->email }}" placeholder="Email" required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
-      </div>
+      <span style="color:rgba(209, 19, 6, 0.979)"> @error('email')
+        {{ $message }}
+    @enderror</span>
     </div>
     <div class="col-md-3 mb-3">
       <label for="validationCustom04">Address</label>
       <input type="text" class="form-control" id="validationCustom04" name="address" value="{{ $customer->address  }}" placeholder="Address" required>
-      <div class="invalid-feedback">
-        Please provide a valid state.
-      </div>
+      <span style="color:rgba(241, 10, 10, 0.973)"> @error('address')
+        {{ $message }}
+    @enderror</span>
     </div>
     <div class="col-md-3 mb-3">
       <label for="validationCustom05">Phone</label>
       <input type="text" class="form-control" id="validationCustom05" name="phone" value="{{ $customer->phone  }}" placeholder="Phone" required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
-      </div>
+      <span style="color:rgb(248, 10, 10)"> @error('phone')
+        {{ $message }}
+    @enderror</span>
     </div>
   </div>
   <div class="col-md-3 mb-3">
     <label for="validationCustom05"> Password</label>
     <input type="Password" class="form-control" id="validationCustom05" name="password" value="{{ $customer->password }}" placeholder=" Password" required>
-    <div class="invalid-feedback">
-      Please provide a valid zip.
-    </div>
+    <span style="color:rgba(250, 1, 1, 0.993)"> @error('password')
+      {{ $message }}
+  @enderror</span>
   </div>
 
 
@@ -55,7 +57,9 @@
       <option value="female" @if($customer['gender'] == 'female') selected @endif>Female</option>
       <option value="other" @if($customer['gender'] == 'other') selected @endif>Other</option>
     </select>
-    <div class="invalid-feedback">Example invalid custom select feedback</div>
+    <span style="color:rgba(241, 1, 1, 0.973)"> @error('gender')
+      {{ $message }}
+  @enderror</span>
   </div>
 
 

@@ -7,6 +7,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -82,7 +83,9 @@ class EmployeeController extends Controller
       $package = DB::table('packages')->count();
       $booking = DB::table('bookings')->count();
       $tourguide = DB::table('tourguides')->count();
-        return view('employee.dashboard.index',$data,compact('datas','package','booking','tourguide'),$count);
+
+      $feedback = DB::table('feedbacks')->count();
+        return view('employee.dashboard.index',$data,compact('datas','package','booking','tourguide','feedback'),$count);
     }
     /**
      * Show the form for editing the specified resource.
@@ -103,18 +106,17 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $req)
+    public function update($id, EmployeeRequest $req)
     {
 
         
 
         $user = User::find($id);   
             $user->fullname     = $req->fullname;
-          
             $user->email        = $req->email;
             $user->phone        = $req->phone;
             $user->address      = $req->address;
-            /**$user->facebook     = $req->facebook;*/
+            $user->facebook     = $req->facebook;
             if ($req->hasFile('myfile')) {
                 $file = $req->file('myfile');
                 $fileName =  $req->session()->get('LoggedUser') . '.' .  $file->getClientOriginalExtension();

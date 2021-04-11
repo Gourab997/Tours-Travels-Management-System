@@ -10,9 +10,9 @@
     <div class="col-md-4 mb-3">
       <label for="validationCustom02">Full name</label>
       <input type="text" class="form-control" id="validationCustom02" name="fullname" placeholder="Full name" value="" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
+      <span style="color:rgba(231, 19, 19, 0.904)"> @error('fullname')
+        {{ $message }}
+    @enderror</span>
     </div>
     <div class="col-md-4 mb-3">
       <label for="username">Username</label>
@@ -21,9 +21,9 @@
           <span class="input-group-text" id="inputGroupPrepend">@</span>
         </div>
         <input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-describedby="inputGroupPrepend" required>
-        <div class="invalid-feedback">
-          Please choose a username.
-        </div>
+        <span style="color:rgba(231, 19, 19, 0.904)"> @error('username')
+          {{ $message }}
+      @enderror</span>
       </div>
     </div>
   </div>
@@ -31,32 +31,32 @@
     <div class="col-md-6 mb-3">
       <label for="validationCustom03">Email</label>
       <input type="text" class="form-control" id="validationCustom03" name="email" placeholder="Email" required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
-      </div>
+      <span style="color:rgba(231, 19, 19, 0.904)"> @error('email')
+        {{ $message }}
+    @enderror</span>
     </div>
   
     <div class="col-md-3 mb-3">
       <label for="validationCustom05">Phone</label>
       <input type="text" class="form-control" id="validationCustom05" name="phone" placeholder="Phone" required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
-      </div>
+      <span style="color:rgba(231, 19, 19, 0.904)"> @error('phone')
+        {{ $message }}
+    @enderror</span>
     </div>
   </div>
   <div class="col-md-3 mb-3">
     <label for="validationCustom05"> Password</label>
     <input type="password" class="form-control" id="validationCustom05" name="password" placeholder=" Password" required>
-    <div class="invalid-feedback">
-      Please provide a valid zip.
-    </div>
+    <span style="color:rgba(231, 19, 19, 0.904)"> @error('password')
+      {{ $message }}
+  @enderror</span>
   </div>
   <div class="col-md-3 mb-3">
     <label for="validationCustom05">Confirm Password</label>
     <input type="password" class="form-control" id="validationCustom05" name="cpassword" placeholder="Confirm Password" required>
-    <div class="invalid-feedback">
-      Please provide a valid zip.
-    </div>
+    <span style="color:rgba(231, 19, 19, 0.904)"> @error('cpassword')
+      {{ $message }}
+  @enderror</span>
   </div>
 
 

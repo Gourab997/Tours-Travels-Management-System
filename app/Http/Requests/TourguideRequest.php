@@ -13,7 +13,7 @@ class TourguideRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class TourguideRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'username' => 'required | min:5 | max:20| unique:tourguides|bail',
+            'fullname' => 'required | min:3 | max:30 ',
+            'email' => 'required | min:5 | max:30 | email | unique:tourguides',
+            'password' => 'required | regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/ | min:8 | max:20  ',
+            'cpassword' => 'required | same:password',
+            'phone' => 'required|digits:11',
+           
         ];
     }
 }

@@ -23,7 +23,7 @@ class CreatePackagesTable extends Migration
             $table->string('package_feature');
             $table->string('package_details');
             $table->string('package_time_duration');
-            $table->string('package_image');
+            $table->string('package_image')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
 
             $table->timestamps();

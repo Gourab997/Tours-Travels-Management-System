@@ -2,7 +2,7 @@
 
 
 @section('adduser')
-    
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 <form action="create" method="POST" class="needs-validation" novalidate>
   <div class="form-row">

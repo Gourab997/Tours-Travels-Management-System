@@ -43,10 +43,8 @@
  
   <div class="form-col-md-3 mb-3">
     <label for="validationCustom05">Package Details</label>
-    <textarea class="form-control" id="validationCustom05" name="package_details" value="{{ $package->package_details }}" rows="5"></textarea>
-    <div class="invalid-feedback">
-        Please provide a valid zip.
-      </div>  
+    <textarea class="form-control" id="validationCustom05" name="package_details" value="{{ $package->package_details }}" rows="5">{{ $package->package_details }}</textarea>
+     
 </div>
   
   <div class="col-md-3 mb-3">
@@ -63,10 +61,12 @@
   <div class="col-md-3 mb-3">
     
   <div class="custom-file">
-    <input name="package_image" type="file" class="form-file-input" id="validatedCustomFile">
+ 
     
-    <label class="custom-file-label" name="package_image" for="validatedCustomFile">Package Image</label>
-    <div class="invalid-feedback">Example invalid custom file feedback</div>
+    
+    <label for="inputPhoto" class="col-form-label">Package Image<span class="text-danger">*</span></label>
+          <div class="input-group">
+          <input name="package_image" type="file" class="form-file-input" id="customFile">
   </div>
 </div>
 

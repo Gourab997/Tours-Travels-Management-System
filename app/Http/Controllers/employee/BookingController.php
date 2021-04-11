@@ -25,7 +25,7 @@ class BookingController extends Controller
 
     
     { $data = ['LoggedUserInfo'=>User::where('id','=', session('LoggedUser'))->first()];
-           $packagelist = Package::paginate(5);
+           $packagelist = Package::where('status','=','active')->paginate(5);
         return view('employee.dashboard.booking.indexbooking',$data)->with('packagelist',$packagelist);
     }
 
@@ -58,11 +58,17 @@ class BookingController extends Controller
         $booking->person = $req->person;
         $booking->username = $req->username;
         $booking->email = $req->email;
-        $booking->status = 0;
+        $booking->bstatus = 0;
         $booking->tour_username = null;
-        $booking->save();
-        return redirect('/employee/dashboard');
-        Toastr::success('New Booking create','Success');
+        ;
+       
+        if($booking->save()){
+            return redirect('/employee/dashboard')->with('success','Booking Confirm Succesfull');
+           
+        }
+        else{
+            return redirect('/employee/dashboard')->with('fail','Booking failed');
+        } 
    ;
     }
  
@@ -71,11 +77,11 @@ class BookingController extends Controller
     $booking = booking::find($b_id);
      
       
-       $booking->status= 1;
-       $booking->status = $req->status;
+       $booking->bstatus= 1;
+       $booking->bstatus = $req->status;
        $booking->save();
-       Toastr::success('Confirm Booking succeessfully','Success');
-       return redirect('/employee/dashboard/viewbooking')->with("Confirm_Booking",'Confirm Booking succeessfully');
+      
+       return redirect('/employee/dashboard/viewbooking');
   
    }
    
@@ -107,9 +113,9 @@ $tour = TourGuide::findOrfail($tour_id);
        
 
      
-       Toastr::success('Tour Guide add succeessfully','Success');
+      
     
-       return redirect('/employee/dashboard/viewbooking');
+       return redirect('/employee/dashboard/viewbooking')->with("success",'TourGuide add succeessfully');
   
    }
 
@@ -119,13 +125,12 @@ $tour = TourGuide::findOrfail($tour_id);
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function show(Booking $booking)
-    {   $udata = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
-
-      /*   $books= booking::orderBy('b_id')->get(); */
 
 
 
+      public function show(Booking $booking)
+    {  
+        $udata = ['LoggedUserInfo'=>user::where('id','=', session('LoggedUser'))->first()];
         $tourguides = Tourguide::all();
         $bookinglist =  DB::table('bookings')
         ->join('packages','packages.p_id','=','bookings.pro_id')
@@ -136,7 +141,7 @@ $tour = TourGuide::findOrfail($tour_id);
     'bookinglist' =>  $bookinglist,
 
     ];
-        return view('employee.dashboard.booking.viewbooking',$udata,/* compact('books') */)->with('data',$data)->with('tourguides',$tourguides);
+        return view('employee.dashboard.booking.viewbooking',$udata)->with('data',$data)->with('tourguides',$tourguides);
     }
 
 public function search(Request $req)
@@ -166,7 +171,7 @@ return view('employee.dashboard.booking.viewbooking',$data)->with('data',$data)-
         //
     }
     public function export(Excel $execl)
-    {   Toastr::success('Excel Downloading','Success');
+    {   
         return $execl->download(new BookingsExport,'bookings.xlsx');
     }
 
@@ -191,7 +196,7 @@ return view('employee.dashboard.booking.viewbooking',$data)->with('data',$data)-
     public function destroy($b_id)
     {
         Booking::destroy($b_id);
-        Toastr::error('Booking Deleted','Deleted');
-        return redirect('/employee/dashboard/viewbooking');
+        
+        return redirect('/employee/dashboard/viewbooking')->with("success",'Booking Delete succeessfully');
     }
 }

@@ -8,8 +8,8 @@
         {{csrf_field()}}
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Add Feedback Catagory</label>
-          <input id="inputTitle" type="text" name="fCatagory" placeholder="Enter catagory"  value="{{old('fCatagory')}}" class="form-control">
-          @error('title')
+          <input id="inputTitle" type="text" name="feedbackcatagory" placeholder="Enter catagory"  value="{{old('feedbackcatagory')}}" class="form-control">
+          @error('feedbackcatagory')
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>

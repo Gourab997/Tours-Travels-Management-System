@@ -5,9 +5,10 @@ namespace App\Http\Controllers\employee;
 use App\Models\User;
 use App\Models\feedback;
 use Illuminate\Http\Request;
+use App\Models\feedbackcatagory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\feedbackcatagory;
+use App\Http\Requests\FeedbackRequest;
 
 class FeedbackController extends Controller
 {
@@ -40,16 +41,15 @@ class FeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(FeedbackRequest $req)
     {
         $feedback = new feedback();
-      
         $feedback->name = $req->name;
         $feedback->email = $req->email;
         $feedback->message = $req->message;
         $feedback->feed_cat_id = $req->service;
         $feedback->save();
-        return redirect('/employee/dashboard');
+        return redirect('/employee/dashboard')->with("success",'Create succeessfully');
     }
 
     /**
@@ -95,7 +95,7 @@ class FeedbackController extends Controller
     public function delete($f_id)
     {
         if(feedback::destroy($f_id)){
-            return redirect('/employee/dashboard/viewfeedback');
+            return redirect('/employee/dashboard/viewfeedback')->with("fail",'Delete succeessfully');
         } 
     }
 }

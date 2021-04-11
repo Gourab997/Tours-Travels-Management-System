@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\TourguideRequest;
 
 class TourguideController extends Controller
 {
@@ -37,7 +38,7 @@ class TourguideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(TourguideRequest $req)
     {
         $tourguide = new Tourguide();
         $tourguide->fullname = $req->fullname;
@@ -47,7 +48,7 @@ class TourguideController extends Controller
         $tourguide->password = Hash::make($req->password);
         $tourguide->save();
 
-        return redirect('/employee/dashboard/viewtourguide');
+        return redirect('/employee/dashboard/viewtourguide')->with("success",'Create succeessfully');
     }
 
     /**
@@ -90,7 +91,7 @@ class TourguideController extends Controller
         $tourguide->username = $req->username;
         $tourguide->save();
 
-        return redirect('/employee/dashboard/viewtourguide');
+        return redirect('/employee/dashboard/viewtourguide')->with("success",'Update succeessfully');
     }
 
     /**
@@ -102,7 +103,7 @@ class TourguideController extends Controller
     public function destroy($id)
     {
         if(Tourguide::destroy($id)){
-            return redirect('/employee/dashboard/viewtourguide');
+            return redirect('/employee/dashboard/viewtourguide')->with("fail",'Delete succeessfully');
         } 
     }
     
