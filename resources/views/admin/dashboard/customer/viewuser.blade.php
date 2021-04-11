@@ -11,7 +11,7 @@
     </div>
 @endif
 
-<form action="/dashboard/import" method="POST" enctype="multipart/form-data">
+<form action="admin/dashboard/import" method="POST" enctype="multipart/form-data">
 @csrf
 <div class="form-group">
 
@@ -34,6 +34,7 @@
   </div>
   </form>
 </div>
+<a href="{{route('create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Customer</a>
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -81,7 +82,7 @@
                       </div>
                       
                       <div class="modal-footer">
-                          <form action="/dashboard/viewcustomer/{{ $customerlists->id }}" method="post">
+                          <form action="admin/dashboard/viewcustomer/{{ $customerlists->id }}" method="post">
                               @csrf
                               <input type="text" class="d-none" name="status" value="{{$customerlists->id }}" >
                               <button style="padding: 16px;" type="submit" name="submit" class="btn btn-success">
@@ -99,8 +100,8 @@
           @endif
 </td>
         <td>
-            <a href="/dashboard/edituser/{{ $customerlists->id }}"name="btn btn-success"> Edit</a>
-            <form action="/dashboard/deleteuser/{{ $customerlists->id }}" method="post">
+            <a href="/admin/dashboard/edituser/{{ $customerlists->id }}"name="btn btn-success"> Edit</a>
+            <form action="/admin/dashboard/deleteuser/{{ $customerlists->id }}" method="post">
               @csrf
               <button type="submit" name="submit" class="btn btn-danger"> Delete </button> 
           </form>

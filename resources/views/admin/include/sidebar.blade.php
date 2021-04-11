@@ -34,12 +34,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              
-                  <i class="fas fa-user-edit"></i>
-                  <p>Edit Profile</p>
-                </a>
-              </li>
-              <li class="nav-item">
+                <li>
+                <a href="/admin/dashboard/profile">My Profile</a>
+               <li class="nav-item">
                 <a href="{{ route('auth.logout') }}" class="nav-link">
                   <i class="fas fa-sign-out-alt"></i>
                   <p>Logout</p>
@@ -48,74 +45,6 @@
             </ul>
           </li>
 
-          <!-- Blog Menu -->
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
-              <p>
-                Blog
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="{{ route('blog.index') }}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Blog</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('account.create.blog') }}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Blog</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('account.blog.tag') }}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Blog Tag</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('account.blog.cat') }}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Blog Category</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
-
-          <!-- Coupon Menu -->
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
-              <p>
-                Coupon
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('coupon.index')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> View Coupons </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('coupon.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Create Coupon</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="{{route('account.comment')}}" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>Comments</p>
-            </a>
-          </li>
 
            <!-- Employee management -->
           <li class="nav-header">Employee</li>
@@ -143,6 +72,25 @@
               </li>              
             </ul>
           </li>
+          <li class="nav-header">Customer</li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-circle"></i>
+              <p>
+               Customer
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('show') }}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Customer</p>
+                </a>
+              </li>             
+            </ul>
+          </li>
+          <li class="nav-header">Package</li>
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-circle"></i>
@@ -158,6 +106,7 @@
                   <p>All Package</p>
                 </a>
               </li>
+              
               
 
           <li class="nav-header">Website</li>

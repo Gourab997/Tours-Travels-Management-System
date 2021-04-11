@@ -1,6 +1,5 @@
 @extends('admin.layout.main')
 
-
 @section('adduser')
     
 

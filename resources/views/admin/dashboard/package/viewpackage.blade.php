@@ -3,6 +3,7 @@
 
 @section('createpackage')
 <a href="/dashboard/viewpackage/download-pdf">Download PDF</a>
+<a href="{{route('createpackage')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Pacakage</a>
 <table class="table">
     <thead class="thead-dark">
       <tr>

@@ -301,10 +301,10 @@ Route::group(['prefix'=>'/admin','middleware'=>['sess','admin']],function(){
     //Admin ->User List
     Route::get("/dashboard/Userlist",[AdminController::class,'ulist']);
 
-    //Employee ->customer
-    Route::get("/dashboard/createcustomer",[AdCustomerController::class,'create']);
+    //Admin ->customer
+    Route::get("/dashboard/createcustomer",[AdCustomerController::class,'create'])->name('create');
     Route::post("/dashboard/createcustomer",[AdCustomerController::class,'store']);
-    Route::get("dashboard/viewcustomer",[AdCustomerController::class,'show']);
+    Route::get("/dashboard/viewcustomer",[AdCustomerController::class,'show'])->name('show');
     Route::get('/searchcustomer',[AdCustomerController::class,'search']);
     Route::post("/dashboard/view/{id}",[AdCustomerController::class,'confirmstatus']);
     Route::post("/dashboard/import",[AdCustomerController::class,'import']);

@@ -52,12 +52,12 @@ class AdPackageController extends Controller
                 $package->package_image  = $fileName;
                 $package->save();
             } else {
-                return redirect('employee/dashboard');
+                return redirect('admin/dashboard/viewpackage');
             }
         }
         $package->save();
 
-        return redirect('employee/dashboard');
+        return redirect('admin/dashboard/viewpackage');
     }
 
     /**

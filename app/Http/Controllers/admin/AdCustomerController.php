@@ -62,7 +62,7 @@ class AdCustomerController extends Controller
         $customer->gender = $req->gender;
         $customer->save();
 
-        return redirect('/dashboard/createcustomer');
+        return redirect('admin/dashboard/viewcustomer');
 
     }
  
@@ -121,7 +121,7 @@ class AdCustomerController extends Controller
         $customer->gender = $req->gender;
         $customer->save();
 
-        return redirect('/dashboard/viewcustomer');
+        return redirect('admin/dashboard/viewcustomer');
     }
 
     /**
@@ -133,7 +133,7 @@ class AdCustomerController extends Controller
     public function destroy($id)
     {
         if(Customer::destroy($id)){
-            return redirect('/dashboard/viewcustomer');
+            return redirect('admin/dashboard/viewcustomer');
         } 
     }
 }
