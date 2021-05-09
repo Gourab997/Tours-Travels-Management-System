@@ -1,32 +1,12 @@
 @extends('account.layout.main')
 
-@section('blog')
- <!-- DataTales Example -->
- <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-         @if(session('success'))
-            <div class="alert alert-success alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('success')}}
-            </div>
-        @endif
-
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('error')}}
-            </div>
-        @endif
-         </div>
-     </div>
+@section('maincontent')
 
      <section class="content-header">
         <div class="container-fluid">
         <div class="row mb-2">
         <div class="col-sm-6">
-        <h1>Employee Information</h1>
+        <h1>Edit Employee Information</h1>
         </div>
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -40,50 +20,7 @@
         </div><!-- /.container-fluid -->
     </section>
 
-    <form action="{{route('account.employee.update',[$user->id])}}" method="POST" class="needs-validation" novalidate>
-  <div class="form-row">@extends('account.layout.main')
-
-@section('blog')
- <!-- DataTales Example -->
- <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-         @if(session('success'))
-            <div class="alert alert-success alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('success')}}
-            </div>
-        @endif
-
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('error')}}
-            </div>
-        @endif
-         </div>
-     </div>
- </div>
-
-     <section class="content-header">
-        <div class="container-fluid">
-        <div class="row mb-2">
-        <div class="col-sm-6">
-        <h1>Employee Information</h1>
-        </div>
-        <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="/account/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="">Employee</a></li>
-            <li class="breadcrumb-item active">Create Employee</li>
-        </ol>
-        </div>
-        </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
+    <form action="{{route('account.employee.update',[$user->id])}}" method="POST"  enctype="multipart/form-data" >
     <section class="content">
       <div class="container-fluid">
 
@@ -170,10 +107,7 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-@endsection
-
-
-<!-- jQuery -->
+    <!-- jQuery -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -189,10 +123,10 @@
     $('#reservationdate').datetimepicker({
         format: 'L'
     });
-  
-
-  
-
   })
 </script>
+@endsection
+
+
+
   

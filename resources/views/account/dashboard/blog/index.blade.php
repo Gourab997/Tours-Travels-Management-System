@@ -1,26 +1,8 @@
 @extends('account.layout.main')
 
-@section('blog')
+@section('maincontent')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-         @if(session('success'))
-            <div class="alert alert-success alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('success')}}
-            </div>
-        @endif
-
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('error')}}
-            </div>
-        @endif
-         </div>
-     </div>
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary float-left">Blog Lists</h6>
       <a href="{{route('account.create.blog')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Blog</a>

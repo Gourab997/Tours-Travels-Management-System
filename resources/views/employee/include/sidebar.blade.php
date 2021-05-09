@@ -11,10 +11,14 @@
       <a href="{{ route('createpackage')}}">Create Package</a>
   </li>
   <li>
+    <a href="/employee/dashboard/viewpackagecatagory">Add Package Category</a>
+</li>
+
+  <li>
       <a href="{{ route('showpackage')}}">View Package</a>
   </li>
   <li>
-      <a href="#">Modification Package </a>
+      <a href="/employee/dashboard/booking">Booking Package </a>
   </li>
   </ul>
 </li>
@@ -25,46 +29,54 @@
 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Customer</a>
 <ul class="collapse list-unstyled" id="pageSubmenu">
   <li>
-      <a href="employee/dashboard/create">Create Customer</a>
+      <a href="/employee/dashboard/create">Create Customer</a>
   </li>
   <li>
-      <a href="employee/dashboard/view">Customer List</a>
+      <a href="/employee/dashboard/view">Customer List</a>
   </li>
-  <li>
-      <a href="#">Customer delete</a>
-  </li>
-  <li>
-    <a href="#">Update Request</a>
-</li>
-<li>
-    <a href="#">Delete Request</a>
-</li>
-<li>
-    <a href="#">Customer Valid</a>
-</li>
+
+
+
+
 </ul>
 </li>
 <li>
     <a href="#TourGuide" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tour Guide</a>
     <ul class="collapse list-unstyled" id="TourGuide">
     <li>
-        <a href="#">Create Guide</a>
+        <a href="/employee/dashboard/createtourguide">Create Guide</a>
     </li>
     <li>
-        <a href="#">Edit Guide</a>
+        <a href="/employee/dashboard/viewtourguide">View Guide</a>
     </li>
-    <li>
-        <a href="#">Delete Guide</a>
-    </li>
-    <li>
-        <a href="#">Appoint Guide</a>
-    </li>
+    
+   
     </ul>
   </li>
 <li>
-<a href="#">Feedback Check</a>
+
+    <li>
+        <a href="#feedback" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Feedback</a>
+        <ul class="collapse list-unstyled" id="feedback">
+     
+        <li>
+            <a href="/employee/dashboard/viewfeedback">View Feedback</a>
+        </li>
+        <li>
+            <a href="/employee/dashboard/viewfeedbackcatagory">Add Catagory</a>
+        </li>
+       
+        </ul>
+      </li>
+    <li>
+<a href="/employee/dashboard/viewbooking">Booking </a>
 </li>
+<li>
+    <a href="{{ route('employee.blog.index') }}">Blog </a>
+    </li>
 </ul>
+
+
 
 
 

@@ -1,28 +1,7 @@
 @extends('account.layout.main')
 
-@section('blog')
+@section('maincontent')
  <!-- DataTales Example -->
- <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-         @if(session('success'))
-            <div class="alert alert-success alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('success')}}
-            </div>
-        @endif
-
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissable fade show">
-                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                {{session('error')}}
-            </div>
-        @endif
-         </div>
-     </div>
- </div>
-
      <section class="content-header">
         <div class="container-fluid">
         <div class="row mb-2">
@@ -51,7 +30,7 @@
           <!-- /.card-header -->
           
           <div class="card-body">
-          <form method="post" action="{{route('account.employee.store')}}">
+          <form method="post" action="{{route('account.employee.store')}}"  enctype="multipart/form-data">
           @csrf
             <div class="row">
             <div class="col-12 col-sm-4">
@@ -124,6 +103,24 @@
             <!-- /.row -->
             <div class="row">
 
+            <div class="col-12 col-sm-4">
+              <div class="form-group">
+                  <label class="col-form-label">Blood Group</label>
+                  <select class="form-control select2" name="bloodgroup" style="width: 100%;">
+                    <option >Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>                    
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
             <div class="col-12 col-sm-4">
               <div class="form-group">
                   <label class="col-form-label">Role</label>

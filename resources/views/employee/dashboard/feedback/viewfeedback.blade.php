@@ -1,92 +1,149 @@
 @extends('employee.layouts.main')
-@section('feedback')
-<link href="{{ asset('css/feedback.css') }}" rel="stylesheet">
-<div class="container">
-<div class="be-comment-block">
-	<h1 class="comments-title">Comments (3)</h1>
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			
-				<span class="be-comment-name">
-					<a href="blog-detail-2.html">Ravi Sah</a>
-					</span>
-				<span class="be-comment-time">
-					<i class="fa fa-clock-o"></i>
-					May 27, 2015 at 3:14am
-				</span>
 
-			<p class="be-comment-text">
-				Pellentesque gravida tristique ultrices. 
-				Sed blandit varius mauris, vel volutpat urna hendrerit id. 
-				Curabitur rutrum dolor gravida turpis tristique efficitur.
-			</p>
-		</div>
-	</div>
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			<span class="be-comment-name">
-				<a href="blog-detail-2.html">Phoenix, the Creative Studio</a>
-			</span>
-			<span class="be-comment-time">
-				<i class="fa fa-clock-o"></i>
-				May 27, 2015 at 3:14am
-			</span>
-			<p class="be-comment-text">
-				Nunc ornare sed dolor sed mattis. In scelerisque dui a arcu mattis, at maximus eros commodo. Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant. Proin ut ornare lectus, vel eleifend est. Fusce hendrerit dui in turpis tristique blandit.
-			</p>
-		</div>
-	</div>
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			<span class="be-comment-name">
-				<a href="blog-detail-2.html">Cüneyt ŞEN</a>
-			</span>
-			<span class="be-comment-time">
-				<i class="fa fa-clock-o"></i>
-				May 27, 2015 at 3:14am
-			</span>
-			<p class="be-comment-text">
-				Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant
-			</p>
-		</div>
-	</div>
-	<form class="form-block">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group fl_icon">
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<input class="form-input" type="text" placeholder="Your name">
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 fl_icon">
-				<div class="form-group fl_icon">
-					<div class="icon"><i class="fa fa-envelope-o"></i></div>
-					<input class="form-input" type="text" placeholder="Your email">
-				</div>
-			</div>
-			<div class="col-xs-12">									
-				<div class="form-group">
-					<textarea class="form-input" required="" placeholder="Your text"></textarea>
-				</div>
-			</div>
-			<a class="btn btn-primary pull-right">submit</a>
-		</div>
-	</form>
-</div>
+@section('booking')
+<div class="card shadow mb-4">
+     <div class="row">
+         <div class="col-md-12">
+         @if(session('success'))
+            <div class="alert alert-success alert-dismissable fade show">
+                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                {{session('success')}}
+            </div>
+        @endif
+
+
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissable fade show">
+                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                {{session('error')}}
+            </div>
+        @endif
+         </div>
+     </div>
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary float-left">Feedback Category Lists</h6>
+      <a href="/employee/dashboard/createfeedback" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Feedback Category</a>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        @if(count($feedbacklist)>0)
+        <table class="table table-bordered" id="post-category-dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Feedback Id</th>
+              <th>Feedback Categories</th>
+              <th>Sander name</th>
+              <th>Sander Email</th>
+              <th>Massage</th>
+              
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Feedback Id</th>
+              <th>Feedback Categories</th>
+              <th>Sander name</th>
+              <th>Sander Email</th>
+              <th>Massage</th>
+              
+              <th>Action</th>
+              </tr>
+          </tfoot>
+          <tbody>
+            @foreach($feedbacklist as $data)   
+                <tr>
+                    <td>{{$data->f_id}}</td>
+                    <td>{{$data->cat_info->feedbackcatagory}}</td>
+                    <td>{{$data->name}}</td>
+                    <td>{{$data->email}}</td>
+                    <td>{{$data->message}}</td>
+                 
+                    <td>
+                       
+                  
+                        <form action="/employee/dashboard/deletefeedback/{{ $data->f_id }}" method="post">
+                          @csrf
+                          <button class="btn btn-danger btn-sm dltBtn"  style="color:rgb(255, 253, 253)" type="submit" name="submit" class="btn btn-danger"> Delete </button> 
+                      </form>
+                    </td>
+                 
+                </tr>  
+            @endforeach
+          </tbody>
+        </table>
+      
+        @else
+          <h6 class="text-center">No Feedback Feedback found!!! </h6>
+        @endif
+      </div>
+    </div>
 </div>
 @endsection
+
+@push('styles')
+  <link href="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <style>
+      div.dataTables_wrapper div.dataTables_paginate{
+          display: none;
+      }
+  </style>
+@endpush
+
+@push('scripts')
+
+  <!-- Page level plugins -->
+  <script src="{{asset('backend/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
+  <script>
+      
+      $('#post-category-dataTable').DataTable( {
+            "columnDefs":[
+                {
+                    "orderable":false,
+                    "targets":[3,4]
+                }
+            ]
+        } );
+
+        // Sweet alert
+
+        function deleteData(id){
+            
+        }
+  </script>
+  <script>
+      $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+          $('.dltBtn').click(function(e){
+            var form=$(this).closest('form');
+              var dataID=$(this).data('id');
+              // alert(dataID);
+              e.preventDefault();
+              swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                       form.submit();
+                    } else {
+                        swal("Your data is safe!");
+                    }
+                });
+          })
+      })
+  </script>
+@endpush

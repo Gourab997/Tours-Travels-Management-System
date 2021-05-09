@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class LoginController extends Controller
@@ -15,6 +16,65 @@ class LoginController extends Controller
 
         return view('login.index');
     }
+
+
+//google
+public function redirectToGoogle(){
+
+    return Socialite::driver('google')->redirect();
+}
+
+public function handleGoogleCallback() {
+    $user = Socialite::driver('google')->stateless()->user();
+
+    $this->_registerOrLoginUser($user);
+
+    return redirect('/customer/dashboard');
+}
+
+
+
+//facebook
+public function redirectToFacebook(){
+
+    return Socialite::driver('facebook')->redirect();
+}
+
+public function handleFacebookCallback() {
+    $user = Socialite::driver('facebook')->stateless()->user();
+
+    $this->_registerOrLoginUser($user);
+
+    return redirect('/customer/dashboard');
+}
+
+
+protected function _registerOrLoginUser($data){
+
+    $user = User::where('email', '=', $data->email)->first();
+    if(!$user){
+
+        $user = new User();
+        $user->username = $data->username;
+        $user->email = $data->email;
+        $user->provider_id = $data->id;
+        $user->profile_img = $data->profile_img;
+       // $user->role = user;
+        $user->save();
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 
     public function first(){
 

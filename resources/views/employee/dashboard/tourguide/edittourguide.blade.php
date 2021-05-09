@@ -4,59 +4,45 @@
 @section('adduser')
     
 
-<form action="{{ $customer->id }}" method="POST" class="needs-validation" novalidate>
+<form action="{{ $tourguide->id }}" method="POST" class="needs-validation" novalidate>
   <div class="form-row">
    @csrf
     <div class="col-md-4 mb-3">
       <label for="validationCustom02">Full name</label>
-      <input type="text" class="form-control" id="validationCustom02" name="fullname" placeholder="Full name" value="{{ $customer->fullname }}" required>
+      <input type="text" class="form-control" id="validationCustom02" name="fullname" placeholder="Full name" value="{{ $tourguide->fullname }}" required>
       <div class="valid-feedback">
         Looks good!
       </div>
     </div>
-    
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Username</label>
+      <input type="text" class="form-control" id="validationCustom02" name="username" placeholder="username" value="{{ $tourguide->username }}" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationCustom03">Email</label>
-      <input type="text" class="form-control" id="validationCustom03" name="email" value="{{ $customer->email }}" placeholder="Email" required>
+      <input type="text" class="form-control" id="validationCustom03" name="email" value="{{ $tourguide->email }}" placeholder="Email" required>
       <div class="invalid-feedback">
-        Please provide a valid city.
+        Please provide a Email.
       </div>
     </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom04">Address</label>
-      <input type="text" class="form-control" id="validationCustom04" name="address" value="{{ $customer->address  }}" placeholder="Address" required>
-      <div class="invalid-feedback">
-        Please provide a valid state.
-      </div>
-    </div>
+
     <div class="col-md-3 mb-3">
       <label for="validationCustom05">Phone</label>
-      <input type="text" class="form-control" id="validationCustom05" name="phone" value="{{ $customer->phone  }}" placeholder="Phone" required>
+      <input type="text" class="form-control" id="validationCustom05" name="phone" value="{{ $tourguide->phone  }}" placeholder="Phone" required>
       <div class="invalid-feedback">
-        Please provide a valid zip.
+        Please provide a Phone
       </div>
     </div>
   </div>
-  <div class="col-md-3 mb-3">
-    <label for="validationCustom05"> Password</label>
-    <input type="Password" class="form-control" id="validationCustom05" name="password" value="{{ $customer->password }}" placeholder=" Password" required>
-    <div class="invalid-feedback">
-      Please provide a valid zip.
-    </div>
-  </div>
+ 
 
 
-  <div class="col-md-3 mb-3">
-    <select class="custom-select"  name="gender" required>
-      <option value="">Gender</option>
-      <option value="male" @if($customer['gender'] == 'male') selected @endif>Male</option>
-      <option value="female" @if($customer['gender'] == 'female') selected @endif>Female</option>
-      <option value="other" @if($customer['gender'] == 'other') selected @endif>Other</option>
-    </select>
-    <div class="invalid-feedback">Example invalid custom select feedback</div>
-  </div>
+ 
 
 
   <div class="col-md-3 mb-3">

@@ -82,6 +82,30 @@ class Helper{
         }
         return BlogCategory::has('blogs')->orderBy('id','DESC')->get();
     }
+
+    
+    public static function postFeedbackList($option="all"){
+        if($option='all'){
+            return BlogCategory::orderBy('id','DESC')->get();
+        }
+        return BlogCategory::has('blogs')->orderBy('id','DESC')->get();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Cart Count
     public static function cartCount($user_id=''){
        

@@ -25,7 +25,7 @@
         <table>
             <tr>
                 <td>Package type:</td>
-                <td>{{ $package['package_type'] }}</td>
+                <td>{{ $package->cat_info->packagecatagory }}</td>
             </tr>
             <tr>
                 <td>Package location:</td>
@@ -43,7 +43,10 @@
                 <td >Package Feature:</td>
                 <td>{{ $package['package_feature'] }}</td>
             </tr>
-            
+            <tr>
+              <td >Package status:</td>
+              <td>{{ $package['status'] }}</td>
+          </tr>
         </table>
       </div>
   

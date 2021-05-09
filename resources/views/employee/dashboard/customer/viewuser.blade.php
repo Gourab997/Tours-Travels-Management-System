@@ -11,7 +11,7 @@
     </div>
 @endif
 
-<form action="/dashboard/import" method="POST" enctype="multipart/form-data">
+<form action="/employee/dashboard/import" method="POST" enctype="multipart/form-data">
 @csrf
 <div class="form-group">
 
@@ -25,7 +25,7 @@
 
 
 <div class="col-md-4">
-  <form action="/searchcustomer" method="GET">
+  <form action="/employee/searchcustomer" method="GET">
   <div class="input-group">
     <input type="search" name="search" class="form-control" placeholder="Type Customer Username">
     <span class="input-group-prepend">
@@ -43,7 +43,7 @@
         <th scope="col">Email</th>
         <th scope="col">Address</th>
         <th scope="col">Phone</th>
-        <th scope="col">Password</th>
+        
         <th scope="col">Gender</th>
         <th scope="col">Customer Status</th>
         <th scope="col">Action</th>
@@ -58,7 +58,7 @@
         <td scope="col">{{ $customerlists->email }}</td>
         <td scope="col">{{ $customerlists->address }}</td>
         <td scope="col">{{ $customerlists->phone }}</td>
-        <td scope="col">{{ $customerlists->password }}</td>
+     
         <td scope="col">{{ $customerlists->gender }}</td>
         <td>     @if ( $customerlists->status == 0)
           <div class="badge bg-danger">Not confirm</div>
@@ -81,7 +81,7 @@
                       </div>
                       
                       <div class="modal-footer">
-                          <form action="/dashboard/view/{{ $customerlists->id }}" method="post">
+                          <form action="/employee/dashboard/view/{{ $customerlists->id }}" method="post">
                               @csrf
                               <input type="text" class="d-none" name="status" value="{{$customerlists->id }}" >
                               <button style="padding: 16px;" type="submit" name="submit" class="btn btn-success">
@@ -99,8 +99,8 @@
           @endif
 </td>
         <td>
-            <a href="/dashboard/edituser/{{ $customerlists->id }}"name="btn btn-success"> Edit</a>
-            <form action="/dashboard/deleteuser/{{ $customerlists->id }}" method="post">
+            <a href="/employee/dashboard/edituser/{{ $customerlists->id }}"name="btn btn-success"> Edit</a>
+            <form action="/employee/dashboard/deleteuser/{{ $customerlists->id }}" method="post">
               @csrf
               <button type="submit" name="submit" class="btn btn-danger"> Delete </button> 
           </form>

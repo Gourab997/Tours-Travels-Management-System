@@ -11,23 +11,13 @@
     </div>
 @endif
 
-<form action="/dashboard/import" method="POST" enctype="multipart/form-data">
-@csrf
-<div class="form-group">
-
-<input type="file" name="file"/>
-
-<button type="submit" class="btn btn-primary">Import</button>
-</div>
-
-</form>
 
 
 
 <div class="col-md-4">
-  <form action="/searchcustomer" method="GET">
+  <form action="/employee/searchtourguide" method="GET">
   <div class="input-group">
-    <input type="search" name="search" class="form-control" placeholder="Type Customer Username">
+    <input type="search" name="search" class="form-control" placeholder="Type Tourguide Username">
     <span class="input-group-prepend">
       <button type="submit" class="btn btn-primary"> Search</button>
     </span>
@@ -43,26 +33,26 @@
         <th scope="col">Email</th>
        
         <th scope="col">Phone</th>
-        <th scope="col">Password</th>
+        
         
         <th scope="col">Action</th>
      </tr>
     </thead>
     <tbody>
-        @foreach($customerlist as $customerlists)
+        @foreach($tourguidelist as $tourguidelist)
       <tr scope="row">
-        <td scope="col">{{ $customerlists->id }}</td>
-        <td scope="col">{{ $customerlists->fullname }}</td>
-        <td scope="col">{{ $customerlists->username }}</td>
-        <td scope="col">{{ $customerlists->email }}</td>
+        <td scope="col">{{ $tourguidelist->t_id }}</td>
+        <td scope="col">{{ $tourguidelist->fullname }}</td>
+        <td scope="col">{{ $tourguidelist->username }}</td>
+        <td scope="col">{{ $tourguidelist->email }}</td>
        
-        <td scope="col">{{ $customerlists->phone }}</td>
-        <td scope="col">{{ $customerlists->password }}</td>
+        <td scope="col">{{ $tourguidelist->phone }}</td>
+        
         
       
         <td>
-            <a href="/dashboard/edituser/{{ $customerlists->id }}"name="btn btn-success"> Edit</a>
-            <form action="/dashboard/deleteuser/{{ $customerlists->id }}" method="post">
+            <a href="/employee/dashboard/edittourguide/{{ $tourguidelist->t_id }}"name="btn btn-success"> Edit</a>
+            <form action="/employee/dashboard/deletetourguide/{{ $tourguidelist->t_id }}" method="post">
               @csrf
               <button type="submit" name="submit" class="btn btn-danger"> Delete </button> 
           </form>
@@ -75,12 +65,6 @@
  
 
 
-  <span style="padding: 30px; "> {{ $customerlist->links() }}</span>
-  <style>
-    .w-5{
-      display:none ;
-      
-    }
-  </style>
+
 
 @endsection

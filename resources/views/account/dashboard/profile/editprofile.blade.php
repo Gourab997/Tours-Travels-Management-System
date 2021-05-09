@@ -1,5 +1,5 @@
 @extends('account.layout.main')
-@section('profile')
+@section('maincontent')
 
 <div class="content-header">
           <div class="container-fluid">
@@ -38,7 +38,7 @@
                     <div class="card-body">
                       <div class="d-flex flex-column align-items-center text-center">
                         <div class="image">
-                          <img src="{{ asset('/upload')}}/{{ $LoggedUserInfo->profile_img}}" class="img-circle elevation-2" alt="{{ $LoggedUserInfo['type'] }}" width="150">
+                          <img src="{{ asset('/upload/user_image')}}/{{ $LoggedUserInfo->profile_img}}" class="img-circle elevation-2" alt="{{ $LoggedUserInfo['type'] }}" width="150">
                         </div>
                         <div class="mt-3"> 
                           <h4> {{ $LoggedUserInfo['username'] }}</h4>                      

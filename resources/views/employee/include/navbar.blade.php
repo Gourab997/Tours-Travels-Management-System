@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/dashboard"><span style="color:rgb(65, 65, 143)">Welocme , {{ session('username') }}</span></a>
+          <a class="nav-link" href="/employee/dashboard"><span style="color:rgb(65, 65, 143)">Welocme , {{ $LoggedUserInfo['username'] }}</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/dashboard/profile">Profile</a>
+            <a class="nav-link" href="/employee/dashboard/profile">Profile</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/logout"><span style="color: Red" > Logout</span></a>
